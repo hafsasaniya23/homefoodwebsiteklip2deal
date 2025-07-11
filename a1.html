@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klip2Deal Homefood - Authentic Hyderabadi Homecooked Meals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more styling than Tailwind provides */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-item:hover .menu-item-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .menu-item-overlay {
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .food-category.active {
+            background-color: #f97316;
+            color: white;
+        }
+        
+        .testimonial-card {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Animation for floating elements */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-utensils text-orange-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-orange-500">Klip2Deal</span>
+                        <span class="text-xl font-bold text-gray-800">Homefood</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-orange-500 font-medium">Home</a>
+                    <a href="#menu" class="text-gray-800 hover:text-orange-500 transition">Menu</a>
+                    <a href="#meal-plans" class="text-gray-800 hover:text-orange-500 transition">Meal Plans</a>
+                    <a href="#thali" class="text-gray-800 hover:text-orange-500 transition">Custom Thali</a>
+                    <a href="#about" class="text-gray-800 hover:text-orange-500 transition">About</a>
+                    <a href="#contact" class="text-gray-800 hover:text-orange-500 transition">Contact</a>
+                    <a href="#contact" class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Order Now</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
+            <a href="#home" class="block py-2 text-orange-500 font-medium">Home</a>
+            <a href="#menu" class="block py-2 text-gray-800 hover:text-orange-500 transition">Menu</a>
+            <a href="#meal-plans" class="block py-2 text-gray-800 hover:text-orange-500 transition">Meal Plans</a>
+            <a href="#thali" class="block py-2 text-gray-800 hover:text-orange-500 transition">Custom Thali</a>
+            <a href="#about" class="block py-2 text-gray-800 hover:text-orange-500 transition">About</a>
+            <a href="#contact" class="block py-2 text-gray-800 hover:text-orange-500 transition">Contact</a>
+            <a href="#contact" class="block bg-orange-500 text-white px-4 py-2 rounded-full text-center hover:bg-orange-600 transition mt-2">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section text-white py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">Authentic Hyderabadi Homecooked Food</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Experience the rich flavors of traditional Hyderabadi cuisine, cooked with love and served fresh to your doorstep.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg font-medium transition">Explore Menu</a>
+                <a href="#contact" class="bg-white hover:bg-gray-100 text-orange-500 px-8 py-3 rounded-full text-lg font-medium transition">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Made with Love</h3>
+                    <p class="text-gray-600">Every dish is prepared with the same care and love as homecooked meals.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fresh Ingredients</h3>
+                    <p class="text-gray-600">We use only the freshest, high-quality ingredients in all our dishes.</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-gray-50">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-truck text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">Enjoy hot, fresh meals delivered quickly to your home or office.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Delicious Menu</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our wide variety of authentic Hyderabadi dishes that will take your taste buds on a journey.</p>
+            </div>
+            
+            <!-- Menu Categories -->
+            <div class="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
+                <div class="flex space-x-2">
+                    <button class="food-category px-4 py-2 rounded-full border border-gray-300 whitespace-nowrap" data-category="all">All Items</button>
+                    <button class="food-category px-4 py-2 rounded-full border border-gray-300 whitespace-nowrap" data-category="curries">Curries</button>
+                    <button class="food-category px-4 py-2 rounded-full border border-gray-300 whitespace-nowrap" data-category="rotis">Rotis</button>
+                    <button class="food-category px-4 py-2 rounded-full border border-gray-300 whitespace-nowrap" data-category="thalis">Thalis</button>
+                    <button class="food-category px-4 py-2 rounded-full border border-gray-300 whitespace-nowrap" data-category="sweets">Sweets</button>
+                </div>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Curry Items -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="curries">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chicken Korma" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Chicken Korma</h3>
+                        <p class="text-gray-600 mb-3">Rich and creamy chicken curry with aromatic spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹180</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="curries">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Mutton Korma" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Mutton Korma</h3>
+                        <p class="text-gray-600 mb-3">Tender mutton in a rich, flavorful gravy</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹220</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="curries">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1603105037880-880cd4edfb0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Dal Fry" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Dal Fry</h3>
+                        <p class="text-gray-600 mb-3">Classic tempered lentils with perfect spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹120</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Roti Items -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="rotis">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ghar ki Roti" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Ghar ki Roti</h3>
+                        <p class="text-gray-600 mb-3">Traditional homemade wheat roti</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹15</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="rotis">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ghee Roti" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Ghee Roti</h3>
+                        <p class="text-gray-600 mb-3">Soft roti brushed with pure ghee</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹20</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thali Items -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="thalis">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mega Non-Veg Thali" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Mega Non-Veg Thali</h3>
+                        <p class="text-gray-600 mb-3">Complete meal with 2 curries, dal, rice, roti, salad & sweet</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹280</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sweet Items -->
+                <div class="menu-item bg-white rounded-lg overflow-hidden shadow-md" data-category="sweets">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Double Ka Meetha" class="w-full h-full object-cover">
+                        <div class="menu-item-overlay absolute inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+                            <button class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Add to Cart</button>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-1">Double Ka Meetha</h3>
+                        <p class="text-gray-600 mb-3">Hyderabadi bread pudding dessert with nuts</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-orange-500 font-bold">₹90</span>
+                            <button class="text-orange-500 hover:text-orange-600">
+                                <i class="fas fa-plus-circle text-xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#menu" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg font-medium transition">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Plans Section -->
+    <section id="meal-plans" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Custom Meal Plans</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Choose from our flexible meal plans designed to fit your lifestyle and dietary preferences.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Weekly Plan</h3>
+                        <p class="text-gray-600">Perfect for busy professionals</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold text-orange-500">₹1,500</span>
+                        <span class="text-gray-500">/week</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>5 days (Mon-Fri)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>2 meals per day</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Customizable menu</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Free delivery</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full transition">Choose Plan</button>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition transform scale-105 relative">
+                    <div class="absolute top-0 right-0 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Bi-Weekly Plan</h3>
+                        <p class="text-gray-600">Best value for money</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold text-orange-500">₹2,800</span>
+                        <span class="text-gray-500">/2 weeks</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>10 days (Mon-Fri x 2 weeks)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>2 meals per day</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Customizable menu</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Free delivery</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>1 free dessert per week</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full transition">Choose Plan</button>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition">
+                    <div class="text-center mb-6">
+                        <h3 class="text-2xl font-bold mb-2">Monthly Plan</h3>
+                        <p class="text-gray-600">For long-term healthy eating</p>
+                    </div>
+                    <div class="text-center mb-6">
+                        <span class="text-4xl font-bold text-orange-500">₹5,000</span>
+                        <span class="text-gray-500">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>20 days (Mon-Fri x 4 weeks)</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>2 meals per day</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Customizable menu</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Free delivery</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>2 free desserts per week</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Weekly nutrition consultation</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full transition">Choose Plan</button>
+                </div>
+            </div>
+            
+            <div class="mt-12 bg-orange-50 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4 text-center">Need a Custom Plan?</h3>
+                <p class="text-gray-600 text-center mb-6">We understand everyone has unique needs. Contact us to create a personalized meal plan just for you.</p>
+                <div class="text-center">
+                    <a href="#contact" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg font-medium transition">Get Custom Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Thali Section -->
+    <section id="thali" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Build Your Custom Thali</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Mix and match your favorite dishes to create the perfect meal combo.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                        <h3 class="text-xl font-bold mb-4">Choose Your Base</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <input type="radio" id="rice" name="base" class="mr-2" checked>
+                                <label for="rice">Steamed Rice</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="jeera-rice" name="base" class="mr-2">
+                                <label for="jeera-rice">Jeera Rice</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="biryani-rice" name="base" class="mr-2">
+                                <label for="biryani-rice">Biryani Rice</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="khichdi" name="base" class="mr-2">
+                                <label for="khichdi">Khichdi</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                        <h3 class="text-xl font-bold mb-4">Main Course (Choose 1-2)</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="chicken-korma" class="mr-2">
+                                <label for="chicken-korma">Chicken Korma</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="mutton-korma" class="mr-2">
+                                <label for="mutton-korma">Mutton Korma</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="dal-fry" class="mr-2">
+                                <label for="dal-fry">Dal Fry</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="paneer-masala" class="mr-2">
+                                <label for="paneer-masala">Paneer Masala</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="aloo-palak" class="mr-2">
+                                <label for="aloo-palak">Aloo Palak</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="bhendi-fry" class="mr-2">
+                                <label for="bhendi-fry">Bhendi Fry</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold mb-4">Extras</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="raita" class="mr-2">
+                                <label for="raita">Raita (+₹20)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="salad" class="mr-2">
+                                <label for="salad">Salad (+₹15)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="papad" class="mr-2">
+                                <label for="papad">Papad (+₹10)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="pickle" class="mr-2">
+                                <label for="pickle">Pickle (+₹10)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-white rounded-lg shadow-md p-6 sticky top-4">
+                        <h3 class="text-xl font-bold mb-4">Your Custom Thali</h3>
+                        <div class="border border-gray-200 rounded-lg p-4 mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Base:</span>
+                                <span>Steamed Rice</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Main Course:</span>
+                                <span>None selected</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="font-medium">Extras:</span>
+                                <span>None selected</span>
+                            </div>
+                            <div class="border-t border-gray-200 my-3"></div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span>₹0</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="special-instructions" class="block font-medium mb-2">Special Instructions</label>
+                            <textarea id="special-instructions" rows="3" class="w-full border border-gray-300 rounded-lg p-2" placeholder="Any dietary restrictions or special requests?"></textarea>
+                        </div>
+                        <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full text-lg font-medium transition">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About Klip2Deal Homefood</h2>
+                    <p class="text-gray-600 mb-4">Klip2Deal Homefood was born out of a passion for authentic Hyderabadi homecooked meals. Our founder, with decades of experience in traditional Hyderabadi cooking, wanted to share these cherished family recipes with the community.</p>
+                    <p class="text-gray-600 mb-4">We believe in cooking with the same love and care as you would at home, using only the freshest ingredients and traditional methods to bring out the true flavors of Hyderabad.</p>
+                    <p class="text-gray-600 mb-6">Whether you're craving comfort food, need healthy meal solutions, or want to experience authentic Hyderabadi cuisine, we've got you covered.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full transition">Contact Us</a>
+                        <a href="#menu" class="border border-orange-500 text-orange-500 hover:bg-orange-50 px-6 py-2 rounded-full transition">Our Menu</a>
+                    </div>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="About Klip2Deal Homefood" class="rounded-lg shadow-lg w-full">
+                    <div class="absolute -bottom-6 -right-6 bg-orange-500 text-white p-4 rounded-lg shadow-lg w-1/2 floating">
+                        <h4 class="font-bold mb-1">10+ Years Experience</h4>
+                        <p class="text-sm">In authentic Hyderabadi cooking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Don't just take our word for it - hear from our satisfied customers!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Customer" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Priya Sharma</h4>
+                            <div class="flex text-orange-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The Mutton Korma tastes just like my grandmother used to make! I've been ordering the weekly meal plan for 3 months now and it's been a lifesaver for my busy schedule."</p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Customer" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Rahul Patel</h4>
+                            <div class="flex text-orange-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"As someone who moved from Hyderabad to Bangalore, I missed authentic home food. Klip2Deal brings back those flavors. Their custom thali option is my favorite!"</p>
+                </div>
+                
+                <div class="testimonial-card bg-white p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 overflow-hidden mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Customer" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ananya Reddy</h4>
+                            <div class="flex text-orange-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The monthly meal plan has helped me eat healthier while saving so much time. The food is always fresh and delicious. The Double Ka Meetha is to die for!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Have questions or want to place an order? Reach out to us!</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block font-medium mb-1">Full Name</label>
+                            <input type="text" id="name" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label for="email" class="block font-medium mb-1">Email Address</label>
+                            <input type="email" id="email" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label for="phone" class="block font-medium mb-1">Phone Number</label>
+                            <input type="tel" id="phone" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label for="message" class="block font-medium mb-1">Your Message</label>
+                            <textarea id="message" rows="4" class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-full text-lg font-medium transition">Send Message</button>
+                    </form>
+                </div>
+                
+                <div>
+                    <div class="bg-gray-50 rounded-lg p-8 h-full">
+                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Address</h4>
+                                    <p class="text-gray-600">123 Food Street, Hyderabad, Telangana 500001</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Phone</h4>
+                                    <p class="text-gray-600">+91 98765 43210</p>
+                                    <p class="text-gray-600">+91 12345 67890</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Email</h4>
+                                    <p class="text-gray-600">orders@klip2dealhomefood.com</p>
+                                    <p class="text-gray-600">support@klip2dealhomefood.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-orange-100 p-3 rounded-full mr-4">
+                                    <i class="fas fa-clock text-orange-500"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-1">Opening Hours</h4>
+                                    <p class="text-gray-600">Monday - Saturday: 10:00 AM - 10:00 PM</p>
+                                    <p class="text-gray-600">Sunday: 11:00 AM - 9:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-gray-200 hover:bg-orange-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-orange-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-orange-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-gray-200 hover:bg-orange-500 hover:text-white w-10 h-10 rounded-full flex items-center justify-center transition">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Area Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Delivery Areas</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We currently deliver to these areas in Hyderabad</p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Banjara Hills</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Jubilee Hills</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Gachibowli</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Hitech City</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Madhapur</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Kondapur</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Kukatpally</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Ameerpet</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Secunderabad</div>
+                <div class="bg-white p-4 rounded-lg shadow-sm text-center">Begumpet</div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-gray-600 mb-4">Don't see your area listed? Contact us to check if we can deliver to you!</p>
+                <a href="#contact" class="inline-block bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full text-lg font-medium transition">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-orange-500 text-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Taste Authentic Hyderabadi Homefood?</h2>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">Order now and experience the rich flavors of traditional Hyderabadi cuisine delivered fresh to your doorstep.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-white hover:bg-gray-100 text-orange-500 px-8 py-3 rounded-full text-lg font-medium transition">View Menu</a>
+                <a href="#contact" class="border-2 border-white hover:bg-white hover:bg-opacity-20 px-8 py-3 rounded-full text-lg font-medium transition">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-utensils text-orange-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-orange-500">Klip2Deal</span>
+                        <span class="text-xl font-bold">Homefood</span>
+                    </div>
+                    <p class="text-gray-400 mb-4">Authentic Hyderabadi homecooked meals delivered to your doorstep.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-orange-500 transition">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-orange-500 transition">Home</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Menu</a></li>
+                        <li><a href="#meal-plans" class="text-gray-400 hover:text-orange-500 transition">Meal Plans</a></li>
+                        <li><a href="#thali" class="text-gray-400 hover:text-orange-500 transition">Custom Thali</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-orange-500 transition">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-orange-500 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Menu Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Curries</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Rotis</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Thalis</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Sweets</a></li>
+                        <li><a href="#menu" class="text-gray-400 hover:text-orange-500 transition">Combos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Contact Info</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-orange-500 mt-1 mr-2"></i>
+                            <span>123 Food Street, Hyderabad, Telangana 500001</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-orange-500 mr-2"></i>
+                            <span>+91 98765 43210</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-orange-500 mr-2"></i>
+                            <span>orders@klip2dealhomefood.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 Klip2Deal Homefood. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-orange-500 transition">Refund Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 bg-orange-500 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Menu Category Filter
+        const categoryButtons = document.querySelectorAll('.food-category');
+        const menuItems = document.querySelectorAll('.menu-item');
+        
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                categoryButtons.forEach(btn => btn.classList.remove('active', 'bg-orange-500', 'text-white'));
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-orange-500', 'text-white');
+                
+                const category = button.getAttribute('data-category');
+                
+                // Show/hide menu items based on category
+                menuItems.forEach(item => {
+                    if (category === 'all' || item.getAttribute('data-category') === category) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

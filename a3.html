@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amma's Hyderabadi Cloud Kitchen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for drag and drop functionality */
+        .meal-dropzone {
+            min-height: 120px;
+            transition: all 0.3s;
+        }
+        .meal-dropzone.drag-over {
+            background-color: rgba(234, 179, 8, 0.2);
+            border: 2px dashed #eab308;
+        }
+        .draggable-meal {
+            cursor: grab;
+            transition: transform 0.2s;
+        }
+        .draggable-meal:active {
+            cursor: grabbing;
+        }
+        .draggable-meal.dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+        /* Animation for menu items */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu-item {
+            animation: fadeIn 0.3s ease forwards;
+        }
+        .menu-item:nth-child(1) { animation-delay: 0.1s; }
+        .menu-item:nth-child(2) { animation-delay: 0.2s; }
+        .menu-item:nth-child(3) { animation-delay: 0.3s; }
+        .menu-item:nth-child(4) { animation-delay: 0.4s; }
+        .menu-item:nth-child(5) { animation-delay: 0.5s; }
+        .menu-item:nth-child(6) { animation-delay: 0.6s; }
+        .menu-item:nth-child(7) { animation-delay: 0.7s; }
+        .menu-item:nth-child(8) { animation-delay: 0.8s; }
+    </style>
+</head>
+<body class="bg-amber-50 text-gray-800 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-amber-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-utensils text-2xl text-amber-200"></i>
+                <a href="#home" class="text-xl font-bold font-serif">Amma's Kitchen</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <div id="nav-links" class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-amber-200 transition">Home</a>
+                <a href="#about" class="hover:text-amber-200 transition">About Us</a>
+                <a href="#menu" class="hover:text-amber-200 transition">Menu</a>
+                <a href="#thali-builder" class="hover:text-amber-200 transition">Thali Builder</a>
+                <a href="#meal-plan" class="hover:text-amber-200 transition">Meal Plan</a>
+                <a href="#favorites" class="hover:text-amber-200 transition">Favorites</a>
+                <a href="#order" class="bg-amber-600 px-3 py-1 rounded hover:bg-amber-500 transition">Order Now</a>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-amber-700 px-4 py-2">
+            <a href="#home" class="block py-2 hover:text-amber-200 transition">Home</a>
+            <a href="#about" class="block py-2 hover:text-amber-200 transition">About Us</a>
+            <a href="#menu" class="block py-2 hover:text-amber-200 transition">Menu</a>
+            <a href="#thali-builder" class="block py-2 hover:text-amber-200 transition">Thali Builder</a>
+            <a href="#meal-plan" class="block py-2 hover:text-amber-200 transition">Meal Plan</a>
+            <a href="#favorites" class="block py-2 hover:text-amber-200 transition">Favorites</a>
+            <a href="#order" class="block py-2 hover:text-amber-200 transition">Order Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center bg-amber-900 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-40"></div>
+        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+             alt="Hyderabadi Biryani" class="absolute inset-0 w-full h-full object-cover">
+        <div class="relative z-10 text-center px-4 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 font-serif">Authentic Hyderabadi Home Cooking</h1>
+            <p class="text-xl md:text-2xl mb-8">Experience the rich flavors of Hyderabad, cooked with love by Amma in her home kitchen</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#menu" class="bg-amber-600 hover:bg-amber-500 text-white px-6 py-3 rounded-lg font-medium transition">View Menu</a>
+                <a href="#order" class="bg-white hover:bg-gray-100 text-amber-800 px-6 py-3 rounded-lg font-medium transition">Order Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">About Amma's Kitchen</h2>
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Amma cooking" class="rounded-lg shadow-xl w-full h-auto max-h-96 object-cover">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold mb-4 text-amber-700">Homemade with Love Since 1995</h3>
+                    <p class="text-gray-700 mb-4">Amma's Kitchen began in our family home in Hyderabad, where my mother would cook for neighbors and friends who couldn't get enough of her authentic Hyderabadi dishes. What started as a small passion project has now grown into a beloved cloud kitchen serving hundreds of happy customers.</p>
+                    <p class="text-gray-700 mb-6">Every dish is prepared with the same care, love, and traditional recipes that have been passed down through generations. We use only the freshest ingredients and traditional cooking methods to bring you the true taste of Hyderabad.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-amber-600 mr-2"></i>
+                            <span>100% Homemade</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-amber-600 mr-2"></i>
+                            <span>Family Recipes</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-amber-600 mr-2"></i>
+                            <span>Fresh Ingredients</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-amber-600 mr-2"></i>
+                            <span>Hygienic Kitchen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-16 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">Our Menu</h2>
+            
+            <!-- Menu Categories -->
+            <div class="flex overflow-x-auto pb-4 mb-8 scrollbar-hide">
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-amber-200 text-amber-800 font-medium whitespace-nowrap" data-category="all">All Items</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="veg-curries">Veg Curries</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="nonveg-curries">Non-Veg Curries</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="breads">Breads</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="rice">Rice</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="sweets">Sweets</button>
+                <button class="menu-category-btn px-4 py-2 mx-2 rounded-full bg-white text-amber-800 font-medium whitespace-nowrap" data-category="combos">Combos</button>
+            </div>
+            
+            <!-- Menu Items -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="menu-items-container">
+                <!-- Menu items will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Thali Builder Section -->
+    <section id="thali-builder" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">Build Your Custom Thali</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Thali Builder Form -->
+                <div class="lg:w-2/3 bg-amber-50 p-6 rounded-lg shadow-md">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">1. Choose Your Curry (Select 1-2)</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="curry-options">
+                            <!-- Curry options will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">2. Choose Dry Side (Optional)</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="dry-side-options">
+                            <!-- Dry side options will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">3. Choose Bread or Rice (Select 1)</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="bread-rice-options">
+                            <!-- Bread/rice options will be inserted here -->
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">4. Add Extras (Optional)</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="extra-options">
+                            <!-- Extra options will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thali Preview & Summary -->
+                <div class="lg:w-1/3">
+                    <div class="bg-amber-100 p-6 rounded-lg shadow-md sticky top-4">
+                        <h3 class="text-xl font-semibold mb-4 text-center text-amber-800">Your Thali</h3>
+                        <div class="bg-white p-4 rounded mb-4 min-h-40" id="thali-preview">
+                            <p class="text-gray-500 text-center py-8">Your selected items will appear here</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span>Subtotal:</span>
+                                <span id="thali-subtotal">₹0</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Packaging:</span>
+                                <span>₹20</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span id="thali-total">₹20</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex flex-col space-y-3">
+                            <button id="save-thali-btn" class="bg-amber-600 hover:bg-amber-500 text-white py-2 px-4 rounded transition">
+                                <i class="fas fa-heart mr-2"></i> Save to Favorites
+                            </button>
+                            <button id="add-to-cart-btn" class="bg-amber-800 hover:bg-amber-700 text-white py-2 px-4 rounded transition">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Meal Plan Section -->
+    <section id="meal-plan" class="py-16 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">Weekly Meal Plan</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Meal Selection -->
+                <div class="lg:w-1/3">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700">Available Meals</h3>
+                        <div class="space-y-3" id="available-meals">
+                            <!-- Available meals will be inserted here -->
+                        </div>
+                        
+                        <div class="mt-6">
+                            <h4 class="font-medium mb-2">Save/Load Plans</h4>
+                            <div class="flex space-x-2">
+                                <input type="text" id="plan-name" placeholder="Plan name" class="flex-1 border border-gray-300 rounded px-3 py-1">
+                                <button id="save-plan-btn" class="bg-amber-600 hover:bg-amber-500 text-white px-3 py-1 rounded">
+                                    <i class="fas fa-save mr-1"></i> Save
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                <select id="saved-plans" class="w-full border border-gray-300 rounded px-3 py-1">
+                                    <option value="">Load saved plan...</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Weekly Calendar -->
+                <div class="lg:w-2/3">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Monday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Monday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="monday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Tuesday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Tuesday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="tuesday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Wednesday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Wednesday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="wednesday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Thursday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Thursday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="thursday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Friday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Friday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="friday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Saturday -->
+                        <div class="bg-white p-4 rounded-lg shadow-md">
+                            <h4 class="font-bold text-center mb-3 bg-amber-100 py-1 rounded">Saturday</h4>
+                            <div class="meal-dropzone min-h-24 border-2 border-dashed border-gray-200 rounded p-2" data-day="saturday">
+                                <p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700">Weekly Summary</h3>
+                        <div id="weekly-summary" class="space-y-2">
+                            <p class="text-gray-500">Your weekly meal selections will appear here</p>
+                        </div>
+                        <div class="mt-4 pt-4 border-t">
+                            <button id="add-plan-to-cart" class="w-full bg-amber-800 hover:bg-amber-700 text-white py-2 px-4 rounded transition">
+                                <i class="fas fa-shopping-cart mr-2"></i> Add Weekly Plan to Order
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Favorites Section -->
+    <section id="favorites" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">Your Favorites</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Saved Thalis -->
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">Saved Thalis</h3>
+                    <div id="saved-thalis" class="space-y-3">
+                        <p class="text-gray-500">You haven't saved any thalis yet.</p>
+                    </div>
+                </div>
+                
+                <!-- Favorite Items -->
+                <div class="bg-amber-50 p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-4 text-amber-700 border-b pb-2">Favorite Items</h3>
+                    <div id="favorite-items" class="space-y-3">
+                        <p class="text-gray-500">You haven't marked any items as favorites yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Now Section -->
+    <section id="order" class="py-16 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-800 font-serif">Place Your Order</h2>
+            
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Order Summary -->
+                <div class="lg:w-1/3">
+                    <div class="bg-white p-6 rounded-lg shadow-md sticky top-4">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700">Order Summary</h3>
+                        <div id="order-items" class="mb-4 max-h-96 overflow-y-auto">
+                            <p class="text-gray-500">Your cart is empty</p>
+                        </div>
+                        <div class="border-t pt-4">
+                            <div class="flex justify-between mb-2">
+                                <span>Subtotal:</span>
+                                <span id="order-subtotal">₹0</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span>Packaging:</span>
+                                <span id="order-packaging">₹0</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span id="order-total">₹0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Customer Details Form -->
+                <div class="lg:w-2/3">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold mb-4 text-amber-700">Delivery Information</h3>
+                        <form id="order-form">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div>
+                                    <label for="name" class="block mb-1">Full Name*</label>
+                                    <input type="text" id="name" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="phone" class="block mb-1">Phone Number*</label>
+                                    <input type="tel" id="phone" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="email" class="block mb-1">Email Address</label>
+                                    <input type="email" id="email" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                                <div>
+                                    <label for="date" class="block mb-1">Delivery Date*</label>
+                                    <input type="date" id="date" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="address" class="block mb-1">Delivery Address*</label>
+                                <textarea id="address" rows="3" required class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block mb-2">Delivery Time*</label>
+                                <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                    <label class="flex items-center">
+                                        <input type="radio" name="time" value="11:30 AM - 1:30 PM" class="mr-2" required>
+                                        <span>11:30 AM - 1:30 PM</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="time" value="1:30 PM - 3:30 PM" class="mr-2">
+                                        <span>1:30 PM - 3:30 PM</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="time" value="6:30 PM - 8:30 PM" class="mr-2">
+                                        <span>6:30 PM - 8:30 PM</span>
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="radio" name="time" value="8:30 PM - 10:30 PM" class="mr-2">
+                                        <span>8:30 PM - 10:30 PM</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="instructions" class="block mb-1">Special Instructions</label>
+                                <textarea id="instructions" rows="2" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Any allergies, dietary restrictions, or delivery notes..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-amber-800 hover:bg-amber-700 text-white py-3 px-4 rounded-lg font-medium text-lg transition">
+                                Place Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-utensils text-2xl text-amber-200"></i>
+                        <span class="text-xl font-bold font-serif">Amma's Kitchen</span>
+                    </div>
+                    <p class="mt-2 text-amber-200">Authentic Hyderabadi Home Cooking</p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-amber-200 transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-amber-200 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-amber-200 transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="mt-8 pt-6 border-t border-amber-800 text-center text-sm text-amber-200">
+                <p>&copy; 2023 Amma's Hyderabadi Cloud Kitchen. All rights reserved.</p>
+                <p class="mt-2">Made with <i class="fas fa-heart text-red-400"></i> in Hyderabad</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Order Confirmation Modal -->
+    <div id="order-confirmation" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+            <div class="text-center mb-6">
+                <i class="fas fa-check-circle text-5xl text-green-500 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-2">Order Confirmed!</h3>
+                <p class="text-gray-600">Thank you for your order. We'll contact you shortly to confirm the details.</p>
+            </div>
+            <div class="bg-amber-50 p-4 rounded mb-4">
+                <h4 class="font-semibold mb-2">Order Summary</h4>
+                <div id="confirmation-items" class="text-sm space-y-1"></div>
+                <div class="mt-2 pt-2 border-t border-amber-100">
+                    <div class="flex justify-between">
+                        <span>Total:</span>
+                        <span id="confirmation-total" class="font-semibold"></span>
+                    </div>
+                </div>
+            </div>
+            <button id="close-confirmation" class="w-full bg-amber-800 hover:bg-amber-700 text-white py-2 px-4 rounded transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Menu Data
+        const menuItems = [
+            // Veg Curries
+            { id: 1, name: "Khatti Dal", description: "Tangy Hyderabadi lentil preparation", price: 120, category: "veg-curries", veg: true, favorite: false },
+            { id: 2, name: "Bagara Baingan", description: "Eggplant cooked in peanut and sesame gravy", price: 150, category: "veg-curries", veg: true, favorite: false },
+            { id: 3, name: "Mirchi Ka Salan", description: "Spicy chili curry with peanuts", price: 140, category: "veg-curries", veg: true, favorite: false },
+            { id: 4, name: "Dum Aloo", description: "Baby potatoes in rich gravy", price: 160, category: "veg-curries", veg: true, favorite: false },
+            { id: 5, name: "Palak Paneer", description: "Spinach with cottage cheese", price: 180, category: "veg-curries", veg: true, favorite: false },
+            
+            // Non-Veg Curries
+            { id: 6, name: "Chicken Korma", description: "Mild creamy chicken curry", price: 220, category: "nonveg-curries", veg: false, favorite: false },
+            { id: 7, name: "Mutton Dalcha", description: "Mutton with lentils and tamarind", price: 280, category: "nonveg-curries", veg: false, favorite: false },
+            { id: 8, name: "Hyderabadi Chicken Curry", description: "Spicy tomato-based chicken curry", price: 240, category: "nonveg-curries", veg: false, favorite: false },
+            { id: 9, name: "Fish Curry", description: "Fish in tangy tamarind sauce", price: 260, category: "nonveg-curries", veg: false, favorite: false },
+            { id: 10, name: "Keema Matar", description: "Minced meat with peas", price: 250, category: "nonveg-curries", veg: false, favorite: false },
+            
+            // Breads
+            { id: 11, name: "Ghee Roti", description: "Whole wheat bread with ghee", price: 30, category: "breads", veg: true, favorite: false },
+            { id: 12, name: "Butter Naan", description: "Leavened white flour bread", price: 50, category: "breads", veg: true, favorite: false },
+            { id: 13, name: "Rumali Roti", description: "Thin handkerchief bread", price: 40, category: "breads", veg: true, favorite: false },
+            { id: 14, name: "Tandoori Roti", description: "Whole wheat bread cooked in tandoor", price: 35, category: "breads", veg: true, favorite: false },
+            { id: 15, name: "Lachha Paratha", description: "Layered flatbread", price: 45, category: "breads", veg: true, favorite: false },
+            
+            // Rice
+            { id: 16, name: "Steamed Rice", description: "Plain basmati rice", price: 100, category: "rice", veg: true, favorite: false },
+            { id: 17, name: "Jeera Rice", description: "Cumin flavored rice", price: 120, category: "rice", veg: true, favorite: false },
+            { id: 18, name: "Veg Biryani", description: "Fragrant rice with mixed vegetables", price: 180, category: "rice", veg: true, favorite: false },
+            { id: 19, name: "Chicken Biryani", description: "Hyderabadi style dum biryani", price: 250, category: "rice", veg: false, favorite: false },
+            { id: 20, name: "Mutton Biryani", description: "Hyderabadi style dum biryani", price: 320, category: "rice", veg: false, favorite: false },
+            
+            // Sweets
+            { id: 21, name: "Sheer Khurma", description: "Vermicelli pudding with dry fruits", price: 150, category: "sweets", veg: true, favorite: false },
+            { id: 22, name: "Double Ka Meetha", description: "Bread pudding dessert", price: 120, category: "sweets", veg: true, favorite: false },
+            { id: 23, name: "Qubani Ka Meetha", description: "Apricot dessert", price: 140, category: "sweets", veg: true, favorite: false },
+            { id: 24, name: "Badam Ki Jali", description: "Almond-based sweet", price: 160, category: "sweets", veg: true, favorite: false },
+            { id: 25, name: "Falooda", description: "Rose flavored dessert drink", price: 130, category: "sweets", veg: true, favorite: false },
+            
+            // Combos
+            { id: 26, name: "Veg Thali", description: "2 curries, dal, rice, roti, salad, pickle", price: 250, category: "combos", veg: true, favorite: false },
+            { id: 27, name: "Non-Veg Thali", description: "2 curries, dal, rice, roti, salad, pickle", price: 350, category: "combos", veg: false, favorite: false },
+            { id: 28, name: "Mini Veg Meal", description: "1 curry, rice or roti, dal", price: 180, category: "combos", veg: true, favorite: false },
+            { id: 29, name: "Mini Non-Veg Meal", description: "1 curry, rice or roti, dal", price: 220, category: "combos", veg: false, favorite: false },
+            { id: 30, name: "Family Combo", description: "4 curries (veg/non-veg), rice, rotis, dal, salad, dessert", price: 800, category: "combos", veg: false, favorite: false }
+        ];
+
+        // Thali Builder Options
+        const thaliOptions = {
+            curries: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            drySides: [2, 3, 4, 5, 10],
+            breadRice: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+            extras: [21, 22, 23, 24, 25]
+        };
+
+        // Weekly Meal Plan Options
+        const mealPlanOptions = [
+            { id: 'mp1', name: "Veg Thali Combo", price: 250, description: "2 veg curries, dal, rice, roti, salad, pickle" },
+            { id: 'mp2', name: "Non-Veg Thali Combo", price: 350, description: "2 non-veg curries, dal, rice, roti, salad, pickle" },
+            { id: 'mp3', name: "Biryani Special", price: 280, description: "Biryani with raita and mirchi ka salan" },
+            { id: 'mp4', name: "Healthy Veg Meal", price: 220, description: "Palak paneer, dal, roti, salad" },
+            { id: 'mp5', name: "Chicken Lover's Meal", price: 300, description: "Chicken curry, keema, roti, rice" },
+            { id: 'mp6', name: "Mutton Special", price: 380, description: "Mutton curry, dalcha, rice, roti" }
+        ];
+
+        // Current Order
+        let currentOrder = {
+            items: [],
+            subtotal: 0,
+            packaging: 0,
+            total: 0
+        };
+
+        // Current Thali
+        let currentThali = {
+            curries: [],
+            drySide: null,
+            breadRice: null,
+            extras: [],
+            subtotal: 0
+        };
+
+        // Current Meal Plan
+        let currentMealPlan = {
+            monday: null,
+            tuesday: null,
+            wednesday: null,
+            thursday: null,
+            friday: null,
+            saturday: null,
+            sunday: null
+        };
+
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+        const menuItemsContainer = document.getElementById('menu-items-container');
+        const menuCategoryButtons = document.querySelectorAll('.menu-category-btn');
+        const curryOptionsContainer = document.getElementById('curry-options');
+        const drySideOptionsContainer = document.getElementById('dry-side-options');
+        const breadRiceOptionsContainer = document.getElementById('bread-rice-options');
+        const extraOptionsContainer = document.getElementById('extra-options');
+        const thaliPreview = document.getElementById('thali-preview');
+        const thaliSubtotal = document.getElementById('thali-subtotal');
+        const thaliTotal = document.getElementById('thali-total');
+        const saveThaliBtn = document.getElementById('save-thali-btn');
+        const addToCartBtn = document.getElementById('add-to-cart-btn');
+        const availableMealsContainer = document.getElementById('available-meals');
+        const mealDropzones = document.querySelectorAll('.meal-dropzone');
+        const weeklySummary = document.getElementById('weekly-summary');
+        const addPlanToCartBtn = document.getElementById('add-plan-to-cart');
+        const savedThalisContainer = document.getElementById('saved-thalis');
+        const favoriteItemsContainer = document.getElementById('favorite-items');
+        const orderItemsContainer = document.getElementById('order-items');
+        const orderSubtotal = document.getElementById('order-subtotal');
+        const orderPackaging = document.getElementById('order-packaging');
+        const orderTotal = document.getElementById('order-total');
+        const orderForm = document.getElementById('order-form');
+        const orderConfirmation = document.getElementById('order-confirmation');
+        const confirmationItems = document.getElementById('confirmation-items');
+        const confirmationTotal = document.getElementById('confirmation-total');
+        const closeConfirmation = document.getElementById('close-confirmation');
+        const savedPlansSelect = document.getElementById('saved-plans');
+        const savePlanBtn = document.getElementById('save-plan-btn');
+        const planNameInput = document.getElementById('plan-name');
+
+        // Initialize the app
+        function init() {
+            // Load data from localStorage
+            loadFavorites();
+            loadSavedThalis();
+            loadSavedPlans();
+            
+            // Render menu items
+            renderMenuItems('all');
+            
+            // Set up thali builder
+            setupThaliBuilder();
+            
+            // Set up weekly meal plan
+            setupMealPlan();
+            
+            // Set up event listeners
+            setupEventListeners();
+            
+            // Update order summary
+            updateOrderSummary();
+        }
+
+        // Set up event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            
+            // Menu category buttons
+            menuCategoryButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const category = button.dataset.category;
+                    menuCategoryButtons.forEach(btn => btn.classList.remove('bg-amber-200'));
+                    button.classList.add('bg-amber-200');
+                    renderMenuItems(category);
+                });
+            });
+            
+            // Save thali button
+            saveThaliBtn.addEventListener('click', saveCurrentThali);
+            
+            // Add to cart button
+            addToCartBtn.addEventListener('click', addThaliToCart);
+            
+            // Add plan to cart button
+            addPlanToCartBtn.addEventListener('click', addMealPlanToCart);
+            
+            // Order form submission
+            orderForm.addEventListener('submit', submitOrder);
+            
+            // Close confirmation modal
+            closeConfirmation.addEventListener('click', () => {
+                orderConfirmation.classList.add('hidden');
+            });
+            
+            // Load saved plan
+            savedPlansSelect.addEventListener('change', loadSavedPlan);
+            
+            // Save plan button
+            savePlanBtn.addEventListener('click', saveCurrentPlan);
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Render menu items based on category
+        function renderMenuItems(category) {
+            menuItemsContainer.innerHTML = '';
+            
+            const filteredItems = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+            
+            if (filteredItems.length === 0) {
+                menuItemsContainer.innerHTML = '<p class="text-gray-500 col-span-3 text-center py-8">No items found in this category.</p>';
+                return;
+            }
+            
+            filteredItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item bg-white rounded-lg shadow-md overflow-hidden';
+                menuItem.innerHTML = `
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-semibold text-lg">${item.name}</h3>
+                                <p class="text-gray-600 text-sm mt-1">${item.description}</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹${item.price}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <span class="text-xs px-2 py-1 rounded-full ${item.veg ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                ${item.veg ? 'VEG' : 'NON-VEG'}
+                            </span>
+                            <button class="favorite-btn ${item.favorite ? 'text-red-500' : 'text-gray-300'} hover:text-red-500 transition" data-id="${item.id}">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                menuItemsContainer.appendChild(menuItem);
+            });
+            
+            // Add event listeners to favorite buttons
+            document.querySelectorAll('.favorite-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const itemId = parseInt(button.dataset.id);
+                    toggleFavorite(itemId);
+                });
+            });
+        }
+
+        // Toggle favorite status of an item
+        function toggleFavorite(itemId) {
+            const item = menuItems.find(item => item.id === itemId);
+            if (item) {
+                item.favorite = !item.favorite;
+                saveFavorites();
+                renderMenuItems(document.querySelector('.menu-category-btn.bg-amber-200').dataset.category);
+                loadFavorites();
+            }
+        }
+
+        // Save favorites to localStorage
+        function saveFavorites() {
+            const favorites = menuItems.filter(item => item.favorite).map(item => item.id);
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+
+        // Load favorites from localStorage
+        function loadFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+            menuItems.forEach(item => {
+                item.favorite = favorites.includes(item.id);
+            });
+            
+            // Update favorite items display
+            const favoriteItems = menuItems.filter(item => item.favorite);
+            if (favoriteItems.length > 0) {
+                favoriteItemsContainer.innerHTML = '';
+                favoriteItems.forEach(item => {
+                    const favItem = document.createElement('div');
+                    favItem.className = 'flex justify-between items-center bg-white p-3 rounded shadow-sm';
+                    favItem.innerHTML = `
+                        <div>
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-sm text-gray-600">₹${item.price}</p>
+                        </div>
+                        <button class="add-favorite-to-cart bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-1 rounded text-sm transition" data-id="${item.id}">
+                            Add to Order
+                        </button>
+                    `;
+                    favoriteItemsContainer.appendChild(favItem);
+                });
+                
+                // Add event listeners to add to cart buttons
+                document.querySelectorAll('.add-favorite-to-cart').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const itemId = parseInt(button.dataset.id);
+                        addItemToCart(itemId);
+                    });
+                });
+            } else {
+                favoriteItemsContainer.innerHTML = '<p class="text-gray-500">You haven\'t marked any items as favorites yet.</p>';
+            }
+        }
+
+        // Set up thali builder
+        function setupThaliBuilder() {
+            // Curry options
+            thaliOptions.curries.forEach(itemId => {
+                const item = menuItems.find(i => i.id === itemId);
+                if (item) {
+                    const option = createThaliOption(item, 'curry');
+                    curryOptionsContainer.appendChild(option);
+                }
+            });
+            
+            // Dry side options
+            thaliOptions.drySides.forEach(itemId => {
+                const item = menuItems.find(i => i.id === itemId);
+                if (item) {
+                    const option = createThaliOption(item, 'dry-side');
+                    drySideOptionsContainer.appendChild(option);
+                }
+            });
+            
+            // Bread/rice options
+            thaliOptions.breadRice.forEach(itemId => {
+                const item = menuItems.find(i => i.id === itemId);
+                if (item) {
+                    const option = createThaliOption(item, 'bread-rice');
+                    breadRiceOptionsContainer.appendChild(option);
+                }
+            });
+            
+            // Extra options
+            thaliOptions.extras.forEach(itemId => {
+                const item = menuItems.find(i => i.id === itemId);
+                if (item) {
+                    const option = createThaliOption(item, 'extra');
+                    extraOptionsContainer.appendChild(option);
+                }
+            });
+        }
+
+        // Create a thali builder option element
+        function createThaliOption(item, type) {
+            const option = document.createElement('label');
+            option.className = 'flex items-center p-3 bg-white rounded-lg shadow-sm cursor-pointer hover:bg-amber-50 transition';
+            option.innerHTML = `
+                <input type="${type === 'curry' ? 'checkbox' : 'radio'}" name="${type}" value="${item.id}" 
+                    class="mr-3 ${type === 'curry' ? 'rounded' : 'rounded-full'} border-amber-300 text-amber-600 focus:ring-amber-200">
+                <div class="flex-1">
+                    <h4 class="font-medium">${item.name}</h4>
+                    <p class="text-sm text-gray-600">${item.description}</p>
+                </div>
+                <span class="font-medium text-amber-700">₹${item.price}</span>
+            `;
+            
+            // Add event listener
+            const input = option.querySelector('input');
+            input.addEventListener('change', () => {
+                updateThaliSelection(item, type, input.checked);
+                updateThaliPreview();
+            });
+            
+            return option;
+        }
+
+        // Update thali selection
+        function updateThaliSelection(item, type, isSelected) {
+            if (type === 'curry') {
+                if (isSelected) {
+                    if (currentThali.curries.length < 2) {
+                        currentThali.curries.push(item);
+                    } else {
+                        // If already 2 curries selected, uncheck the input
+                        document.querySelector(`input[value="${item.id}"][name="curry"]`).checked = false;
+                    }
+                } else {
+                    currentThali.curries = currentThali.curries.filter(i => i.id !== item.id);
+                }
+            } else if (type === 'dry-side') {
+                currentThali.drySide = isSelected ? item : null;
+            } else if (type === 'bread-rice') {
+                currentThali.breadRice = isSelected ? item : null;
+            } else if (type === 'extra') {
+                if (isSelected) {
+                    currentThali.extras.push(item);
+                } else {
+                    currentThali.extras = currentThali.extras.filter(i => i.id !== item.id);
+                }
+            }
+            
+            // Calculate subtotal
+            currentThali.subtotal = 0;
+            currentThali.curries.forEach(item => currentThali.subtotal += item.price);
+            if (currentThali.drySide) currentThali.subtotal += currentThali.drySide.price;
+            if (currentThali.breadRice) currentThali.subtotal += currentThali.breadRice.price;
+            currentThali.extras.forEach(item => currentThali.subtotal += item.price);
+            
+            // Update UI
+            thaliSubtotal.textContent = `₹${currentThali.subtotal}`;
+            thaliTotal.textContent = `₹${currentThali.subtotal + 20}`;
+        }
+
+        // Update thali preview
+        function updateThaliPreview() {
+            if (currentThali.curries.length === 0 && !currentThali.drySide && !currentThali.breadRice && currentThali.extras.length === 0) {
+                thaliPreview.innerHTML = '<p class="text-gray-500 text-center py-8">Your selected items will appear here</p>';
+                return;
+            }
+            
+            let html = '<div class="space-y-3">';
+            
+            // Curries
+            if (currentThali.curries.length > 0) {
+                html += '<div>';
+                html += '<h4 class="font-medium text-amber-700 border-b pb-1 mb-2">Curries</h4>';
+                html += '<ul class="space-y-1">';
+                currentThali.curries.forEach(item => {
+                    html += `<li class="flex justify-between"><span>${item.name}</span> <span>₹${item.price}</span></li>`;
+                });
+                html += '</ul></div>';
+            }
+            
+            // Dry side
+            if (currentThali.drySide) {
+                html += '<div>';
+                html += '<h4 class="font-medium text-amber-700 border-b pb-1 mb-2">Dry Side</h4>';
+                html += `<ul class="space-y-1"><li class="flex justify-between"><span>${currentThali.drySide.name}</span> <span>₹${currentThali.drySide.price}</span></li></ul>`;
+                html += '</div>';
+            }
+            
+            // Bread/Rice
+            if (currentThali.breadRice) {
+                html += '<div>';
+                html += '<h4 class="font-medium text-amber-700 border-b pb-1 mb-2">Bread/Rice</h4>';
+                html += `<ul class="space-y-1"><li class="flex justify-between"><span>${currentThali.breadRice.name}</span> <span>₹${currentThali.breadRice.price}</span></li></ul>`;
+                html += '</div>';
+            }
+            
+            // Extras
+            if (currentThali.extras.length > 0) {
+                html += '<div>';
+                html += '<h4 class="font-medium text-amber-700 border-b pb-1 mb-2">Extras</h4>';
+                html += '<ul class="space-y-1">';
+                currentThali.extras.forEach(item => {
+                    html += `<li class="flex justify-between"><span>${item.name}</span> <span>₹${item.price}</span></li>`;
+                });
+                html += '</ul></div>';
+            }
+            
+            html += '</div>';
+            thaliPreview.innerHTML = html;
+        }
+
+        // Save current thali to favorites
+        function saveCurrentThali() {
+            if (currentThali.curries.length === 0 || !currentThali.breadRice) {
+                alert('Please select at least one curry and one bread/rice option to save your thali.');
+                return;
+            }
+            
+            const thaliName = prompt('Give your thali a name:', 'My Custom Thali');
+            if (!thaliName) return;
+            
+            const savedThalis = JSON.parse(localStorage.getItem('savedThalis')) || [];
+            const newThali = {
+                id: Date.now(),
+                name: thaliName,
+                ...currentThali
+            };
+            
+            savedThalis.push(newThali);
+            localStorage.setItem('savedThalis', JSON.stringify(savedThalis));
+            
+            loadSavedThalis();
+            alert('Thali saved to favorites!');
+        }
+
+        // Load saved thalis from localStorage
+        function loadSavedThalis() {
+            const savedThalis = JSON.parse(localStorage.getItem('savedThalis')) || [];
+            if (savedThalis.length > 0) {
+                savedThalisContainer.innerHTML = '';
+                savedThalis.forEach(thali => {
+                    const thaliElement = document.createElement('div');
+                    thaliElement.className = 'bg-white p-3 rounded shadow-sm mb-3';
+                    thaliElement.innerHTML = `
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="font-medium">${thali.name}</h4>
+                            <button class="delete-thali text-red-500 hover:text-red-700 text-sm" data-id="${thali.id}">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                        </div>
+                        <div class="text-sm text-gray-600 mb-2">
+                            ${thali.curries.map(c => c.name).join(', ')} with ${thali.breadRice.name}
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm font-medium">₹${thali.subtotal + 20}</span>
+                            <button class="add-thali-to-cart bg-amber-100 hover:bg-amber-200 text-amber-800 px-2 py-1 rounded text-xs transition" data-id="${thali.id}">
+                                Add to Order
+                            </button>
+                        </div>
+                    `;
+                    savedThalisContainer.appendChild(thaliElement);
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-thali').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const thaliId = parseInt(button.dataset.id);
+                        deleteSavedThali(thaliId);
+                    });
+                });
+                
+                // Add event listeners to add to cart buttons
+                document.querySelectorAll('.add-thali-to-cart').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const thaliId = parseInt(button.dataset.id);
+                        addSavedThaliToCart(thaliId);
+                    });
+                });
+            } else {
+                savedThalisContainer.innerHTML = '<p class="text-gray-500">You haven\'t saved any thalis yet.</p>';
+            }
+        }
+
+        // Delete saved thali
+        function deleteSavedThali(thaliId) {
+            if (confirm('Are you sure you want to delete this saved thali?')) {
+                const savedThalis = JSON.parse(localStorage.getItem('savedThalis')) || [];
+                const updatedThalis = savedThalis.filter(thali => thali.id !== thaliId);
+                localStorage.setItem('savedThalis', JSON.stringify(updatedThalis));
+                loadSavedThalis();
+            }
+        }
+
+        // Add saved thali to cart
+        function addSavedThaliToCart(thaliId) {
+            const savedThalis = JSON.parse(localStorage.getItem('savedThalis')) || [];
+            const thali = savedThalis.find(t => t.id === thaliId);
+            
+            if (thali) {
+                const orderItem = {
+                    type: 'thali',
+                    id: thali.id,
+                    name: thali.name,
+                    items: [
+                        ...thali.curries,
+                        ...(thali.drySide ? [thali.drySide] : []),
+                        thali.breadRice,
+                        ...thali.extras
+                    ],
+                    price: thali.subtotal + 20
+                };
+                
+                currentOrder.items.push(orderItem);
+                updateOrderSummary();
+                alert('Thali added to your order!');
+            }
+        }
+
+        // Add current thali to cart
+        function addThaliToCart() {
+            if (currentThali.curries.length === 0 || !currentThali.breadRice) {
+                alert('Please select at least one curry and one bread/rice option to add to your order.');
+                return;
+            }
+            
+            const orderItem = {
+                type: 'thali',
+                id: Date.now(),
+                name: 'Custom Thali',
+                items: [
+                    ...currentThali.curries,
+                    ...(currentThali.drySide ? [currentThali.drySide] : []),
+                    currentThali.breadRice,
+                    ...currentThali.extras
+                ],
+                price: currentThali.subtotal + 20
+            };
+            
+            currentOrder.items.push(orderItem);
+            updateOrderSummary();
+            alert('Thali added to your order!');
+            
+            // Reset thali builder
+            resetThaliBuilder();
+        }
+
+        // Reset thali builder
+        function resetThaliBuilder() {
+            currentThali = {
+                curries: [],
+                drySide: null,
+                breadRice: null,
+                extras: [],
+                subtotal: 0
+            };
+            
+            // Uncheck all inputs
+            document.querySelectorAll('#thali-builder input[type="checkbox"], #thali-builder input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            
+            // Update UI
+            thaliSubtotal.textContent = '₹0';
+            thaliTotal.textContent = '₹20';
+            thaliPreview.innerHTML = '<p class="text-gray-500 text-center py-8">Your selected items will appear here</p>';
+        }
+
+        // Set up weekly meal plan
+        function setupMealPlan() {
+            // Render available meals
+            mealPlanOptions.forEach(meal => {
+                const mealElement = document.createElement('div');
+                mealElement.className = 'draggable-meal bg-white p-3 rounded shadow-sm cursor-move mb-2';
+                mealElement.setAttribute('draggable', 'true');
+                mealElement.dataset.id = meal.id;
+                mealElement.innerHTML = `
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-medium">${meal.name}</h4>
+                            <p class="text-sm text-gray-600">${meal.description}</p>
+                        </div>
+                        <span class="font-medium text-amber-700">₹${meal.price}</span>
+                    </div>
+                `;
+                
+                // Add drag event listeners
+                mealElement.addEventListener('dragstart', dragStart);
+                
+                availableMealsContainer.appendChild(mealElement);
+            });
+            
+            // Set up drop zones
+            mealDropzones.forEach(dropzone => {
+                dropzone.addEventListener('dragover', dragOver);
+                dropzone.addEventListener('dragleave', dragLeave);
+                dropzone.addEventListener('drop', drop);
+            });
+            
+            // Update weekly summary
+            updateWeeklySummary();
+        }
+
+        // Drag and drop functions
+        function dragStart(e) {
+            e.dataTransfer.setData('text/plain', e.target.dataset.id);
+            e.target.classList.add('dragging');
+            setTimeout(() => {
+                e.target.classList.add('opacity-0');
+            }, 0);
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.currentTarget.classList.add('drag-over');
+        }
+
+        function dragLeave(e) {
+            e.currentTarget.classList.remove('drag-over');
+        }
+
+        function drop(e) {
+            e.preventDefault();
+            e.currentTarget.classList.remove('drag-over');
+            
+            const mealId = e.dataTransfer.getData('text/plain');
+            const meal = mealPlanOptions.find(m => m.id === mealId);
+            const day = e.currentTarget.dataset.day;
+            
+            if (meal) {
+                // Remove from any other day first
+                for (const day in currentMealPlan) {
+                    if (currentMealPlan[day] && currentMealPlan[day].id === mealId) {
+                        currentMealPlan[day] = null;
+                    }
+                }
+                
+                // Add to the new day
+                currentMealPlan[day] = meal;
+                
+                // Update UI
+                updateMealPlanUI();
+                updateWeeklySummary();
+            }
+            
+            // Reset dragging state
+            document.querySelector('.dragging')?.classList.remove('dragging', 'opacity-0');
+        }
+
+        // Update meal plan UI
+        function updateMealPlanUI() {
+            mealDropzones.forEach(dropzone => {
+                const day = dropzone.dataset.day;
+                if (currentMealPlan[day]) {
+                    const meal = currentMealPlan[day];
+                    dropzone.innerHTML = `
+                        <div class="draggable-meal bg-white p-2 rounded shadow-sm cursor-move" draggable="true" data-id="${meal.id}">
+                            <div class="flex justify-between items-center">
+                                <h4 class="text-sm font-medium">${meal.name}</h4>
+                                <button class="remove-meal text-red-500 text-xs" data-day="${day}">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add drag event listeners to the new element
+                    const mealElement = dropzone.querySelector('.draggable-meal');
+                    mealElement.addEventListener('dragstart', dragStart);
+                    
+                    // Add event listener to remove button
+                    dropzone.querySelector('.remove-meal').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        currentMealPlan[day] = null;
+                        updateMealPlanUI();
+                        updateWeeklySummary();
+                    });
+                } else {
+                    dropzone.innerHTML = '<p class="text-gray-400 text-sm text-center py-4">Drag meal here</p>';
+                }
+            });
+        }
+
+        // Update weekly summary
+        function updateWeeklySummary() {
+            weeklySummary.innerHTML = '';
+            
+            let hasMeals = false;
+            let total = 0;
+            
+            for (const day in currentMealPlan) {
+                if (currentMealPlan[day]) {
+                    hasMeals = true;
+                    total += currentMealPlan[day].price;
+                    
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'flex justify-between items-center bg-white p-2 rounded';
+                    dayElement.innerHTML = `
+                        <div>
+                            <span class="font-medium capitalize">${day}:</span>
+                            <span class="text-sm ml-2">${currentMealPlan[day].name}</span>
+                        </div>
+                        <span class="text-amber-700 font-medium">₹${currentMealPlan[day].price}</span>
+                    `;
+                    weeklySummary.appendChild(dayElement);
+                }
+            }
+            
+            if (hasMeals) {
+                const totalElement = document.createElement('div');
+                totalElement.className = 'flex justify-between items-center font-bold mt-2 pt-2 border-t border-amber-100';
+                totalElement.innerHTML = `
+                    <span>Weekly Total:</span>
+                    <span>₹${total}</span>
+                `;
+                weeklySummary.appendChild(totalElement);
+            } else {
+                weeklySummary.innerHTML = '<p class="text-gray-500">Your weekly meal selections will appear here</p>';
+            }
+        }
+
+        // Save current meal plan
+        function saveCurrentPlan() {
+            // Check if plan has at least one meal
+            let hasMeals = false;
+            for (const day in currentMealPlan) {
+                if (currentMealPlan[day]) {
+                    hasMeals = true;
+                    break;
+                }
+            }
+            
+            if (!hasMeals) {
+                alert('Please add at least one meal to save your plan.');
+                return;
+            }
+            
+            const planName = planNameInput.value.trim();
+            if (!planName) {
+                alert('Please enter a name for your meal plan.');
+                return;
+            }
+            
+            const savedPlans = JSON.parse(localStorage.getItem('savedPlans')) || [];
+            const newPlan = {
+                id: Date.now(),
+                name: planName,
+                ...currentMealPlan
+            };
+            
+            // Check if a plan with this name already exists
+            const existingIndex = savedPlans.findIndex(p => p.name.toLowerCase() === planName.toLowerCase());
+            if (existingIndex !== -1) {
+                if (confirm('A plan with this name already exists. Do you want to overwrite it?')) {
+                    savedPlans[existingIndex] = newPlan;
+                } else {
+                    return;
+                }
+            } else {
+                savedPlans.push(newPlan);
+            }
+            
+            localStorage.setItem('savedPlans', JSON.stringify(savedPlans));
+            loadSavedPlans();
+            planNameInput.value = '';
+            alert('Meal plan saved!');
+        }
+
+        // Load saved plans from localStorage
+        function loadSavedPlans() {
+            const savedPlans = JSON.parse(localStorage.getItem('savedPlans')) || [];
+            savedPlansSelect.innerHTML = '<option value="">Load saved plan...</option>';
+            
+            savedPlans.forEach(plan => {
+                const option = document.createElement('option');
+                option.value = plan.id;
+                option.textContent = plan.name;
+                savedPlansSelect.appendChild(option);
+            });
+        }
+
+        // Load saved plan
+        function loadSavedPlan() {
+            const planId = savedPlansSelect.value;
+            if (!planId) return;
+            
+            const savedPlans = JSON.parse(localStorage.getItem('savedPlans')) || [];
+            const plan = savedPlans.find(p => p.id.toString() === planId);
+            
+            if (plan) {
+                // Reset current meal plan
+                currentMealPlan = {
+                    monday: null,
+                    tuesday: null,
+                    wednesday: null,
+                    thursday: null,
+                    friday: null,
+                    saturday: null,
+                    sunday: null
+                };
+                
+                // Copy the plan data
+                for (const day in plan) {
+                    if (day !== 'id' && day !== 'name' && plan[day]) {
+                        currentMealPlan[day] = plan[day];
+                    }
+                }
+                
+                // Update UI
+                updateMealPlanUI();
+                updateWeeklySummary();
+            }
+        }
+
+        // Add meal plan to cart
+        function addMealPlanToCart() {
+            // Check if plan has at least one meal
+            let hasMeals = false;
+            let total = 0;
+            let mealNames = [];
+            
+            for (const day in currentMealPlan) {
+                if (currentMealPlan[day]) {
+                    hasMeals = true;
+                    total += currentMealPlan[day].price;
+                    mealNames.push(`${day}: ${currentMealPlan[day].name}`);
+                }
+            }
+            
+            if (!hasMeals) {
+                alert('Please add at least one meal to your plan before ordering.');
+                return;
+            }
+            
+            const orderItem = {
+                type: 'meal-plan',
+                id: Date.now(),
+                name: 'Weekly Meal Plan',
+                description: mealNames.join(', '),
+                price: total
+            };
+            
+            currentOrder.items.push(orderItem);
+            updateOrderSummary();
+            alert('Weekly meal plan added to your order!');
+        }
+
+        // Add individual item to cart
+        function addItemToCart(itemId) {
+            const item = menuItems.find(i => i.id === itemId);
+            if (item) {
+                const orderItem = {
+                    type: 'item',
+                    id: item.id,
+                    name: item.name,
+                    price: item.price
+                };
+                
+                currentOrder.items.push(orderItem);
+                updateOrderSummary();
+                alert(`${item.name} added to your order!`);
+            }
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            // Calculate totals
+            currentOrder.subtotal = currentOrder.items.reduce((sum, item) => sum + item.price, 0);
+            currentOrder.packaging = currentOrder.items.length > 0 ? 20 : 0;
+            currentOrder.total = currentOrder.subtotal + currentOrder.packaging;
+            
+            // Update UI
+
+</body>
+</html>

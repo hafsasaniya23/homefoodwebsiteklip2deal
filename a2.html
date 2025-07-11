@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klip2Deal HomeFood | Authentic Hyderabadi Home Meals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom CSS for elements that need more styling than Tailwind provides */
+        .dish-card {
+            transition: all 0.3s ease;
+        }
+        .dish-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .hero-banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .thali-builder-item {
+            transition: all 0.2s ease;
+        }
+        .thali-builder-item:hover {
+            transform: scale(1.03);
+        }
+        .thali-builder-item.selected {
+            border: 3px solid #f59e0b;
+            box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.3);
+        }
+        .meal-plan-day {
+            min-height: 150px;
+        }
+        .draggable-item {
+            cursor: grab;
+        }
+        .draggable-item:active {
+            cursor: grabbing;
+        }
+        .reviews-container {
+            min-height: 250px;
+            position: relative;
+        }
+        .review-card {
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            pointer-events: none;
+        }
+        .review-card.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .review-dot {
+            transition: all 0.3s ease;
+        }
+        .review-dot.active-dot {
+            background-color: #b45309;
+            transform: scale(1.2);
+        }
+        .review-content {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .special-service-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: white;
+            font-weight: 600;
+            padding: 10px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .special-service-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .special-service-btn i {
+            font-size: 1.2rem;
+        }
+        .review-content:before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(180, 83, 9, 0.1);
+            font-family: serif;
+            line-height: 1;
+        }
+        .review-rating {
+            color: #b45309;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body class="bg-amber-50 font-sans">
+    <!-- Navigation -->
+    <nav class="bg-amber-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-utensils text-2xl"></i>
+                <a href="#" class="text-xl font-bold">Klip2Deal HomeFood</a>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-amber-200">Home</a>
+                <a href="#menu" class="hover:text-amber-200">Menu</a>
+                <a href="#thali-builder" class="hover:text-amber-200">Thali Builder</a>
+                <a href="#meal-planner" class="hover:text-amber-200">Meal Plans</a>
+                <a href="#about" class="hover:text-amber-200">About Us</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-amber-700 px-4 pb-4">
+            <a href="#home" class="block py-2 hover:text-amber-200">Home</a>
+            <a href="#menu" class="block py-2 hover:text-amber-200">Menu</a>
+            <a href="#thali-builder" class="block py-2 hover:text-amber-200">Thali Builder</a>
+            <a href="#meal-planner" class="block py-2 hover:text-amber-200">Meal Plans</a>
+            <a href="#about" class="block py-2 hover:text-amber-200">About Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section id="home" class="hero-banner text-white py-20 md:py-32 flex items-center">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Ghar Ka Khana, Hyderabadi Andaaz Mein</h1>
+            <p class="text-xl md:text-2xl mb-8">Authentic home-cooked Hyderabadi meals delivered to your doorstep</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#menu" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-full transition duration-300">
+                    Explore Menu
+                </a>
+                <a href="https://wa.me/919347437807" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> Order Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Info -->
+    <section class="bg-amber-100 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-map-marker-alt text-amber-700"></i>
+                    <span>Saidabad, Hyderabad | Delivery within 20-25 km</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-clock text-amber-700"></i>
+                    <span>11:00 AM - 9:00 PM | Daily</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">How To Order</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center p-6 rounded-lg bg-amber-50 border border-amber-200">
+                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-800 text-2xl font-bold">1</div>
+                    <h3 class="text-xl font-semibold mb-2 text-amber-800">Browse Menu</h3>
+                    <p class="text-gray-700">Explore our delicious Hyderabadi dishes or build your custom thali</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-amber-50 border border-amber-200">
+                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-800 text-2xl font-bold">2</div>
+                    <h3 class="text-xl font-semibold mb-2 text-amber-800">Place Order</h3>
+                    <p class="text-gray-700">Message us on WhatsApp or call to confirm your order</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-amber-50 border border-amber-200">
+                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-800 text-2xl font-bold">3</div>
+                    <h3 class="text-xl font-semibold mb-2 text-amber-800">We Prepare</h3>
+                    <p class="text-gray-700">Fresh, hygienic meals cooked with love and authentic flavors</p>
+                </div>
+                <div class="text-center p-6 rounded-lg bg-amber-50 border border-amber-200">
+                    <div class="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-800 text-2xl font-bold">4</div>
+                    <h3 class="text-xl font-semibold mb-2 text-amber-800">Enjoy Delivery</h3>
+                    <p class="text-gray-700">Hot meals delivered to your home in Saidabad and nearby areas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Dishes -->
+    <section id="menu" class="py-12 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">Our Signature Dishes</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Dish 1 -->
+                <div class="dish-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chicken Korma" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-amber-800">Chicken Korma</h3>
+                        <p class="text-gray-600 mb-3">Rich and creamy Hyderabadi chicken curry with aromatic spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">₹180</span>
+                            <button class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-full text-sm">Add to Thali</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dish 2 -->
+                <div class="dish-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1601050690120-4d790815f3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Khatti Dal" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-amber-800">Khatti Dal</h3>
+                        <p class="text-gray-600 mb-3">Tangy lentil preparation with tamarind, a Hyderabadi staple</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">₹90</span>
+                            <button class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-full text-sm">Add to Thali</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dish 3 -->
+                <div class="dish-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Aloo Fry" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-amber-800">Aloo Fry</h3>
+                        <p class="text-gray-600 mb-3">Crispy fried potatoes with traditional Hyderabadi spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">₹80</span>
+                            <button class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-full text-sm">Add to Thali</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dish 4 -->
+                <div class="dish-card bg-white rounded-lg overflow-hidden shadow-md">
+                    <img src="https://images.unsplash.com/photo-1608190003443-86a26248f144?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ghee Roti" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-2 text-amber-800">Ghee Roti</h3>
+                        <p class="text-gray-600 mb-3">Soft whole wheat bread brushed with pure ghee</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">₹20 per piece</span>
+                            <button class="bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded-full text-sm">Add to Thali</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-10">
+                <a href="#full-menu" class="inline-block bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    View Full Menu
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Thali Builder -->
+    <section id="thali-builder" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">Build Your Custom Thali</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Thali Builder Interface -->
+                <div class="lg:col-span-2">
+                    <div class="bg-amber-50 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold mb-4 text-amber-800">Select Your Items</h3>
+                        
+                        <!-- Curry Selection -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-amber-700">1. Choose Your Curry (Select 1-2)</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="180" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Chicken Korma" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Chicken Korma</p>
+                                            <p class="text-sm text-amber-600">₹180</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="160" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mutton Curry" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Mutton Curry</p>
+                                            <p class="text-sm text-amber-600">₹160</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="140" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Paneer Butter Masala" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Paneer Butter Masala</p>
+                                            <p class="text-sm text-amber-600">₹140</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="90" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690120-4d790815f3ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Khatti Dal" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Khatti Dal</p>
+                                            <p class="text-sm text-amber-600">₹90</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="110" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dal Tadka" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Dal Tadka</p>
+                                            <p class="text-sm text-amber-600">₹110</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="curry" data-price="120" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Mix Veg" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Mix Veg</p>
+                                            <p class="text-sm text-amber-600">₹120</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Side Selection -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-amber-700">2. Choose Your Side (Select 1)</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="side" data-price="80" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Aloo Fry" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Aloo Fry</p>
+                                            <p class="text-sm text-amber-600">₹80</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="side" data-price="70" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Bhindi Masala" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Bhindi Masala</p>
+                                            <p class="text-sm text-amber-600">₹70</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="side" data-price="90" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1633945274309-2c16c9682a8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Baingan Bharta" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Baingan Bharta</p>
+                                            <p class="text-sm text-amber-600">₹90</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bread/Rice Selection -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-amber-700">3. Choose Bread or Rice</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="bread" data-price="20" data-unit="piece" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1608190003443-86a26248f144?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Ghee Roti" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Ghee Roti</p>
+                                            <p class="text-sm text-amber-600">₹20/piece</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="bread" data-price="15" data-unit="piece" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1608190003443-86a26248f144?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Plain Roti" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Plain Roti</p>
+                                            <p class="text-sm text-amber-600">₹15/piece</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="bread" data-price="30" data-unit="plate" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Jeera Rice" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Jeera Rice</p>
+                                            <p class="text-sm text-amber-600">₹30/plate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="bread" data-price="40" data-unit="plate" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Hyderabadi Biryani" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Hyderabadi Biryani</p>
+                                            <p class="text-sm text-amber-600">₹40/plate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Addons -->
+                        <div>
+                            <h4 class="font-semibold mb-3 text-amber-700">4. Add Extras (Optional)</h4>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="addon" data-price="30" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Raita" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Raita</p>
+                                            <p class="text-sm text-amber-600">₹30</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="addon" data-price="25" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Papad" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Papad</p>
+                                            <p class="text-sm text-amber-600">₹25</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="thali-builder-item p-3 bg-white rounded-lg border border-amber-200 cursor-pointer" data-type="addon" data-price="40" onclick="selectItem(this)">
+                                    <div class="flex items-center">
+                                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Salad" class="w-12 h-12 object-cover rounded-full mr-2">
+                                        <div>
+                                            <p class="font-medium">Salad</p>
+                                            <p class="text-sm text-amber-600">₹40</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thali Summary -->
+                <div>
+                    <div class="bg-amber-100 p-6 rounded-lg shadow-md sticky top-4">
+                        <h3 class="text-xl font-bold mb-4 text-amber-800">Your Thali Summary</h3>
+                        
+                        <div id="thali-summary" class="mb-4">
+                            <p class="text-gray-700 italic">Select items to build your thali</p>
+                        </div>
+                        
+                        <div class="border-t border-amber-200 pt-3 mb-4">
+                            <div class="flex justify-between font-semibold">
+                                <span>Subtotal:</span>
+                                <span id="thali-subtotal">₹0</span>
+                            </div>
+                            <div class="flex justify-between text-sm text-gray-600">
+                                <span>Delivery:</span>
+                                <span>₹30 (Free over ₹500)</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-amber-200 pt-3 mb-6">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span id="thali-total">₹30</span>
+                            </div>
+                        </div>
+                        
+                        <button id="order-now-btn" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-full transition duration-300 flex items-center justify-center gap-2" disabled>
+                            <i class="fab fa-whatsapp"></i> Order Now on WhatsApp
+                        </button>
+                        
+                        <div class="mt-4 text-sm text-gray-600">
+                            <p>Note: Minimum order ₹200. Delivery time 45-60 mins.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meal Planner -->
+    <section id="meal-planner" class="py-12 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">Weekly/Monthly Meal Plans</h2>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h3 class="text-xl font-bold mb-4 text-amber-800">Benefits of Our Meal Plans</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>Consistent, balanced meals every day</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>10% discount compared to daily orders</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>Free delivery for all meal plans</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>Customizable based on dietary needs</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>Perfect for bachelors, seniors & busy professionals</p>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-amber-100 p-2 rounded-full mr-3">
+                            <i class="fas fa-check text-amber-700"></i>
+                        </div>
+                        <p>Special health-focused options available</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold text-amber-800">Build Your Meal Plan</h3>
+                    <div class="flex gap-2">
+                        <button class="bg-amber-100 hover:bg-amber-200 text-amber-800 px-4 py-2 rounded-full text-sm">Weekly Plan</button>
+                        <button class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-full text-sm">Monthly Plan</button>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <div class="min-w-max">
+                        <div class="grid grid-cols-7 gap-2 mb-2">
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Sunday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Monday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Tuesday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Wednesday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Thursday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Friday</div>
+                            <div class="text-center font-semibold bg-amber-100 py-2 rounded">Saturday</div>
+                        </div>
+                        
+                        <div class="grid grid-cols-7 gap-2">
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="draggable-item bg-white p-2 mb-2 rounded shadow-sm cursor-move" draggable="true">
+                                    <p class="font-medium">Chicken Korma</p>
+                                    <p class="text-xs text-gray-600">+ Jeera Rice</p>
+                                </div>
+                                <div class="draggable-item bg-white p-2 rounded shadow-sm cursor-move" draggable="true">
+                                    <p class="font-medium">Dal Tadka</p>
+                                    <p class="text-xs text-gray-600">+ Roti</p>
+                                </div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="draggable-item bg-white p-2 mb-2 rounded shadow-sm cursor-move" draggable="true">
+                                    <p class="font-medium">Mutton Curry</p>
+                                    <p class="text-xs text-gray-600">+ Biryani</p>
+                                </div>
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="draggable-item bg-white p-2 mb-2 rounded shadow-sm cursor-move" draggable="true">
+                                    <p class="font-medium">Paneer Butter Masala</p>
+                                    <p class="text-xs text-gray-600">+ Naan</p>
+                                </div>
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="draggable-item bg-white p-2 mb-2 rounded shadow-sm cursor-move" draggable="true">
+                                    <p class="font-medium">Fish Curry</p>
+                                    <p class="text-xs text-gray-600">+ Rice</p>
+                                </div>
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                            <div class="meal-plan-day bg-amber-50 p-3 rounded border border-amber-200">
+                                <div class="text-center text-gray-500 text-sm pt-4">Drag meals here</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <div class="flex-1">
+                        <h4 class="font-semibold mb-2">Available Meals</h4>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                            <div class="draggable-item bg-white p-2 rounded border border-amber-200 shadow-sm cursor-move" draggable="true">
+                                <p class="font-medium">Chicken Biryani</p>
+                            </div>
+                            <div class="draggable-item bg-white p-2 rounded border border-amber-200 shadow-sm cursor-move" draggable="true">
+                                <p class="font-medium">Veg Thali</p>
+                            </div>
+                            <div class="draggable-item bg-white p-2 rounded border border-amber-200 shadow-sm cursor-move" draggable="true">
+                                <p class="font-medium">Egg Curry</p>
+                            </div>
+                            <div class="draggable-item bg-white p-2 rounded border border-amber-200 shadow-sm cursor-move" draggable="true">
+                                <p class="font-medium">Dal Fry + Roti</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-amber-100 p-4 rounded-lg">
+                        <h4 class="font-semibold mb-2">Plan Summary</h4>
+                        <p class="text-sm mb-2">7 days, 14 meals</p>
+                        <p class="font-bold text-lg">₹2,100 <span class="text-sm font-normal line-through text-gray-600">₹2,450</span></p>
+                        <p class="text-xs text-amber-700">Save ₹350 (14%)</p>
+                        <button class="mt-2 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 flex items-center justify-center gap-2 text-sm">
+                            <i class="fab fa-whatsapp"></i> Get This Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">About Klip2Deal HomeFood</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-amber-800">Our Story</h3>
+                    <p class="text-gray-700 mb-4">Klip2Deal HomeFood was born from a simple idea - to share the authentic flavors of Hyderabadi home cooking with our community. What started as a small kitchen experiment in Saidabad has grown into a beloved meal service, bringing ghar ka khana to homes across Hyderabad.</p>
+                    <p class="text-gray-700 mb-4">Our chef, with over 25 years of culinary experience, prepares each dish with the same care and attention as she would for her own family. We use only the freshest ingredients and traditional recipes passed down through generations.</p>
+                    <p class="text-gray-700">From our family to yours, we promise meals made with love, hygiene, and the true essence of Hyderabadi hospitality.</p>
+                </div>
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Our Kitchen" class="w-full rounded-lg shadow-lg">
+                    <div class="absolute -bottom-4 -right-4 bg-amber-600 text-white p-4 rounded-lg shadow-lg">
+                        <p class="font-bold">25+ Years</p>
+                        <p class="text-sm">Culinary Experience</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-12">
+                <h3 class="text-2xl font-bold mb-6 text-amber-800 text-center">Special Services</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-amber-50 p-6 rounded-lg border border-amber-200">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-amber-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-utensils text-amber-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Party Orders</h4>
+                        </div>
+                        <p class="text-gray-700 mb-4">Planning a gathering? We cater small parties and events with customized menus. From 10 to 50 people, we've got you covered with delicious Hyderabadi specialties.</p>
+                        <a href="https://wa.me/919347437807?text=Hi! I'm interested in party catering. Can you share more details?" 
+                           target="_blank" 
+                           class="special-service-btn">
+                            <i class="fab fa-whatsapp"></i> Inquire About Party Orders
+                        </a>
+                    </div>
+                    <div class="bg-amber-50 p-6 rounded-lg border border-amber-200">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-amber-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-heartbeat text-amber-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Health-Focused Meals</h4>
+                        </div>
+                        <p class="text-gray-700 mb-4">Special meals tailored for seniors, patients, or those with dietary restrictions. Low-oil, low-salt, diabetic-friendly options available upon request.</p>
+                        <a href="https://wa.me/919347437807?text=Hi! I'm interested in health-focused meals. Can you help?" 
+                           target="_blank" 
+                           class="special-service-btn">
+                            <i class="fab fa-whatsapp"></i> Get Health Meal Options
+                        </a>
+                    </div>
+                    <div class="bg-amber-50 p-6 rounded-lg border border-amber-200">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-amber-100 p-2 rounded-full mr-3">
+                                <i class="fas fa-user-graduate text-amber-700"></i>
+                            </div>
+                            <h4 class="font-bold text-lg">Bachelor Specials</h4>
+                        </div>
+                        <p class="text-gray-700 mb-4">Affordable mini-meals perfect for students and young professionals. Nutritious, home-cooked food that fits your budget and busy schedule.</p>
+                        <a href="https://wa.me/919347437807?text=Hi! I'm interested in bachelor meal plans. Can you help?" 
+                           target="_blank" 
+                           class="special-service-btn">
+                            <i class="fab fa-whatsapp"></i> Ask About Bachelor Plans
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-2xl font-bold mb-6 text-amber-800 text-center">What Our Customers Say</h3>
+                
+                <div class="reviews-container max-w-4xl mx-auto">
+                    <div class="review-card active" id="review-1">
+                        <div class="review-content">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                                <div>
+                                    <h4 class="text-xl font-bold text-amber-900">Rahul K.</h4>
+                                    <p class="text-amber-700">Saidabad</p>
+                                </div>
+                                <div class="review-rating mt-2 sm:mt-0">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-gray-700 text-lg italic pl-8">
+                                "The Chicken Korma tastes exactly like my mom makes it! As a bachelor, Klip2Deal has been a lifesaver. The food is consistently delicious and the delivery is always on time."
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card" id="review-2">
+                        <div class="review-content">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                                <div>
+                                    <h4 class="text-xl font-bold text-amber-900">Priya M.</h4>
+                                    <p class="text-amber-700">Dilsukhnagar</p>
+                                </div>
+                                <div class="review-rating mt-2 sm:mt-0">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-gray-700 text-lg italic pl-8">
+                                "I ordered the monthly meal plan for my elderly parents and couldn't be happier. The food is light, nutritious, and full of flavor. The chef even customized the spice level for them. Truly home-style cooking!"
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <div class="review-card" id="review-3">
+                        <div class="review-content">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6">
+                                <div>
+                                    <h4 class="text-xl font-bold text-amber-900">Vikram S.</h4>
+                                    <p class="text-amber-700">LB Nagar</p>
+                                </div>
+                                <div class="review-rating mt-2 sm:mt-0">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <blockquote class="text-gray-700 text-lg italic pl-8">
+                                "The Hyderabadi biryani is phenomenal! We ordered for a small house party and everyone was impressed. The mutton was so tender and the flavors were perfect. Will definitely order again!"
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-center mt-8 gap-3">
+                        <button class="review-dot w-4 h-4 rounded-full bg-amber-300 focus:outline-none active-dot" data-review="1"></button>
+                        <button class="review-dot w-4 h-4 rounded-full bg-amber-300 focus:outline-none" data-review="2"></button>
+                        <button class="review-dot w-4 h-4 rounded-full bg-amber-300 focus:outline-none" data-review="3"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Full Menu (hidden by default) -->
+    <section id="full-menu" class="hidden py-12 bg-amber-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-amber-900">Our Complete Menu</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Non-Veg Starters -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Non-Veg Specialties</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Chicken Korma</p>
+                                <p class="text-sm text-gray-600">Boneless chicken in rich creamy gravy</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹180</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Mutton Curry</p>
+                                <p class="text-sm text-gray-600">Tender mutton pieces in spicy gravy</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹200</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Chicken 65</p>
+                                <p class="text-sm text-gray-600">Spicy deep-fried chicken appetizer</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹160</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Egg Curry</p>
+                                <p class="text-sm text-gray-600">Boiled eggs in flavorful curry</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹120</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Fish Curry</p>
+                                <p class="text-sm text-gray-600">Traditional Andhra-style fish preparation</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹190</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Veg Curries -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Veg Curries</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Paneer Butter Masala</p>
+                                <p class="text-sm text-gray-600">Cottage cheese in rich tomato gravy</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹160</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Dal Tadka</p>
+                                <p class="text-sm text-gray-600">Yellow lentils tempered with spices</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹110</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Khatti Dal</p>
+                                <p class="text-sm text-gray-600">Tangy tamarind-flavored lentils</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹90</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Mix Veg</p>
+                                <p class="text-sm text-gray-600">Seasonal vegetables in mild gravy</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹120</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Aloo Gobi</p>
+                                <p class="text-sm text-gray-600">Potato and cauliflower dry curry</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹100</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Breads & Rice -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Breads & Rice</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Ghee Roti</p>
+                                <p class="text-sm text-gray-600">Whole wheat bread with ghee</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹20/pc</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Plain Roti</p>
+                                <p class="text-sm text-gray-600">Whole wheat bread</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹15/pc</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Butter Naan</p>
+                                <p class="text-sm text-gray-600">Leavened white flour bread</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹30/pc</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Jeera Rice</p>
+                                <p class="text-sm text-gray-600">Basmati rice with cumin seeds</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹30/plate</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Hyderabadi Biryani</p>
+                                <p class="text-sm text-gray-600">Fragrant rice with veg/non-veg</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹40/plate</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sides & Extras -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Sides & Extras</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Aloo Fry</p>
+                                <p class="text-sm text-gray-600">Crispy fried potatoes</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹80</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Bhindi Masala</p>
+                                <p class="text-sm text-gray-600">Okra cooked with onions</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹90</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Baingan Bharta</p>
+                                <p class="text-sm text-gray-600">Smoked eggplant mash</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹90</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Raita</p>
+                                <p class="text-sm text-gray-600">Yogurt with cucumber</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹30</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Papad</p>
+                                <p class="text-sm text-gray-600">Crispy lentil wafers</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹25</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Thalis -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Thali Meals</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Mega Paneer Thali</p>
+                                <p class="text-sm text-gray-600">Paneer curry, dal, rice, 2 roti, raita, salad, papad, sweet</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹250</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Chicken Thali</p>
+                                <p class="text-sm text-gray-600">Chicken curry, dal, rice, 2 roti, raita, salad, papad</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹280</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Mini Veg Thali</p>
+                                <p class="text-sm text-gray-600">1 veg, dal, rice, 1 roti, salad</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹150</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Mini Non-Veg Thali</p>
+                                <p class="text-sm text-gray-600">1 non-veg, dal, rice, 1 roti</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹180</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Bachelor Special Thali</p>
+                                <p class="text-sm text-gray-600">1 curry, rice, 1 roti</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹120</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desserts -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-bold mb-4 text-amber-800 border-b pb-2">Desserts</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Sheer Khurma</p>
+                                <p class="text-sm text-gray-600">Vermicelli pudding with dry fruits</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹60</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Double Ka Meetha</p>
+                                <p class="text-sm text-gray-600">Hyderabadi bread pudding</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹50</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Gulab Jamun</p>
+                                <p class="text-sm text-gray-600">2 pieces</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹40</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <div>
+                                <p class="font-medium">Carrot Halwa</p>
+                                <p class="text-sm text-gray-600">Seasonal special</p>
+                            </div>
+                            <span class="font-bold text-amber-700">₹60</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 bg-amber-800 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Taste Authentic Hyderabadi Home Food?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Order now and experience the warmth of home-cooked meals delivered to your doorstep in Saidabad and nearby areas.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="tel:9347437807" class="bg-white hover:bg-gray-100 text-amber-800 font-bold py-3 px-6 rounded-full transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-phone"></i> Call to Order
+                </a>
+                <a href="https://wa.me/919347437807" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition duration-300 flex items-center justify-center gap-2">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-amber-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Klip2Deal HomeFood</h3>
+                    <p class="mb-4">Bringing authentic Hyderabadi home-cooked meals to your table since 2018.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-amber-300"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-amber-300"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-amber-300">Home</a></li>
+                        <li><a href="#menu" class="hover:text-amber-300">Menu</a></li>
+                        <li><a href="#thali-builder" class="hover:text-amber-300">Thali Builder</a></li>
+                        <li><a href="#meal-planner" class="hover:text-amber-300">Meal Plans</a></li>
+                        <li><a href="#about" class="hover:text-amber-300">About Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact Us</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2"></i>
+                            <span>Saidabad, Hyderabad</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2"></i>
+                            <span>9347437807</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2"></i>
+                            <span>homefood@klip2deal.com</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span>11:00 AM - 9:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Delivery Areas</h4>
+                    <p class="mb-2">We deliver within 20-25 km of Saidabad including:</p>
+                    <ul class="grid grid-cols-2 gap-2 text-sm">
+                        <li>• Dilsukhnagar</li>
+                        <li>• LB Nagar</li>
+                        <li>• Uppal</li>
+                        <li>• Malakpet</li>
+                        <li>• Chandrayangutta</li>
+                        <li>• Falaknuma</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-amber-800 mt-8 pt-6 text-center text-sm">
+                <p>&copy; 2023 Klip2Deal HomeFood. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919347437807" target="_blank" class="fixed bottom-6 right-6 bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg hover:bg-green-700 transition duration-300 z-50">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Thali Builder Functionality
+        let selectedItems = {
+            curry: [],
+            side: [],
+            bread: [],
+            addon: []
+        };
+
+        function selectItem(element) {
+            const type = element.getAttribute('data-type');
+            const price = parseFloat(element.getAttribute('data-price'));
+            const name = element.querySelector('p.font-medium').textContent;
+            
+            // For bread items, we need to handle quantity
+            if (type === 'bread') {
+                const unit = element.getAttribute('data-unit');
+                const quantity = prompt(`How many ${unit}s of ${name} would you like?`, "1");
+                
+                if (quantity && !isNaN
+</body>
+</html>
