@@ -110,36 +110,34 @@
     </style>
 </head>
 <body class="bg-amber-50 font-sans">
-    <!-- Navigation -->
-    <nav class="bg-amber-800 text-white shadow-lg sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fas fa-utensils text-2xl"></i>
-                <a href="#" class="text-xl font-bold">Klip2Deal HomeFood</a>
-            </div>
-            <div class="hidden md:flex space-x-6">
-                <a href="#home" class="hover:text-amber-200">Home</a>
-                <a href="#menu" class="hover:text-amber-200">Menu</a>
-                <a href="#thali-builder" class="hover:text-amber-200">Thali Builder</a>
-                <a href="#meal-planner" class="hover:text-amber-200">Meal Plans</a>
-                <a href="#about" class="hover:text-amber-200">About Us</a>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-amber-700 px-4 pb-4">
-            <a href="#home" class="block py-2 hover:text-amber-200">Home</a>
-            <a href="#menu" class="block py-2 hover:text-amber-200">Menu</a>
-            <a href="#thali-builder" class="block py-2 hover:text-amber-200">Thali Builder</a>
-            <a href="#meal-planner" class="block py-2 hover:text-amber-200">Meal Plans</a>
-            <a href="#about" class="block py-2 hover:text-amber-200">About Us</a>
-        </div>
-    </nav>
-
+  <!-- Navbar -->
+  <nav class="bg-amber-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-2">
+        <i class="fas fa-utensils text-2xl text-amber-200"></i>
+        <a href="index.html" class="text-xl font-bold font-serif">Klip2Deal HomeFood</a>
+      </div>
+      <button id="menu-button" class="md:hidden">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+      <div id="nav-links" class="hidden md:flex space-x-6">
+        <a href="index.html" class="hover:text-amber-200">Home</a>
+        <a href="about.html" class="hover:text-amber-200">About Us</a>
+        <a href="menu.html" class="hover:text-amber-200">Menu</a>
+        <a href="order.html" class="hover:text-amber-200">Order</a>
+        <a href="contact.html" class="hover:text-amber-200">Contact</a>
+        <a href="special.html" class="hover:text-amber-200">Special Services</a>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-amber-700 px-4 py-2">
+      <a href="index.html" class="block py-2 hover:text-amber-200">Home</a>
+      <a href="about.html" class="block py-2 hover:text-amber-200">About Us</a>
+      <a href="menu.html" class="block py-2 hover:text-amber-200">Menu</a>
+      <a href="order.html" class="block py-2 hover:text-amber-200">Order</a>
+      <a href="contact.html" class="block py-2 hover:text-amber-200">Contact</a>
+      <a href="special.html" class="block py-2 hover:text-amber-200">Special Services</a>
+    </div>
+  </nav>
     <!-- Hero Banner -->
     <section id="home" class="hero-banner text-white py-20 md:py-32 flex items-center">
         <div class="container mx-auto px-4 text-center">
