@@ -51,33 +51,44 @@
         }
     </style>
 </head>
-<nav class="bg-amber-800 text-white shadow-lg sticky top-0 z-50">
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-      <div class="flex items-center space-x-2">
-        <i class="fas fa-utensils text-2xl text-amber-200"></i>
-        <a href="index.html" class="text-xl font-bold font-serif">Klip2Deal HomeFood</a>
-      </div>
-      <button id="menu-button" class="md:hidden">
-        <i class="fas fa-bars text-2xl"></i>
-      </button>
-      <div id="nav-links" class="hidden md:flex space-x-6">
-        <a href="index.html" class="hover:text-amber-200">Home</a>
-        <a href="about.html" class="hover:text-amber-200">site1</a>
-        <a href="menu.html" class="hover:text-amber-200">site2</a>
-        <a href="order.html" class="hover:text-amber-200">site3</a>
-        <a href="contact.html" class="hover:text-amber-200">site4</a>
-        <a href="special.html" class="hover:text-amber-200">site5</a>
-      </div>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden bg-amber-700 px-4 py-2">
-      <a href="index.html" class="block py-2 hover:text-amber-200">Home</a>
-      <a href="about.html" class="block py-2 hover:text-amber-200">About Us</a>
-      <a href="menu.html" class="block py-2 hover:text-amber-200">Menu</a>
-      <a href="order.html" class="block py-2 hover:text-amber-200">Order</a>
-      <a href="contact.html" class="block py-2 hover:text-amber-200">Contact</a>
-      <a href="special.html" class="block py-2 hover:text-amber-200">Special Services</a>
-    </div>
-  </nav>
+<body class="font-sans bg-gray-50">
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center">
+                        <i class="fas fa-utensils text-orange-500 text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-orange-500">Klip2Deal</span>
+                        <span class="text-xl font-bold text-gray-800">Homefood</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-orange-500 font-medium">Home</a>
+                    <a href="#menu" class="text-gray-800 hover:text-orange-500 transition">Menu</a>
+                    <a href="#meal-plans" class="text-gray-800 hover:text-orange-500 transition">Meal Plans</a>
+                    <a href="#thali" class="text-gray-800 hover:text-orange-500 transition">Custom Thali</a>
+                    <a href="#about" class="text-gray-800 hover:text-orange-500 transition">About</a>
+                    <a href="#contact" class="text-gray-800 hover:text-orange-500 transition">Contact</a>
+                    <a href="#contact" class="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition">Order Now</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white pb-4 px-4">
+            <a href="#home" class="block py-2 text-orange-500 font-medium">Home</a>
+            <a href="#menu" class="block py-2 text-gray-800 hover:text-orange-500 transition">Menu</a>
+            <a href="#meal-plans" class="block py-2 text-gray-800 hover:text-orange-500 transition">Meal Plans</a>
+            <a href="#thali" class="block py-2 text-gray-800 hover:text-orange-500 transition">Custom Thali</a>
+            <a href="#about" class="block py-2 text-gray-800 hover:text-orange-500 transition">About</a>
+            <a href="#contact" class="block py-2 text-gray-800 hover:text-orange-500 transition">Contact</a>
+            <a href="#contact" class="block bg-orange-500 text-white px-4 py-2 rounded-full text-center hover:bg-orange-600 transition mt-2">Order Now</a>
+        </div>
+    </nav>
     <!-- Hero Section -->
     <section id="home" class="hero-section text-white py-20 md:py-32">
         <div class="max-w-7xl mx-auto px-4 text-center">
