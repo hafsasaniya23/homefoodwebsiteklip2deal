@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Klip2Deal HomeFood</title>
+  <style>
+    :root {
+      --primary: #ff8000;
+      --accent: #5c0a0a;
+      --light-bg: #ffffff;
+      --text: #3a1f1f;
+      --hover: #b24c00;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--light-bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: background 0.3s ease;
+    }
+
+    .logo {
+      height: 60px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #fff8db;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: linear-gradient(120deg, #fff, #ffe9cc);
+      transition: background 0.3s;
+    }
+
+    .hero h1 {
+      color: var(--primary);
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      background: var(--primary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--hover);
+      transform: translateY(-2px);
+    }
+
+    /* Sections */
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      text-align: center;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 2.2rem;
+      margin-bottom: 25px;
+    }
+
+    p {
+      color: var(--text);
+    }
+
+    /* Features / Cards */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      border-left: 6px solid var(--primary);
+      width: 300px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .card h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    /* List in plans */
+    .plans ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .plans li {
+      background: url('data:image/svg+xml;utf8,<svg fill="%23e07000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5"/></svg>') no-repeat left center;
+      background-size: 20px;
+      padding-left: 30px;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    /* Contact */
+    .contact {
+      background: #fff9f0;
+    }
+
+    .btn-secondary {
+      background: var(--accent);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 20px;
+      text-decoration: none;
+      margin-top: 20px;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: #7a1a1a;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--accent);
+      color: #fff3e6;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .cards {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+    .about-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.about-text {
+  flex: 1 1 500px;
+  text-align: left;
+  animation: fadeInLeft 0.8s ease;
+}
+
+.about-text h2 {
+  color: var(--accent);
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: var(--text);
+}
+
+.about-img {
+  flex: 1 1 400px;
+  text-align: center;
+  animation: fadeInRight 0.8s ease;
+}
+
+.about-img img {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-img img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional animations */
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-flex {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .about-img {
+    margin-bottom: 20px;
+  }
+}
+
+  /* Section Styling */
+  #menu {
+    background-color: #fff9f4;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 2.5em;
+    color: #ff7a00;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title::after {
+    content: '';
+    width: 60%;
+    height: 4px;
+    background-color: #ff7a00;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Card Container */
+  .offer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  /* Card Styling */
+  .offer-card {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+    width: 300px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid #ff7a00;
+    cursor: pointer;
+  }
+
+  .offer-card h3 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .offer-card p {
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .offer-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(255, 122, 0, 0.3);
+    background-color: #fffef9;
+  }
+
+  @media (max-width: 768px) {
+    .offer-cards {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+/* Meal Plans Styling */
+.meal-plans {
+  background-color: #fffaf0;
+  padding: 60px 20px;
+  text-align: center;
+  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.meal-plans h2 {
+  font-size: 2.5rem;
+  color: #e67300;
+  margin-bottom: 10px;
+}
+
+.meal-plans .subheading {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.grid-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.plan-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.plan-card img {
+  width: 50px;
+  margin-bottom: 15px;
+}
+
+.plan-card h3 {
+  font-size: 1.5rem;
+  color: #ff6600;
+  margin-bottom: 10px;
+}
+
+.plan-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+}
+/* chef */
+.chef-section {
+    background: linear-gradient(135deg, #fffdf8, #fff0e6);
+    padding: 60px 20px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .chef-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    gap: 40px;
+  }
+
+  .chef-text {
+    flex: 1 1 500px;
+  }
+
+  .chef-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #ff6600;
+  }
+
+  .chef-text .intro {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .chef-text p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  .chef-text strong {
+    color: #e65c00;
+    font-size: 1.1rem;
+  }
+
+  .chef-image {
+    flex: 1 1 400px;
+    text-align: center;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .chef-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+  }
+
+  .chef-image img:hover {
+    transform: scale(1.05);
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+
+  @media (max-width: 768px) {
+    .chef-container {
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+    .chef-text h2 {
+      font-size: 2rem;
+    }
+  }
+  /* contctus */
+  .contact {
+  background: #fff8f0;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.contact-card {
+  background: white;
+  border-radius: 25px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.contact-card img {
+  width: 60px;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.contact-card:hover img {
+  transform: scale(1.1);
+}
+
+.contact-card h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #ff7a00;
+}
+
+.contact-card p {
+  font-size: 16px;
+  color: #333;
+}
+
+.contact-card.full {
+  grid-column: span 2;
+  background-color: #ffede0;
+}
+
+.btn-order {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 12px 30px;
+  background-color: #ff7a00;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-order:hover {
+  background-color: #e76a00;
+}
+
+.cta-banner {
+  background-color: #ffebcc; /* soft warm color */
+  padding: 60px 20px;
+  text-align: center;
+  color: #4e342e;
+  width: 100%;
+
+}
+
+.cta-banner h3 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #bf360c;
+  font-weight: 700;
+}
+
+.cta-banner p {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  font-weight: 550;
+  line-height: 1.6;
+  color: #5d4037;
+}
+
+.btn-banner {
+  background-color: #ff7043;
+  border-radius: 12px; /* Optional: slightly more rounded */
+  color: #fff;
+  padding: 16px 36px;  /* Increased padding */
+  text-decoration: none;
+  font-size: 1.25rem;   /* Increased font size */
+  font-weight: 700;     /* Bolder for visibility */
+  box-shadow: none;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+
+.btn-banner:hover {
+  background-color: #ff5722;
+  cursor: pointer;
+}
+/* reice */
+  .counter-row {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
+
+  .counter-box {
+    text-align: center;
+    flex: 1 1 200px;
+    padding: 20px;
+    background-color: white;
+    border: 2px solid #ffe1d5;
+    border-radius: 8px;
+  }
+
+  .counter {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff7043;
+  }
+
+  .counter-box p {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .review-scroll {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px 0;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .review {
+    flex: 0 0 300px;
+    background-color: #fff;
+    border-left: 4px solid #ff7043;
+    padding: 20px;
+    border-radius: 6px;
+    scroll-snap-align: start;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  }
+
+  .review p {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: #444;
+  }
+
+  .stars {
+    color: gold;
+    font-size: 1.2rem;
+  }
+
+  .review span {
+    display: block;
+    margin-top: 6px;
+    font-style: italic;
+    color: #777;
+  }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header / Nav -->
+  <header class="navbar">
+    <img src="logo.png" alt="Klip2Deal Logo" class="logo" />
+    <nav>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#plans">Plans</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Bringing Ghar Ka Zaika to Every Plate</h1>
+    <p>Fresh, homemade meals from Saidabad delivered with love, tradition, and flavor.</p>
+    <a href="#plans" class="btn">Explore Meal Plans</a>
+  </section>
+
+<!-- About Section - Upgraded -->
+<section id="about">
+  <div class="container about-flex">
+    <div class="about-text">
+      <h2>About Klip2Deal HomeFood</h2>
+      <p>Born from passion in Saidabad, Klip2Deal serves warm, authentic Hyderabadi meals to families, students, and elders across Hyderabad.</p>
+      <p><strong>Our mission:</strong> To bring “ghar ka khana” with Hyderabadi soul to your doorstep. Every meal is handcrafted by Chef Gazala and her team of passionate home chefs.</p>
+      <a href="#plans" class="btn">View Meal Plans</a>
+    </div>
+    <div class="about-img">
+        <img src="https://charlestonallergy.com/wp-content/uploads/2022/01/food-allergies-img-2.jpg" />
+    </div>
+  </div>
+</section>
+
+<!-- menu -->
+ <!-- Meal Plans -->
+<!-- Our Meal Plans -->
+<section id="plans" class="meal-plans">
+  <div class="container">
+    <h2>Our Meal Plans</h2>
+    <p class="subheading">Healthy, home-style meals delivered with love — flexible plans for every lifestyle.</p>
+
+    <div class="grid-plans">
+      <div class="plan-card">
+        <img src="" alt="Daily Thali">
+        <h3>🥗 Daily Thali</h3>
+        <p>Enjoy balanced meals every day, packed with nutrition and homely flavors, freshly cooked.</p>
+      </div>
+      <div class="plan-card">
+        <img src="images/chef-icon.png" alt="Weekly Box">
+        <h3>📦 Weekly Box</h3>
+        <p>Get a curated weekly box delivered to your door. Perfect for busy routines and working professionals.</p>
+      </div>
+      <div class="plan-card">
+        <img src="images/chef-icon.png" alt="Monthly Plan">
+        <h3>🗓️ Monthly Plan</h3>
+        <p>Relax for the entire month! Set your preferences and let us take care of your healthy meals daily.</p>
+      </div>
+      <div class="plan-card">
+        <img src="images/chef-icon.png" alt="Custom Thalis">
+        <h3>👩‍🍳 Custom Thalis</h3>
+        <p>Personalize your meal just how you want. Choose from various combinations of sabzi, rice, and sides.</p>
+      </div>
+      <div class="plan-card">
+        <img src="images/chef-icon.png" alt="Elderly Care Meals">
+        <h3>👵 Elder Care Meals</h3>
+        <p>Special soft meals made with love for elderly family members, ensuring easy digestion and taste.</p>
+      </div>
+      <div class="plan-card">
+        <img src="images/chef-icon.png" alt="Subscription Flexibility">
+        <h3>🔄 Pause & Resume</h3>
+        <p>Going out of town? Pause anytime and resume when you're back. We’re as flexible as you are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Chef -->
+<section class="chef-section">
+  <div class="chef-container">
+    <div class="chef-text">
+      <h2>👩‍🍳 Meet Chef Gazala</h2>
+      <p class="intro">Rooted in the heart of Hyderabad, Chef Gazala brings over 25 years of culinary excellence to your plate.</p>
+      <p>Her journey began in a humble kitchen where passion met tradition. Each recipe is crafted with love, evoking memories of home and childhood flavors.</p>
+      <p>From slow-cooked dals to spice-rich biryanis, her food is more than nourishment — it’s a comforting experience. With a keen eye on health and hygiene, she ensures every meal is safe, soulful, and satisfying.</p>
+      <p><strong>“Cooking is my way of spreading love. My goal is simple — to make you feel at home.”</strong></p>
+    </div>
+    <div class="chef-image">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/043/224/462/small_2x/woman-cooking-food-in-the-kitchen-free-png.png"/>
+    </div>
+  </div>
+</section>
+<!-- ses -->
+ <!-- COUNTER & REVIEWS SECTION -->
+<section id="highlights" style="background-color: #fff8f4; padding: 60px 20px;">
+  <div class="container">
+    <div class="counter-row">
+      <div class="counter-box">
+        <div class="counter" data-target="5">0</div>
+        <p>Years of Experience</p>
+      </div>
+      <div class="counter-box">
+        <div class="counter" data-target="40">0</div>
+        <p>Unique Dishes</p>
+      </div>
+      <div class="counter-box">
+        <div class="counter" data-target="500">0</div>
+        <p>Happy Families Served</p>
+      </div>
+      <div class="counter-box">
+        <div class="counter" data-target="100">0</div>
+        <p>Positive Reviews</p>
+      </div>
+    </div>
+
+    <h2 style="text-align: center; margin-top: 50px; color: #ff7043;">What Our Customers Say</h2>
+    <div class="review-scroll">
+      <div class="review">
+        <p>"Absolutely loved the food! It felt like home-cooked with a special touch."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Ayesha R.</span>
+      </div>
+      <div class="review">
+        <p>"Delicious and hygienic! Perfect for our family dinner night."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Ramesh G.</span>
+      </div>
+      <div class="review">
+        <p>"Each dish is unique and full of flavor. Highly recommended!"</p>
+        <div class="stars">★★★★★</div>
+        <span>- Meena K.</span>
+      </div>
+      <div class="review">
+        <p>"Prompt delivery and the biryani is just wow!"</p>
+        <div class="stars">★★★★★</div>
+        <span>- Imran S.</span>
+      </div>
+      <div class="review">
+        <p>"Feels like mom's kitchen – comforting and tasty."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Farah Z.</span>
+      </div>
+      <div class="review">
+        <p>"My go-to place for healthy home-style food in Hyderabad."</p>
+        <div class="stars">★★★★★</div>
+        <span>- Pranav V.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Contact -->
+<!-- Contact -->
+<!-- Contact -->
+<section id="contact" class="contact">
+  <div class="container contact-wrapper">
+    <div class="contact-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/684/684908.png" alt="Location Icon" />
+      <h3>We Deliver</h3>
+      <p>📍 Within 20–25 km of Saidabad, Hyderabad</p>
+    </div>
+
+    <div class="contact-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/724/724664.png" alt="Phone Icon" />
+      <h3>Call Us</h3>
+      <p>📞 +91-XXXXXXXXXX</p>
+    </div>
+
+    <div class="contact-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email Icon" />
+      <h3>Email</h3>
+      <p>📩 support@klip2dealhomefood.com</p>
+    </div>
+
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h3>Craving the Taste of Home?</h3>
+    <p>Enjoy authentic, homemade meals prepared with love by Chef Gazala. Delivered fresh within Hyderabad.</p>
+    <a href="#plans" class="btn-banner">Order Now 🍱</a>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Klip2Deal HomeFood. Made with ❤️ in Hyderabad.</p>
+  </footer>
+<!-- JS COUNTER ANIMATION -->
+<script>
+  const counters = document.querySelectorAll(".counter");
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute("data-target");
+      const count = +counter.innerText;
+      const speed = 50;
+      const increment = Math.ceil(target / speed);
+      if (count < target) {
+        counter.innerText = count + increment;
+        setTimeout(updateCount, 20);
+      } else {
+        counter.innerText = target + "+";
+      }
+    };
+    updateCount();
+  });
+</script>
+
+</body>
+</html>
