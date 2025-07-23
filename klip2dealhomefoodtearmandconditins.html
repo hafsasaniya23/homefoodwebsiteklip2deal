@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Klip2Deal Terms & Conditions</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fdfaf7;
+      color: #333;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f39c12, #d35400);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      margin-bottom: 30px;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #e67e22;
+      display: flex;
+      align-items: center;
+    }
+
+    .section h2::before {
+      content: "📌";
+      margin-right: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-box {
+      background: #fff3e0;
+      padding: 15px 20px;
+      border-left: 5px solid #f39c12;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Terms & Conditions</h1>
+    <p>Fresh Home-Cooked Meals Delivered to Your Doorstep </p>
+
+  </header>
+
+  <main>
+    <div class="section">
+      <h2>Services Offered</h2>
+      <p>We specialize in <strong>home-cooked meals</strong> delivered fresh. Offerings include lunch, dinner, custom diet-specific options, and flexible subscription meal plans.</p>
+    </div>
+     
+   
+
+    <div class="section">
+      <h2>Ordering Policy</h2>
+      <ul>
+        <li>Orders must be placed at least 24 hours in advance unless otherwise stated.</li>
+        <li>Cancellation must be done at least 12 hours before the scheduled delivery.</li>
+        <li>We reserve the right to decline or cancel any order at our discretion.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Pricing & Payment</h2>
+      <ul>
+        <li>All prices are listed in INR and inclusive of applicable taxes.</li>
+        <li>Payments can be made through UPI, card, or cash-on-delivery (select locations only).</li>
+        <li>Meal plans or subscriptions must be paid upfront.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Delivery Terms</h2>
+      <ul>
+        <li>Deliveries are made as per your selected time slot.</li>
+        <li>We are not liable for delays caused by external factors (weather, traffic, etc.).</li>
+        <li>Once delivered, food safety becomes the customer’s responsibility.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Refund & Return Policy</h2>
+      <ul>
+        <li>Refunds are only processed if there is a quality or delivery issue verified by our team.</li>
+        <li>No returns are accepted once the meal is delivered.</li>
+        <li>For complaints, contact our support within 2 hours of receiving the meal.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Contact & Support</h2>
+      <p>For questions, issues, or suggestions, reach out to our customer care team. We’re here to help ensure your satisfaction.</p>
+    </div>
+
+    <div class="section">
+      <h2>Delivery Policy</h2>
+      <ul>
+        <li>Available within <strong>25 km radius of Saidabad</strong>.</li>
+        <li><strong>Delivery charges</strong> apply depending on location.</li>
+        <li>Place orders within <strong>slot times</strong> for same-day delivery.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Cancellation & Refund</h2>
+      <ul>
+        <li><strong>No immediate cancellations</strong> post order.</li>
+        <li>Meal plans to be cancelled <strong>one day in advance</strong>.</li>
+        <li><strong>No refunds</strong> for missed/late cancellations.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Allergy Disclaimer</h2>
+      <p>Food is made in a home kitchen. While hygiene is a priority, we <strong>can’t guarantee an allergen-free food unless get prior note on order placing</strong>.</p>
+      <p>Please <strong>inform us about allergies</strong> when ordering. We’re <strong>not liable</strong> for allergic reactions.</p>
+    </div>
+
+    <div class="contact-box">
+      📞 For help, call <a href="tel:9347437807">9347437807</a> or <a href="https://wa.me/919347437807" target="_blank">message us on WhatsApp</a>.
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Klip2Deal. All rights reserved.
+  </footer>
+
+  <script>
+    // Fade-in animation on scroll
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
