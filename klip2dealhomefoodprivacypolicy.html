@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Klip2Deal Privacy Policy</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fdfaf7;
+      color: #333;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f39c12, #d35400);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section {
+      background: white;
+      margin-bottom: 30px;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section h2 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+      color: #e67e22;
+      display: flex;
+      align-items: center;
+    }
+
+    .section h2::before {
+      content: "🔒";
+      margin-right: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    a {
+      color: #2980b9;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-box {
+      background: #fff3e0;
+      padding: 15px 20px;
+      border-left: 5px solid #f39c12;
+      border-radius: 8px;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #777;
+    }
+
+    @media (max-width: 768px) {
+      .section {
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Privacy Policy</h1>
+    <p>Your Data is Safe with Klip2Deal 🛡️</p>
+  </header>
+
+  <main>
+
+    <section class="section">
+      <h2>1. Information We Collect</h2>
+      <p>We collect the following types of data to deliver your meals and improve your experience:</p>
+      <ul>
+        <li>Personal details (name, phone number, address)</li>
+        <li>Order history and preferences</li>
+        <li>Payment information via secure gateways</li>
+        <li>Browsing behavior on our site (cookies)</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>2. How We Use Your Information</h2>
+      <ul>
+        <li>To prepare and deliver fresh home-cooked meals</li>
+        <li>To personalize your experience</li>
+        <li>To contact you for updates and promotions</li>
+        <li>To comply with legal obligations</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>3. Data Security</h2>
+      <p>Your information is stored securely. We use encrypted communication and secure servers to ensure protection of your data.</p>
+    </section>
+
+    <section class="section">
+      <h2>4. Sharing Your Information</h2>
+      <p>We do not sell or rent your personal information. We only share it with trusted delivery and payment partners for order fulfillment.</p>
+    </section>
+
+    <section class="section">
+      <h2>5. Your Choices</h2>
+      <ul>
+        <li>You can request to view, update, or delete your data at any time.</li>
+        <li>You can unsubscribe from promotional messages using the provided link or by contacting us.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>6. Updates to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with a revised date.</p>
+    </section>
+
+    <div class="contact-box">
+      📞 Have questions? Call <a href="tel:9347437807">9347437807</a> or <a href="https://wa.me/919347437807" target="_blank">message us on WhatsApp</a>.
+    </div>
+
+  </main>
+
+  <footer>
+    &copy; 2025 Klip2Deal. All rights reserved.
+  </footer>
+
+  <script>
+    // Fade-in animation on scroll
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+
+</body>
+</html>
