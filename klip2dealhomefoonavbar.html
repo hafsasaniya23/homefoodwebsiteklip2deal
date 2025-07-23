@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Klip2Deal Home Food</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: #ffffff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Top Row */
+    .navbar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 40px;
+      background-color: #fcfcfc;
+    }
+
+    .navbar-logo img {
+      height: 100px;
+    }
+
+    .navbar-search {
+      flex: 1;
+      text-align: center;
+    }
+
+    .navbar-search input {
+      width: 60%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      font-size: 14px;
+    }
+
+    .navbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar-icons a {
+      text-decoration: none;
+      color: #000000;
+      font-size: 14px;
+    }
+
+    .navbar-icons i {
+      margin-right: 5px;
+    }
+
+    /* Bottom Row */
+    .navbar-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 12px 0;
+      background-color: #ff7b00;
+      position: relative;
+    }
+
+    .navbar-bottom a,
+    .dropdown {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      padding: 8px 10px;
+      border-radius: 5px;
+      transition: 0.3s;
+      position: relative;
+    }
+
+    .navbar-bottom a:hover,
+    .dropdown:hover > a {
+      background-color: #f68b07;
+      color: #000;
+    }
+
+    /* Dropdown */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 40px;
+      background-color: #fff;
+      color: #333;
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+      min-width: 180px;
+      border-radius: 8px;
+      z-index: 99;
+      flex-direction: column;
+    }
+
+    .dropdown-content a {
+      color: #333;
+      font-weight: normal;
+      padding: 10px 15px;
+      text-align: left;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f7f7f7;
+      color: #ff7b00;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .navbar-search input {
+        width: 90%;
+      }
+
+      .navbar-top {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .navbar-bottom {
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: #fff;
+        width: 100%;
+        border-radius: 0;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+    }
+  </style>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="navbar">
+
+    <!-- Top Row -->
+    <div class="navbar-top">
+      <div class="navbar-logo">
+        <a href="#"><img src="https://klip2dealhomefood.com/wp-content/uploads/2025/07/klip2dealhomefood-logo-1.png" alt="Logo"></a>
+      </div>
+
+      <div class="navbar-search">
+        <input type="text" placeholder="Search your favorite dish...">
+      </div>
+
+      <div class="navbar-icons">
+        <a href="https://wa.me/9347437807" target="_blank">
+          <i class="fab fa-whatsapp"></i> 9347437807
+        </a>
+        <a href="#">🌐 Language</a>
+        <a href="#"><i class="fas fa-user"></i> Login / Register</a>
+      </div>
+    </div>
+
+    <!-- Bottom Row with Dropdown -->
+    <div class="navbar-bottom">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+
+      <!-- Dropdown for Menu -->
+      <div class="dropdown">
+        <a href="#">Menu ▾</a>
+        <div class="dropdown-content">
+          <a href="#">Lunch</a>
+          <a href="#">Dinner</a>
+          <a href="#">Signature</a>
+        </div>
+      </div>
+
+      <!-- Dropdown for Meal Plan -->
+      <div class="dropdown">
+        <a href="#">Meal Plan ▾</a>
+        <div class="dropdown-content">
+          <a href="#">Custom Meal</a>
+          <a href="#">Elderly Meal</a>
+          <a href="#">Diet</a>
+        </div>
+      </div>
+
+      <a href="#">Blogs</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+
+</body>
+</html>
