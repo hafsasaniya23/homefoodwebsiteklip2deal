@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jain Meal Plans & Menu - Fresh, No Onion, No Garlic</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Header and Navigation */
+    header {
+      background: linear-gradient(to right, #2e7d32, #1b5e20);
+      color: white;
+      padding: 20px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo span {
+      margin-right: 10px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 25px;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    
+    nav ul li a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(46, 125, 50, 0.8), rgba(27, 94, 32, 0.8)), url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: #ffa000;
+      color: #333;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: #ff8f00;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Section Styling */
+    section {
+      padding: 80px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: #2e7d32;
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    /* Subscription Plans */
+    .plans-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+    
+    .plan-card {
+      background: #fff;
+      width: 330px;
+      border-radius: 16px;
+      padding: 30px 25px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .plan-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .plan-header {
+      margin-bottom: 20px;
+    }
+    
+    .plan-header h2 {
+      color: #1b5e20;
+      font-size: 1.6em;
+      margin: 0;
+    }
+    
+    .price {
+      font-size: 1.2em;
+      color: #444;
+      margin-top: 5px;
+    }
+    
+    .features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+    
+    .features li {
+      margin-bottom: 10px;
+      color: #333;
+      font-size: 0.95em;
+    }
+    
+    .note, .custom-note {
+      font-size: 0.85em;
+      color: #888;
+      margin-top: 10px;
+    }
+    
+    .custom-note {
+      color: #d32f2f;
+      font-style: italic;
+    }
+    
+    .choose-btn {
+      display: inline-block;
+      background: linear-gradient(to right, #43a047, #2e7d32);
+      color: white;
+      padding: 10px 22px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95em;
+      transition: background 0.3s ease;
+    }
+    
+    .choose-btn:hover {
+      background: linear-gradient(to right, #388e3c, #1b5e20);
+    }
+    
+    .ribbon {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      border-radius: 10px 3px;
+      background: #ffa000;
+      color: white;
+      font-size: 0.75em;
+      padding: 6px 50px;
+      font-weight: bold;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    
+    /* Menu Section */
+    .menu-section {
+      background-color: #fff8f0;
+    }
+    
+    .category-tabs {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .category-tabs button {
+      padding: 10px 18px;
+      margin: 6px;
+      background-color: #f5d9c5;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .category-tabs button:hover {
+      background-color: #e0bfa9;
+    }
+    
+    .category-tabs button.active {
+      background-color: #a0522d;
+      color: white;
+    }
+    
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    
+    .menu-item {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .menu-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .menu-item h3 {
+      margin: 0;
+      color: #8b0000;
+      font-size: 1.3rem;
+    }
+    
+    .menu-item p {
+      font-size: 0.95em;
+      margin: 10px 0;
+    }
+    
+    .price {
+      font-weight: bold;
+      color: #2e8b57;
+      font-size: 1.1rem;
+    }
+    
+    .tag-icons {
+      font-size: 0.9em;
+      color: #888;
+    }
+    
+    /* Thali Builder Section */
+    .thali-builder {
+      background-color: #f0f8ff;
+      padding: 40px;
+      border-radius: 15px;
+      text-align: center;
+      margin-top: 50px;
+    }
+    
+    .thali-builder h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+    
+    .thali-builder p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      margin-left: 10px;
+    }
+    
+    .btn-whatsapp:hover {
+      background-color: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    .btn-whatsapp span {
+      margin-right: 8px;
+      font-size: 1.3rem;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      background-color: #f5f5f5;
+    }
+    
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .testimonial-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+    
+    .testimonial-card .author {
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #1b5e20;
+      color: white;
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 50px;
+      height: 3px;
+      background-color: #ffa000;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: #ffa000;
+    }
+    
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .contact-info p span {
+      margin-right: 10px;
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+      }
+      
+      nav ul li {
+        margin: 0 10px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .plans-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .menu-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .btn-whatsapp {
+        display: flex;
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <span>🥗</span> Jain Meal Plans
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Fresh, No Onion, No Garlic — Delivered with Love</h1>
+    <p>Pure Jain meals prepared with authentic ingredients and traditional recipes. Delivered fresh from Saidabad to your doorstep.</p>
+    <a href="#plans" class="btn-primary">Explore Our Plans</a>
+  </section>
+
+  <!-- Subscription Plans Section -->
+  <section id="plans">
+    <div class="container">
+      <div class="section-title">
+        <h2>Jain Meal Subscription Plans</h2>
+        <p>Choose the perfect plan that fits your lifestyle and dietary preferences</p>
+      </div>
+      
+      <div class="plans-container">
+        <!-- Weekly Plan -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <h2>Weekly Plan</h2>
+            <div class="price">₹3500/ Week</div>
+          </div>
+          <ul class="features">
+            <li>✅ 5 Days (Monday–Friday)</li>
+            <li>✅ 2 Meals Per Day</li>
+            <li>✅ Pure Jain Menu</li>
+            <li>✅ Free Delivery (2–3 km from Saidabad)</li>
+          </ul>
+          <div class="custom-note">Customizable Menu available – extra charges apply</div>
+          <div class="note">Delivery charges apply beyond 2–3 km</div>
+          <br>
+          <a href="#" class="choose-btn">Choose Plan</a>
+        </div>
+        
+        <!-- Bi-Weekly Plan -->
+        <div class="plan-card">
+          <div class="ribbon">POPULAR</div>
+          <div class="plan-header">
+            <h2>Bi-Weekly Plan</h2>
+            <div class="price">₹7500/ 2 Weeks</div>
+          </div>
+          <ul class="features">
+            <li>✅ 10 Days (Mon–Fri × 2 Weeks)</li>
+            <li>✅ 2 Meals Per Day</li>
+            <li>✅ Pure Jain Menu</li>
+            <li>✅ Free Delivery (2–3 km)</li>
+            <li>🍮 1 Free Dessert Per Week</li>
+          </ul>
+          <div class="custom-note">Customizable Menu available – extra charges apply</div>
+          <div class="note">Delivery charges apply beyond 2–3 km</div>
+          <br>
+          <a href="#" class="choose-btn">Choose Plan</a>
+        </div>
+        
+        <!-- Monthly Plan -->
+        <div class="plan-card">
+          <div class="plan-header">
+            <h2>Monthly Plan</h2>
+            <div class="price">₹12999/ Month</div>
+          </div>
+          <ul class="features">
+            <li>✅ 20 Days (Mon–Fri × 4 Weeks)</li>
+            <li>✅ 2 Meals Per Day</li>
+            <li>✅ Pure Jain Menu</li>
+            <li>✅ Free Delivery (2–3 km)</li>
+            <li>🍮 2 Free Desserts Per Week</li>
+            <li>🧑‍⚕️ Weekly Nutrition Consultation</li>
+          </ul>
+          <div class="custom-note">Customizable Menu available – extra charges apply</div>
+          <div class="note">Delivery charges apply beyond 2–3 km</div>
+          <br>
+          <a href="#" class="choose-btn">Choose Plan</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Jain Menu</h2>
+        <p>All dishes prepared without onion, garlic, or root vegetables. Pure Jain-friendly meals.</p>
+      </div>
+      
+      <div class="category-tabs">
+        <button class="active" onclick="filterMenu('all')">All</button>
+        <button onclick="filterMenu('rice')">Rice</button>
+        <button onclick="filterMenu('curry')">Curry</button>
+        <button onclick="filterMenu('thali')">Build Your Own Thali</button>
+      </div>
+      
+      <div class="menu-grid">
+        <!-- Rice Items -->
+        <div class="menu-item rice">
+          <h3>Plain Steamed Rice</h3>
+          <p>Perfectly steamed rice, served hot and simple. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 70</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Jeera Rice</h3>
+          <p>Basmati rice tempered with cumin and mild spices. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 90</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Lemon Rice</h3>
+          <p>Jain-style tangy lemon rice with mustard and curry leaves. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 95</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Khichdi (Moong Dal)</h3>
+          <p>Light and comforting moong dal khichdi made Jain-style. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 110</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Tamarind Rice</h3>
+          <p>Spicy-sour Jain tamarind rice (Imli rice). 🧅❌ 🧄❌</p>
+          <p class="price">₹ 100</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Peas Pulao</h3>
+          <p>Fluffy rice with green peas, no onion or garlic.</p>
+          <p class="price">₹ 100</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Tomato Rice (Jain-style)</h3>
+          <p>Spicy tomato-flavored rice prepared without onion or garlic.</p>
+          <p class="price">₹ 95</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Coconut Rice</h3>
+          <p>Fragrant rice with fresh grated coconut and mild spices.</p>
+          <p class="price">₹ 100</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Coriander Rice</h3>
+          <p>Herby and fresh coriander-flavored Jain-style rice.</p>
+          <p class="price">₹ 95</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Mint Rice (Pudina Rice)</h3>
+          <p>Refreshing mint-flavored rice without onion or garlic.</p>
+          <p class="price">₹ 100</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Masala Rice (Jain)</h3>
+          <p>Spiced rice using Jain masala blend with no root vegetables.</p>
+          <p class="price">₹ 105</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Sambar Rice (Jain)</h3>
+          <p>South Indian lentil rice made Jain-style with no onion or garlic.</p>
+          <p class="price">₹ 110</p>
+        </div>
+        
+        <div class="menu-item rice">
+          <h3>Kacha Kela Rice</h3>
+          <p>Unique raw banana rice as an alternative to potato dishes.</p>
+          <p class="price">₹ 100</p>
+        </div>
+        
+        <!-- Curry Items -->
+        <div class="menu-item curry">
+          <h3>Paneer Butter Masala (Jain)</h3>
+          <p>Rich tomato-cashew base with tender paneer. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 180</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Tomato Kofta Curry</h3>
+          <p>Soft koftas in a rich tomato-based Jain-friendly gravy.</p>
+          <p class="price">₹ 160</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Kaccha Kela Curry</h3>
+          <p>Raw banana cooked in Jain-friendly masalas. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 120</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Gawar Phali Sabzi</h3>
+          <p>Cluster beans stir-fried in Jain masala.</p>
+          <p class="price">₹ 120</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Bhindi Masala</h3>
+          <p>Okra cooked with spices, no onion or garlic added.</p>
+          <p class="price">₹ 130</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Lauki Chana Dal</h3>
+          <p>Bottle gourd and chana dal curry prepared Jain-style.</p>
+          <p class="price">₹ 125</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Mix Veg Jain Curry</h3>
+          <p>Seasonal veggies simmered in aromatic Jain spices. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 150</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Sev Tamatar Sabzi</h3>
+          <p>Tomato-based curry topped with crispy sev (Jain version).</p>
+          <p class="price">₹ 130</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Tofu Masala (Jain)</h3>
+          <p>Protein-rich tofu cubes in creamy Jain-style gravy. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 165</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Palak Paneer (Jain)</h3>
+          <p>Spinach and paneer curry without onion or garlic.</p>
+          <p class="price">₹ 160</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Methi Malai Matar</h3>
+          <p>Creamy fenugreek and peas curry without onion/garlic.</p>
+          <p class="price">₹ 155</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Stuffed Capsicum</h3>
+          <p>Capsicums stuffed with Jain-approved filling and spices.</p>
+          <p class="price">₹ 140</p>
+        </div>
+        
+        <div class="menu-item curry">
+          <h3>Dahi Kadhi (Jain)</h3>
+          <p>Traditional Gujarati kadhi made without root veggies. 🧅❌ 🧄❌</p>
+          <p class="price">₹ 120</p>
+        </div>
+      </div>
+      
+      <!-- Thali Builder Section -->
+      <div class="thali-builder">
+        <h2>🕉️ Build Your Own Jain Thali</h2>
+        <p>Select any 1 Rice + 1 Curry combo for ₹240<br> Extra items at ₹30 each | All dishes Jain-friendly 🌱</p>
+        <div class="button-container">
+          <a href="#" class="btn-primary">Create Your Thali</a>
+          <a href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20order%20a%20custom%20Jain%20Thali.%20Please%20help%20me%20with%20the%20options." class="btn-whatsapp" target="_blank">
+            <span>💬</span> WhatsApp to Order
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>What Our Customers Say</h2>
+        <p>Hear from people who enjoy our Jain meal plans</p>
+      </div>
+      
+      <div class="testimonial-grid">
+        <div class="testimonial-card">
+          <p>"The Jain meal subscription has been a lifesaver for our family. The food is fresh, delicious, and strictly follows our dietary restrictions. Highly recommend!"</p>
+          <div class="author">- Meera S.</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p>"As a busy professional, I don't have time to cook Jain meals every day. This service delivers authentic, home-style food that reminds me of my mother's cooking."</p>
+          <div class="author">- Rajesh P.</div>
+        </div>
+        
+        <div class="testimonial-card">
+          <p>"The variety in the menu is impressive. Even after months of subscription, we still look forward to our meals. The thali builder option is our favorite!"</p>
+          <div class="author">- Neha J.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Jain Meal Plans</h3>
+        <p>Delivering fresh, authentic Jain meals prepared without onion, garlic, or root vegetables. Pure vegetarian food delivered with love from Saidabad.</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#plans">Subscription Plans</a></li>
+          <li><a href="#menu">Our Menu</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <p><span>📍</span> Saidabad, Hyderabad, Telangana</p>
+          <p><span>📞</span> +91 98765 43210</p>
+          <p><span>✉️</span> info@jainmealplans.com</p>
+          <p><span>🕒</span> Mon-Sat: 9AM - 8PM</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 Jain Meal Plans. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Menu filter functionality
+    function filterMenu(category) {
+      // Update active button
+      const buttons = document.querySelectorAll('.category-tabs button');
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      
+      // Filter menu items
+      const items = document.querySelectorAll('.menu-item');
+      if (category === 'all') {
+        items.forEach(item => {
+          item.style.display = 'block';
+        });
+      } else if (category === 'thali') {
+        // Show thali builder section
+        document.querySelector('.thali-builder').scrollIntoView({ behavior: 'smooth' });
+      } else {
+        items.forEach(item => {
+          if (item.classList.contains(category)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+    }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
