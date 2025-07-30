@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klip2DealHomeFood - Meal Plans</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --accent-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --border-radius: 12px;
+            --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        .plans-section {
+            margin-bottom: 50px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .plan-card.featured {
+            border-color: var(--secondary-color);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--secondary-color);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .plan-price {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: #666;
+            font-weight: normal;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        .plan-features li i {
+            color: var(--accent-color);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        .plan-button {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .plan-button:hover {
+            background: #c0392b;
+        }
+
+        .delivery-note {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .special-meals-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .special-meals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .special-meal-card {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .special-meal-card:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .special-meal-card.selected {
+            background-color: #fff8e1;
+            border-color: var(--secondary-color);
+        }
+
+        .special-meal-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .special-meal-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .special-meal-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 10px;
+        }
+
+        .special-meal-desc {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .customization-section {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .checkbox-item:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .other-allergy-input {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .meal-preferences {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: var(--border-radius);
+        }
+
+        .meal-preferences h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .meal-days {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .meal-day {
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .meal-day:hover {
+            border-color: var(--secondary-color);
+        }
+
+        .meal-day.selected {
+            background-color: #fff8e1;
+            border-color: var(--secondary-color);
+        }
+
+        .meal-day-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .meal-inputs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .special-meal-details {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff8e1;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--secondary-color);
+            display: none;
+        }
+
+        .special-meal-details.active {
+            display: block;
+        }
+
+        .special-meal-details h3 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .submit-button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .submit-button:hover {
+            background: #27ae60;
+        }
+
+        .whatsapp-button {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: var(--border-radius);
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .whatsapp-button:hover {
+            background: #128C7E;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-weight: 500;
+            max-width: 350px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification i {
+            margin-right: 10px;
+        }
+
+        .info-box {
+            background: #fff8e1;
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 30px;
+        }
+
+        .info-box h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-box p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .meal-days {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .meal-inputs {
+                grid-template-columns: 1fr;
+            }
+            
+            .submit-section {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .submit-button,
+            .whatsapp-button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-utensils"></i> Klip2DealHomeFood</h1>
+            <p>Weekly & Monthly Meal Plans - Customized for Your Lifestyle</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="plans-section">
+            <h2 class="section-title">Choose Your Meal Plan</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3 class="plan-name">Weekly Plan</h3>
+                    <div class="plan-price">₹1,500 <span>/week</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 5 days (Mon–Fri)</li>
+                        <li><i class="fas fa-check-circle"></i> 2 meals per day</li>
+                        <li><i class="fas fa-check-circle"></i> Customizable menu</li>
+                        <li><i class="fas fa-check-circle"></i> Free delivery (2-3km from Saidabad)</li>
+                    </ul>
+                    <button class="plan-button" onclick="selectPlan('Weekly', 1500)">Choose Plan</button>
+                    <div class="delivery-note">Delivery charges apply beyond 2-3km from Saidabad</div>
+                </div>
+
+                <div class="plan-card featured">
+                    <div class="popular-badge">POPULAR</div>
+                    <h3 class="plan-name">Bi-Weekly Plan</h3>
+                    <div class="plan-price">₹2,800 <span>/2 weeks</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 10 days (Mon–Fri × 2 weeks)</li>
+                        <li><i class="fas fa-check-circle"></i> 2 meals per day</li>
+                        <li><i class="fas fa-check-circle"></i> Customizable menu</li>
+                        <li><i class="fas fa-check-circle"></i> Free delivery (2-3km from Saidabad)</li>
+                        <li><i class="fas fa-check-circle"></i> 1 free dessert per week</li>
+                    </ul>
+                    <button class="plan-button" onclick="selectPlan('Bi-Weekly', 2800)">Choose Plan</button>
+                    <div class="delivery-note">Delivery charges apply beyond 2-3km from Saidabad</div>
+                </div>
+
+                <div class="plan-card">
+                    <h3 class="plan-name">Monthly Plan</h3>
+                    <div class="plan-price">₹5,000 <span>/month</span></div>
+                    <ul class="plan-features">
+                        <li><i class="fas fa-check-circle"></i> 20 days (Mon–Fri × 4 weeks)</li>
+                        <li><i class="fas fa-check-circle"></i> 2 meals per day</li>
+                        <li><i class="fas fa-check-circle"></i> Customizable menu</li>
+                        <li><i class="fas fa-check-circle"></i> Free delivery (2-3km from Saidabad)</li>
+                        <li><i class="fas fa-check-circle"></i> 2 free desserts per week</li>
+                        <li><i class="fas fa-check-circle"></i> Weekly nutrition consultation</li>
+                    </ul>
+                    <button class="plan-button" onclick="selectPlan('Monthly', 5000)">Choose Plan</button>
+                    <div class="delivery-note">Delivery charges apply beyond 2-3km from Saidabad</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="special-meals-section">
+            <h2 class="section-title">Special Meal Plans</h2>
+            <div class="info-box">
+                <h3><i class="fas fa-heart"></i> Special Dietary Requirements</h3>
+                <p>Select one special meal requirement if needed. This will be applied to your meal plan customization.</p>
+            </div>
+            <div class="special-meals-grid">
+                <div class="special-meal-card" onclick="selectSpecialMeal(this, 'elderly')">
+                    <div class="special-meal-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="special-meal-name">Elderly-friendly</div>
+                    <div class="special-meal-desc">Softer food, easy to chew and digest</div>
+                </div>
+                <div class="special-meal-card" onclick="selectSpecialMeal(this, 'kids')">
+                    <div class="special-meal-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div class="special-meal-name">Kids-friendly</div>
+                    <div class="special-meal-desc">Nutritious meals kids will love</div>
+                </div>
+                <div class="special-meal-card" onclick="selectSpecialMeal(this, 'diabetic')">
+                    <div class="special-meal-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="special-meal-name">Diabetic-friendly</div>
+                    <div class="special-meal-desc">Low sugar, controlled carbs</div>
+                </div>
+                <div class="special-meal-card" onclick="selectSpecialMeal(this, 'low-sodium')">
+                    <div class="special-meal-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="special-meal-name">Low Sodium</div>
+                    <div class="special-meal-desc">Heart-healthy, reduced salt</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="customization-section">
+            <h2 class="section-title">Customize Your Meal Plan</h2>
+            
+            <div class="info-box">
+                <h3><i class="fas fa-info-circle"></i> Tell Us About Your Preferences</h3>
+                <p>We want to create the perfect meal plan just for you! Please share your dietary preferences, allergies, and any special requirements. Our chefs will craft delicious meals that meet your needs.</p>
+            </div>
+
+            <form id="customizationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Delivery Address *</label>
+                        <input type="text" id="address" name="address" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dietary">Dietary Preference</label>
+                        <select id="dietary" name="dietary">
+                            <option value="">No specific preference</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                            <option value="non-vegetarian">Non-Vegetarian</option>
+                            <option value="eggetarian">Eggetarian</option>
+                            <option value="pescatarian">Pescatarian</option>
+                            <option value="keto">Keto</option>
+                            <option value="paleo">Paleo</option>
+                            <option value="mediterranean">Mediterranean</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="spice">Spice Level Preference</label>
+                        <select id="spice" name="spice">
+                            <option value="mild">Mild</option>
+                            <option value="medium">Medium</option>
+                            <option value="spicy">Spicy</option>
+                            <option value="extra-spicy">Extra Spicy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Food Allergies (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-nuts" name="allergies" value="nuts">
+                            <label for="allergy-nuts">Nuts</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-dairy" name="allergies" value="dairy">
+                            <label for="allergy-dairy">Dairy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-gluten" name="allergies" value="gluten">
+                            <label for="allergy-gluten">Gluten</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-eggs" name="allergies" value="eggs">
+                            <label for="allergy-eggs">Eggs</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-soy" name="allergies" value="soy">
+                            <label for="allergy-soy">Soy</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-seafood" name="allergies" value="seafood">
+                            <label for="allergy-seafood">Seafood</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="allergy-other" name="allergies" value="other">
+                            <label for="allergy-other">Other</label>
+                        </div>
+                    </div>
+                    <input type="text" id="other-allergy" class="other-allergy-input" placeholder="Please specify other allergies...">
+                </div>
+
+                <!-- Special Meal Details Section -->
+                <div class="special-meal-details" id="special-meal-details">
+                    <h3><i class="fas fa-clipboard-list"></i> Special Meal Requirements</h3>
+                    <p>Please provide more details about your special meal requirements so we can better customize your meals.</p>
+                    <div class="form-group">
+                        <label for="special-meal-description">Describe your requirements in detail *</label>
+                        <textarea id="special-meal-description" rows="4" placeholder="Please describe your specific requirements, dietary restrictions, texture preferences, or any other important details we should know..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-meal-examples">Example dishes you prefer (Optional)</label>
+                        <textarea id="special-meal-examples" rows="3" placeholder="List any specific dishes or types of food you enjoy or would like us to prepare..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="special-meal-avoid">Foods to avoid (Optional)</label>
+                        <textarea id="special-meal-avoid" rows="3" placeholder="List any specific foods or ingredients you want to avoid..."></textarea>
+                    </div>
+                </div>
+
+                <div class="meal-preferences">
+                    <h3>Select Your Meal Days and Preferences</h3>
+                    <p>Please select the days you'd like meals and specify your preferences for each meal.</p>
+                    
+                    <div class="meal-days">
+                        <div class="meal-day" onclick="toggleMealDay(this, 'monday')">
+                            <div class="meal-day-name">Monday</div>
+                        </div>
+                        <div class="meal-day" onclick="toggleMealDay(this, 'tuesday')">
+                            <div class="meal-day-name">Tuesday</div>
+                        </div>
+                        <div class="meal-day" onclick="toggleMealDay(this, 'wednesday')">
+                            <div class="meal-day-name">Wednesday</div>
+                        </div>
+                        <div class="meal-day" onclick="toggleMealDay(this, 'thursday')">
+                            <div class="meal-day-name">Thursday</div>
+                        </div>
+                        <div class="meal-day" onclick="toggleMealDay(this, 'friday')">
+                            <div class="meal-day-name">Friday</div>
+                        </div>
+                    </div>
+                    
+                    <div id="meal-preferences-container"></div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dislikes">Food Dislikes (Optional)</label>
+                        <textarea id="dislikes" name="dislikes" placeholder="Please list any foods you dislike or prefer not to eat..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="health">Health Goals (Optional)</label>
+                        <textarea id="health" name="health" placeholder="Tell us about your health goals (e.g., weight loss, muscle gain, maintain energy, etc.)..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additional">Additional Requirements or Comments</label>
+                    <textarea id="additional" name="additional" placeholder="Any other special requests, delivery instructions, or comments..."></textarea>
+                </div>
+            </form>
+
+            <div class="submit-section">
+                <button type="submit" form="customizationForm" class="submit-button">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Request
+                </button>
+                <button type="button" class="whatsapp-button" onclick="sendViaWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                    Send via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message">Your customization request has been submitted!</span>
+    </div>
+
+    <script>
+        let selectedPlan = null;
+        let selectedPrice = null;
+        let selectedSpecialMeal = null;
+        let selectedMealDays = [];
+        let mealPreferences = {};
+
+        function selectPlan(planName, price) {
+            selectedPlan = planName;
+            selectedPrice = price;
+            
+            // Scroll to customization section
+            document.querySelector('.customization-section').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+            
+            showNotification(`${planName} selected! Please fill in your preferences below.`);
+        }
+
+        function selectSpecialMeal(element, mealType) {
+            // Remove previous selection
+            document.querySelectorAll('.special-meal-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            
+            // Add selection to clicked card
+            element.classList.add('selected');
+            selectedSpecialMeal = mealType;
+            
+            // Show special meal details section
+            const specialMealDetails = document.getElementById('special-meal-details');
+            specialMealDetails.classList.add('active');
+            
+            // Update placeholder text based on selected meal type
+            const descriptionTextarea = document.getElementById('special-meal-description');
+            const examplesTextarea = document.getElementById('special-meal-examples');
+            
+            switch(mealType) {
+                case 'elderly':
+                    descriptionTextarea.placeholder = "Please describe your texture preferences, chewing difficulties, or any specific dietary needs for elderly-friendly meals...";
+                    examplesTextarea.placeholder = "e.g., Soft rice dishes, well-cooked vegetables, tender meats, soups, etc.";
+                    break;
+                case 'kids':
+                    descriptionTextarea.placeholder = "Please describe your child's preferences, age, any dietary restrictions, or nutritional needs...";
+                    examplesTextarea.placeholder = "e.g., Mild curries, colorful vegetables, finger foods, etc.";
+                    break;
+                case 'diabetic':
+                    descriptionTextarea.placeholder = "Please describe your sugar restrictions, carbohydrate preferences, or any specific diabetic dietary needs...";
+                    examplesTextarea.placeholder = "e.g., Low-carb meals, sugar-free desserts, high-protein dishes, etc.";
+                    break;
+                case 'low-sodium':
+                    descriptionTextarea.placeholder = "Please describe your sodium restrictions, blood pressure concerns, or any specific low-sodium dietary needs...";
+                    examplesTextarea.placeholder = "e.g., Salt-free seasoning, herbs and spices, fresh vegetables, etc.";
+                    break;
+            }
+            
+            showNotification(`${mealType.charAt(0).toUpperCase() + mealType.slice(1)} meal plan selected! Please provide more details below.`);
+        }
+
+        function toggleMealDay(element, day) {
+            element.classList.toggle('selected');
+            
+            if (element.classList.contains('selected')) {
+                selectedMealDays.push(day);
+                addMealPreferenceInputs(day);
+            } else {
+                selectedMealDays = selectedMealDays.filter(d => d !== day);
+                removeMealPreferenceInputs(day);
+            }
+        }
+
+        function addMealPreferenceInputs(day) {
+            const container = document.getElementById('meal-preferences-container');
+            
+            const dayDiv = document.createElement('div');
+            dayDiv.id = `meal-preference-${day}`;
+            dayDiv.className = 'meal-preference-day';
+            dayDiv.style.marginTop = '20px';
+            dayDiv.style.padding = '15px';
+            dayDiv.style.backgroundColor = 'white';
+            dayDiv.style.borderRadius = 'var(--border-radius)';
+            dayDiv.style.border = '2px solid #e0e0e0';
+            
+            dayDiv.innerHTML = `
+                <h4 style="margin-bottom: 15px; color: var(--dark-color);">${day.charAt(0).toUpperCase() + day.slice(1)} Meals</h4>
+                <div class="meal-inputs">
+                    <div class="form-group">
+                        <label>Lunch Preference</label>
+                        <input type="text" id="${day}-lunch" placeholder="e.g., Rice with dal, vegetable curry...">
+                    </div>
+                    <div class="form-group">
+                        <label>Dinner Preference</label>
+                        <input type="text" id="${day}-dinner" placeholder="e.g., Roti with paneer dish...">
+                    </div>
+                </div>
+            `;
+            
+            container.appendChild(dayDiv);
+            
+            // Initialize meal preferences object
+            mealPreferences[day] = {
+                lunch: '',
+                dinner: ''
+            };
+            
+            // Add event listeners to update meal preferences
+            document.getElementById(`${day}-lunch`).addEventListener('input', function() {
+                mealPreferences[day].lunch = this.value;
+            });
+            
+            document.getElementById(`${day}-dinner`).addEventListener('input', function() {
+                mealPreferences[day].dinner = this.value;
+            });
+        }
+
+        function removeMealPreferenceInputs(day) {
+            const element = document.getElementById(`meal-preference-${day}`);
+            if (element) {
+                element.remove();
+            }
+            
+            // Remove from meal preferences object
+            delete mealPreferences[day];
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            
+            notificationMessage.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+
+        // Handle "Other" allergy checkbox
+        document.getElementById('allergy-other').addEventListener('change', function() {
+            const otherInput = document.getElementById('other-allergy');
+            if (this.checked) {
+                otherInput.style.display = 'block';
+                otherInput.required = true;
+            } else {
+                otherInput.style.display = 'none';
+                otherInput.required = false;
+                otherInput.value = '';
+            }
+        });
+
+        function collectFormData() {
+            const formData = new FormData(document.getElementById('customizationForm'));
+            const data = {};
+            
+            for (let [key, value] of formData.entries()) {
+                if (data[key]) {
+                    if (Array.isArray(data[key])) {
+                        data[key].push(value);
+                    } else {
+                        data[key] = [data[key], value];
+                    }
+                } else {
+                    data[key] = value;
+                }
+            }
+            
+            // Add selected plan information
+            data.plan = selectedPlan;
+            data.price = selectedPrice;
+            
+            // Add selected special meal
+            data.specialMeal = selectedSpecialMeal;
+            
+            // Add special meal details if selected
+            if (selectedSpecialMeal) {
+                data.specialMealDetails = {
+                    description: document.getElementById('special-meal-description').value,
+                    examples: document.getElementById('special-meal-examples').value,
+                    avoid: document.getElementById('special-meal-avoid').value
+                };
+            }
+            
+            // Add selected meal days and preferences
+            data.mealDays = selectedMealDays;
+            data.mealPreferences = mealPreferences;
+            
+            // Add other allergy if specified
+            const otherAllergy = document.getElementById('other-allergy').value;
+            if (otherAllergy) {
+                if (data.allergies) {
+                    data.allergies.push(otherAllergy);
+                } else {
+                    data.allergies = [otherAllergy];
+                }
+            }
+            
+            return data;
+        }
+
+        function formatWhatsAppMessage(data) {
+            let message = "Hello! I'd like to order a custom meal plan from Klip2DealHomeFood:\n\n";
+            
+            if (data.plan) {
+                message += `*Plan:* ${data.plan} (₹${data.price})\n\n`;
+            }
+            
+            message += "*Personal Details:*\n";
+            message += `Name: ${data.name}\n`;
+            message += `Email: ${data.email}\n`;
+            message += `Phone: ${data.phone}\n`;
+            message += `Address: ${data.address}\n\n`;
+            
+            if (data.specialMeal) {
+                message += `*Special Meal Type:* ${data.specialMeal.charAt(0).toUpperCase() + data.specialMeal.slice(1)}\n`;
+                if (data.specialMealDetails) {
+                    if (data.specialMealDetails.description) {
+                        message += `*Requirements:* ${data.specialMealDetails.description}\n`;
+                    }
+                    if (data.specialMealDetails.examples) {
+                        message += `*Preferred Dishes:* ${data.specialMealDetails.examples}\n`;
+                    }
+                    if (data.specialMealDetails.avoid) {
+                        message += `*Foods to Avoid:* ${data.specialMealDetails.avoid}\n`;
+                    }
+                }
+                message += "\n";
+            }
+            
+            if (data.dietary) {
+                message += `*Dietary Preference:* ${data.dietary}\n`;
+            }
+            
+            if (data.allergies && data.allergies.length > 0) {
+                message += `*Allergies:* ${data.allergies.join(', ')}\n`;
+            }
+            
+            if (data.spice) {
+                message += `*Spice Level:* ${data.spice}\n`;
+            }
+            
+            if (data.mealDays && data.mealDays.length > 0) {
+                message += "*Meal Preferences:*\n";
+                data.mealDays.forEach(day => {
+                    if (data.mealPreferences[day]) {
+                        message += `${day.charAt(0).toUpperCase() + day.slice(1)}:\n`;
+                        message += `- Lunch: ${data.mealPreferences[day].lunch || 'No preference'}\n`;
+                        message += `- Dinner: ${data.mealPreferences[day].dinner || 'No preference'}\n`;
+                    }
+                });
+                message += "\n";
+            }
+            
+            if (data.dislikes) {
+                message += `*Food Dislikes:* ${data.dislikes}\n`;
+            }
+            
+            if (data.health) {
+                message += `*Health Goals:* ${data.health}\n`;
+            }
+            
+            if (data.additional) {
+                message += `*Additional Notes:* ${data.additional}\n`;
+            }
+            
+            message += "\nPlease confirm my order and share the final charges. Thank you!";
+            
+            return message;
+        }
+
+        function sendViaWhatsApp() {
+            if (!selectedPlan) {
+                showNotification('Please select a meal plan first!');
+                return;
+            }
+            
+            // Validate special meal details if selected
+            if (selectedSpecialMeal) {
+                const description = document.getElementById('special-meal-description').value;
+                if (!description) {
+                    showNotification('Please provide details for your special meal requirements!');
+                    return;
+                }
+            }
+            
+            const data = collectFormData();
+            const message = formatWhatsAppMessage(data);
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        document.getElementById('customizationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedPlan) {
+                showNotification('Please select a meal plan first!');
+                return;
+            }
+            
+            // Validate special meal details if selected
+            if (selectedSpecialMeal) {
+                const description = document.getElementById('special-meal-description').value;
+                if (!description) {
+                    showNotification('Please provide details for your special meal requirements!');
+                    return;
+                }
+            }
+            
+            if (selectedMealDays.length === 0) {
+                showNotification('Please select at least one day for your meal plan!');
+                return;
+            }
+            
+            const data = collectFormData();
+            
+            // Log the data (in a real application, this would be sent to a server)
+            console.log('Meal Plan Customization:', data);
+            
+            // Show success message
+            showNotification(`Thank you! Your ${selectedPlan} customization request has been received. We'll contact you soon with the final charges and to finalize your meal plan!`);
+            
+            // Reset form
+            this.reset();
+            selectedPlan = null;
+            selectedPrice = null;
+            selectedSpecialMeal = null;
+            selectedMealDays = [];
+            mealPreferences = {};
+            document.querySelectorAll('.meal-day').forEach(day => {
+                day.classList.remove('selected');
+            });
+            document.querySelectorAll('.special-meal-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById('meal-preferences-container').innerHTML = '';
+            document.getElementById('special-meal-details').classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Add smooth scrolling for plan cards
+        document.querySelectorAll('.plan-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Add visual feedback
+                const card = this.closest('.plan-card');
+                card.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>

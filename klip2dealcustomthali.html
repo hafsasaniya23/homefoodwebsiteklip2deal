@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klip2DealHomeFood - Custom Thali</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #f39c12;
+            --accent-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --border-radius: 12px;
+            --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            box-shadow: var(--box-shadow);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        header .slogan {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.5;
+        }
+
+        header .tagline {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .main-content {
+            display: flex;
+            gap: 30px;
+        }
+
+        .thali-builder {
+            flex: 2;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--box-shadow);
+        }
+
+        .bill-section {
+            flex: 1;
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            max-height: calc(100vh - 40px);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category {
+            margin-bottom: 35px;
+        }
+
+        .category-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+        }
+
+        .category-title i {
+            margin-right: 12px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            border: 2px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 18px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .item-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--primary-color);
+        }
+
+        .item-card.selected {
+            background-color: #fff8e1;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(243, 156, 18, 0.2);
+        }
+
+        .item-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .item-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .item-card .price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .item-card .name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+
+        .item-card .description {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .quantity-selector {
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--primary-color);
+            background: white;
+            color: var(--primary-color);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .quantity-display {
+            min-width: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .bill-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .thali-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .bill-title {
+            font-size: 1.4rem;
+            color: var(--dark-color);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .bill-items-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            padding-right: 5px;
+            max-height: 300px;
+        }
+
+        .bill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .bill-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .bill-item-name {
+            font-weight: 500;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .bill-item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 0.95rem;
+        }
+
+        .bill-total {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 2px solid var(--secondary-color);
+        }
+
+        .bill-total-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .bill-total-row.total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .order-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-success {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background-color: #27ae60;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 18px 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            font-weight: 500;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification i {
+            margin-right: 10px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 992px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .bill-section {
+                position: static;
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header .slogan {
+                font-size: 1.1rem;
+            }
+            
+            .item-card {
+                padding: 15px;
+            }
+        }
+
+        /* Custom scrollbar for bill items */
+        .bill-items-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .bill-items-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .bill-items-container::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .bill-items-container::-webkit-scrollbar-thumb:hover {
+            background: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-utensils"></i> Klip2DealHomeFood</h1>
+            <p class="slogan">🫶 Your Thali, Your Rules – Feel at Home with Every Bite</p>
+            <p class="tagline">Mix and match wholesome, home-style dishes made with love. Choose your mains, sides, and extras to create a custom thali that brings comfort, flavor, and joy to your plate.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="thali-builder">
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-seedling"></i> Select 1 Rice</h2>
+                    <div class="items-grid" id="rice-options">
+                        <div class="item-card" data-category="rice" data-name="Plain Rice" data-price="150">
+                            <div class="item-icon">
+                                <i class="fas fa-bowl-rice"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Plain Rice</div>
+                                    <div class="price">₹150</div>
+                                </div>
+                                <div class="description">Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Jeera Rice" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-pepper-hot"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Jeera Rice</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Jeera Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Biryani Rice" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-mortar-pestle"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Biryani Rice</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">Biryani Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Pickel Rice" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-jar"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Pickel Rice</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Pickel Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Curd Rice" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-bowl-food"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Curd Rice</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Curd Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Ghee Rice" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-bottle-droplet"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Ghee Rice</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Ghee Rice(750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Ghee Chilli Garlic Rice" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-pepper"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Ghee Chilli Garlic Rice</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Ghee Chilli Garlic Rice (750 grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="rice" data-name="Spicy Egg Fried Rice" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-egg"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Spicy Egg Fried Rice</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">Spicy Egg Fried Rice (750 grams)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-bread-slice"></i> Select Roti (Choose Quantity)</h2>
+                    <div class="items-grid" id="roti-options">
+                        <div class="item-card" data-category="roti" data-name="Ghar ki Roti" data-base-price="150" data-unit-price="75">
+                            <div class="item-icon">
+                                <i class="fas fa-wheat-awn"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Ghar ki Roti</div>
+                                    <div class="price">₹150</div>
+                                </div>
+                                <div class="description">Roti (7 inches)</div>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn minus">-</button>
+                                    <span class="quantity-display">2</span>
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="roti" data-name="Phulka" data-base-price="150" data-unit-price="75">
+                            <div class="item-icon">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Phulka</div>
+                                    <div class="price">₹150</div>
+                                </div>
+                                <div class="description">Roti (7 inches)</div>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn minus">-</button>
+                                    <span class="quantity-display">2</span>
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="roti" data-name="Ghee Roti" data-base-price="200" data-unit-price="100">
+                            <div class="item-icon">
+                                <i class="fas fa-bottle-droplet"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Ghee Roti</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">Roti (7 inches)</div>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn minus">-</button>
+                                    <span class="quantity-display">2</span>
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="roti" data-name="Shakkar ki Roti" data-base-price="150" data-unit-price="150">
+                            <div class="item-icon">
+                                <i class="fas fa-candy-cane"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Shakkar ki Roti</div>
+                                    <div class="price">₹150</div>
+                                </div>
+                                <div class="description">Roti (7 inches)</div>
+                                <div class="quantity-selector">
+                                    <button class="quantity-btn minus">-</button>
+                                    <span class="quantity-display">1</span>
+                                    <button class="quantity-btn plus">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-mortar-pestle"></i> Select 1 Dal</h2>
+                    <div class="items-grid" id="dal-options">
+                        <div class="item-card" data-category="dal" data-name="Khati Dal" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-bowl-food"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Khati Dal</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(ml)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="dal" data-name="Dal Fry" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Dal Fry</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(ml)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="dal" data-name="Dalcha" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-mortar-pestle"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Dalcha</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(ml)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="dal" data-name="Palak ki Dal" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Palak ki Dal</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(ml)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-pepper-hot"></i> Select 2 Dry Curry</h2>
+                    <div class="items-grid" id="drycurry-options">
+                        <div class="item-card" data-category="drycurry" data-name="Tomato Chutney" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-tomato"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Tomato Chutney</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Aloo gawar ki Sabzi" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-carrot"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Aloo gawar ki Sabzi</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Aloo Beans ki Sabzi" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Aloo Beans ki Sabzi</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Aloo Palak ki Sabzi" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Aloo Palak ki Sabzi</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Cabbage Fry" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Cabbage Fry</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Cauliflower Fry" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-broccoli"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Cauliflower Fry</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Donday ki Sabzi" data-price="200">
+                            <div class="item-icon">
+                                <i class="fas fa-mushroom"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Donday ki Sabzi</div>
+                                    <div class="price">₹200</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Paneer Masala" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-cheese"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Paneer Masala</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Butter Paneer Masala" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-cheese"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Butter Paneer Masala</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="drycurry" data-name="Bagara Baigan" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-eggplant"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Bagara Baigan</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">500(Grams)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-ice-cream"></i> Select 1 Sweet</h2>
+                    <div class="items-grid" id="sweet-options">
+                        <div class="item-card" data-category="sweet" data-name="Sheer khurma" data-price="300">
+                            <div class="item-icon">
+                                <i class="fas fa-cookie"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Sheer khurma</div>
+                                    <div class="price">₹300</div>
+                                </div>
+                                <div class="description">450ml</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sweet" data-name="Suji ka halwa" data-price="300">
+                            <div class="item-icon">
+                                <i class="fas fa-bowl-rice"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Suji ka halwa</div>
+                                    <div class="price">₹300</div>
+                                </div>
+                                <div class="description">150 grams</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sweet" data-name="Savaiya ka Meetha" data-price="300">
+                            <div class="item-icon">
+                                <i class="fas fa-candy-cane"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Savaiya ka Meetha</div>
+                                    <div class="price">₹300</div>
+                                </div>
+                                <div class="description">150 Grams</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sweet" data-name="Double Ka Meetha" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-bread-slice"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Double Ka Meetha</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">150 grams</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category">
+                    <h2 class="category-title"><i class="fas fa-leaf"></i> Select 2-3 Sides</h2>
+                    <div class="items-grid" id="sides-options">
+                        <div class="item-card" data-category="sides" data-name="Pickel" data-price="0">
+                            <div class="item-icon">
+                                <i class="fas fa-jar"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Pickel</div>
+                                    <div class="price">Free</div>
+                                </div>
+                                <div class="description">Complimentary</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sides" data-name="Papad" data-price="0">
+                            <div class="item-icon">
+                                <i class="fas fa-circle"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Papad</div>
+                                    <div class="price">Free</div>
+                                </div>
+                                <div class="description">Complimentary</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sides" data-name="Curd" data-price="0">
+                            <div class="item-icon">
+                                <i class="fas fa-bowl-food"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Curd</div>
+                                    <div class="price">Free</div>
+                                </div>
+                                <div class="description">Complimentary</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sides" data-name="Salad" data-price="0">
+                            <div class="item-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Salad</div>
+                                    <div class="price">Free</div>
+                                </div>
+                                <div class="description">Complimentary</div>
+                            </div>
+                        </div>
+                        <div class="item-card" data-category="sides" data-name="Mirchi ka Salan" data-price="250">
+                            <div class="item-icon">
+                                <i class="fas fa-pepper-hot"></i>
+                            </div>
+                            <div class="item-content">
+                                <div class="item-header">
+                                    <div class="name">Mirchi ka Salan</div>
+                                    <div class="price">₹250</div>
+                                </div>
+                                <div class="description">250(Grams)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bill-section">
+                <div class="bill-header">
+                    <img src="https://picsum.photos/seed/indianthali/300/300.jpg" alt="Your Custom Thali" class="thali-image">
+                    <h2 class="bill-title">Your Custom Thali</h2>
+                </div>
+
+                <div class="bill-items-container" id="bill-items">
+                    <div class="empty-state">Select items to see your bill</div>
+                </div>
+                
+                <div class="bill-total" id="bill-total" style="display: none;">
+                    <div class="bill-total-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">₹0</span>
+                    </div>
+                    <div class="bill-total-row">
+                        <span>Shipping (5%):</span>
+                        <span id="shipping">₹0</span>
+                    </div>
+                    <div class="bill-total-row">
+                        <span>Tax (8%):</span>
+                        <span id="tax">₹0</span>
+                    </div>
+                    <div class="bill-total-row total">
+                        <span>Total:</span>
+                        <span id="total">₹0</span>
+                    </div>
+                </div>
+
+                <div class="order-buttons">
+                    <button class="btn btn-primary" id="order-website" disabled>
+                        <i class="fas fa-shopping-cart"></i> Order via Website
+                    </button>
+                    <button class="btn btn-success" id="order-whatsapp" disabled>
+                        <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <i class="fas fa-check-circle"></i>
+        <span id="notification-message">Item added to your thali!</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Selection limits for each category
+            const selectionLimits = {
+                rice: 1,
+                roti: 1,
+                dal: 1,
+                drycurry: 2,
+                sweet: 1,
+                sides: { min: 2, max: 3 }
+            };
+
+            // Current selections
+            const selections = {
+                rice: [],
+                roti: [],
+                dal: [],
+                drycurry: [],
+                sweet: [],
+                sides: []
+            };
+
+            // Get all item cards
+            const itemCards = document.querySelectorAll('.item-card');
+            
+            // Add click event to each item card
+            itemCards.forEach(card => {
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on quantity buttons
+                    if (e.target.classList.contains('quantity-btn')) {
+                        return;
+                    }
+                    
+                    const category = this.dataset.category;
+                    const name = this.dataset.name;
+                    const price = parseInt(this.dataset.price || this.dataset.basePrice);
+                    
+                    handleItemSelection(category, name, price, this);
+                });
+            });
+
+            // Handle quantity buttons for roti
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    
+                    const card = this.closest('.item-card');
+                    const quantityDisplay = card.querySelector('.quantity-display');
+                    const priceDisplay = card.querySelector('.price');
+                    const unitPrice = parseInt(card.dataset.unitPrice);
+                    let quantity = parseInt(quantityDisplay.textContent);
+                    
+                    if (this.classList.contains('plus')) {
+                        quantity++;
+                    } else if (this.classList.contains('minus') && quantity > 1) {
+                        quantity--;
+                    }
+                    
+                    quantityDisplay.textContent = quantity;
+                    const newPrice = unitPrice * quantity;
+                    priceDisplay.textContent = `₹${newPrice}`;
+                    card.dataset.price = newPrice;
+                    
+                    // Update selection if already selected
+                    const category = card.dataset.category;
+                    const name = card.dataset.name;
+                    const existingSelection = selections[category].find(item => item.name === name);
+                    
+                    if (existingSelection) {
+                        existingSelection.price = newPrice;
+                        existingSelection.quantity = quantity;
+                        updateBill();
+                    }
+                });
+            });
+
+            function handleItemSelection(category, name, price, cardElement) {
+                const isSelected = cardElement.classList.contains('selected');
+                
+                if (isSelected) {
+                    // Deselect item
+                    cardElement.classList.remove('selected');
+                    selections[category] = selections[category].filter(item => item.name !== name);
+                    showNotification(`${name} removed from your thali`);
+                } else {
+                    // Check if we can select this item
+                    const limit = selectionLimits[category];
+                    
+                    if (typeof limit === 'object') {
+                        // For sides with min/max range
+                        if (selections[category].length >= limit.max) {
+                            showNotification(`You can only select up to ${limit.max} sides`);
+                            return;
+                        }
+                    } else {
+                        // For categories with fixed limit
+                        if (selections[category].length >= limit) {
+                            showNotification(`You can only select ${limit} ${category}${limit > 1 ? 's' : ''}`);
+                            return;
+                        }
+                    }
+                    
+                    // Select item
+                    cardElement.classList.add('selected');
+                    
+                    // For roti, include quantity information
+                    let itemData = { name, price };
+                    if (category === 'roti') {
+                        const quantity = parseInt(cardElement.querySelector('.quantity-display').textContent);
+                        itemData.quantity = quantity;
+                    }
+                    
+                    selections[category].push(itemData);
+                    showNotification(`${name} added to your thali`);
+                }
+                
+                updateBill();
+            }
+
+            function updateBill() {
+                const billItemsContainer = document.getElementById('bill-items');
+                const billTotalContainer = document.getElementById('bill-total');
+                const orderWebsiteBtn = document.getElementById('order-website');
+                const orderWhatsappBtn = document.getElementById('order-whatsapp');
+                
+                // Clear current bill items
+                billItemsContainer.innerHTML = '';
+                
+                let subtotal = 0;
+                let hasItems = false;
+                
+                // Add selected items to bill
+                Object.keys(selections).forEach(category => {
+                    if (selections[category].length > 0) {
+                        hasItems = true;
+                        
+                        // Add category header
+                        const categoryHeader = document.createElement('div');
+                        categoryHeader.style.fontWeight = 'bold';
+                        categoryHeader.style.marginTop = '10px';
+                        categoryHeader.style.marginBottom = '5px';
+                        categoryHeader.style.color = 'var(--dark-color)';
+                        categoryHeader.style.fontSize = '1rem';
+                        categoryHeader.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+                        billItemsContainer.appendChild(categoryHeader);
+                        
+                        // Add items in this category
+                        selections[category].forEach(item => {
+                            const billItem = document.createElement('div');
+                            billItem.className = 'bill-item';
+                            
+                            let displayName = item.name;
+                            if (item.quantity && item.quantity > 1) {
+                                displayName = `${item.name} (${item.quantity} pcs)`;
+                            }
+                            
+                            billItem.innerHTML = `
+                                <span class="bill-item-name">${displayName}</span>
+                                <span class="bill-item-price">₹${item.price}</span>
+                            `;
+                            billItemsContainer.appendChild(billItem);
+                            
+                            subtotal += item.price;
+                        });
+                    }
+                });
+                
+                if (!hasItems) {
+                    billItemsContainer.innerHTML = '<div class="empty-state">Select items to see your bill</div>';
+                    billTotalContainer.style.display = 'none';
+                    orderWebsiteBtn.disabled = true;
+                    orderWhatsappBtn.disabled = true;
+                } else {
+                    // Calculate shipping and tax
+                    const shipping = Math.round(subtotal * 0.05);
+                    const tax = Math.round(subtotal * 0.08);
+                    const total = subtotal + shipping + tax;
+                    
+                    // Update bill totals
+                    document.getElementById('subtotal').textContent = `₹${subtotal}`;
+                    document.getElementById('shipping').textContent = `₹${shipping}`;
+                    document.getElementById('tax').textContent = `₹${tax}`;
+                    document.getElementById('total').textContent = `₹${total}`;
+                    
+                    billTotalContainer.style.display = 'block';
+                    orderWebsiteBtn.disabled = false;
+                    orderWhatsappBtn.disabled = false;
+                }
+            }
+
+            function showNotification(message) {
+                const notification = document.getElementById('notification');
+                const notificationMessage = document.getElementById('notification-message');
+                
+                notificationMessage.textContent = message;
+                notification.classList.add('show');
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+
+            // Order via Website button
+            document.getElementById('order-website').addEventListener('click', function() {
+                showNotification('Redirecting to website checkout...');
+                // In a real implementation, this would redirect to a checkout page
+                setTimeout(() => {
+                    alert('This would redirect to your website checkout page in a real implementation.');
+                }, 1000);
+            });
+
+            // Order via WhatsApp button
+            document.getElementById('order-whatsapp').addEventListener('click', function() {
+                let message = "Hello! I'd like to order the following custom thali from Klip2DealHomeFood:\n\n";
+                
+                Object.keys(selections).forEach(category => {
+                    if (selections[category].length > 0) {
+                        message += `${category.charAt(0).toUpperCase() + category.slice(1)}:\n`;
+                        selections[category].forEach(item => {
+                            let itemText = `- ${item.name}`;
+                            if (item.quantity && item.quantity > 1) {
+                                itemText += ` (${item.quantity} pcs)`;
+                            }
+                            itemText += ` (₹${item.price})`;
+                            message += `${itemText}\n`;
+                        });
+                        message += "\n";
+                    }
+                });
+                
+                // Calculate totals
+                let subtotal = 0;
+                Object.values(selections).forEach(categoryItems => {
+                    categoryItems.forEach(item => {
+                        subtotal += item.price;
+                    });
+                });
+                
+                const shipping = Math.round(subtotal * 0.05);
+                const tax = Math.round(subtotal * 0.08);
+                const total = subtotal + shipping + tax;
+                
+                message += `Subtotal: ₹${subtotal}\n`;
+                message += `Shipping (5%): ₹${shipping}\n`;
+                message += `Tax (8%): ₹${tax}\n`;
+                message += `Total: ₹${total}\n\n`;
+                message += "Please confirm my order. Thank you!";
+                
+                // Encode message for URL
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappUrl = `https://wa.me/?text=${encodedMessage}`;
+                
+                // Open WhatsApp
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
