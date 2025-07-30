@@ -1,0 +1,2282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Klip2Deal Home Food</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .navbar {
+      background-color: #fff;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .navbar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 40px;
+      background-color: #fff;
+    }
+
+    .navbar-logo img {
+      height: 80px;
+    }
+
+    .navbar-search {
+      flex: 1;
+      margin: 0 30px;
+    }
+
+    .navbar-search input {
+      width: 100%;
+      max-width: 500px;
+      padding: 10px 20px;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      font-size: 15px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .navbar-search input:focus {
+      border-color: #ff6600;
+      box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.2);
+    }
+
+    .navbar-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .navbar-icons a {
+      text-decoration: none;
+      color: #333;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.3s;
+    }
+
+    .navbar-icons a:hover {
+      color: #ff6600;
+    }
+
+    .navbar-bottom {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 14px 0;
+      background-color: #ff6600;
+      position: relative;
+    }
+
+    .navbar-bottom a,
+    .dropdown {
+      text-decoration: none;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 5px;
+      transition: background 0.3s;
+      position: relative;
+    }
+
+    .navbar-bottom a:hover,
+    .dropdown:hover > a {
+      background-color: #e65c00;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 46px;
+      background-color: #fff;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      min-width: 180px;
+      border-radius: 8px;
+      z-index: 10;
+      flex-direction: column;
+    }
+
+    .dropdown-content a {
+      padding: 12px 20px;
+      color: #333;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f5f5f5;
+      color: #ff6600;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: flex;
+    }
+
+    @media screen and (max-width: 768px) {
+      .navbar-top {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 16px 20px;
+      }
+
+      .navbar-search {
+        margin: 12px 0;
+      }
+
+      .navbar-bottom {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .dropdown-content {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+        background: #fff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="navbar-top">
+      <div class="navbar-logo">
+        <a href="#"><img src="https://klip2dealhomefood.com/wp-content/uploads/2025/07/klip2dealhomefood-logo-1.png" alt="Logo"></a>
+      </div>
+      <div class="navbar-search">
+        <input type="text" placeholder="Search your favorite dish...">
+      </div>
+      <div class="navbar-icons">
+        <a href="https://wa.me/9347437807" target="_blank"><i class="fab fa-whatsapp"></i> 9347437807</a>
+        <a href="#"><i class="fas fa-globe"></i> Language</a>
+        <a href="#"><i class="fas fa-user"></i> Login</a>
+      </div>
+    </div>
+
+    <div class="navbar-bottom">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+
+      <div class="dropdown">
+        <a href="#">Menu <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Lunch</a>
+          <a href="#">Dinner</a>
+          <a href="#">Signature</a>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <a href="#">Meal Plan <i class="fas fa-caret-down"></i></a>
+        <div class="dropdown-content">
+          <a href="#">Custom Meal</a>
+          <a href="#">Elderly Meal</a>
+          <a href="#">Diet</a>
+        </div>
+      </div>
+
+      <a href="#">Blogs</a>
+      <a href="#">Contact</a>
+    </div>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hyderabadi Homefood Banner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .hero-banner {
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=Mnw') center/cover no-repeat;
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 20px;
+    }
+    .hero-content h1 {
+      font-size: 48px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+      font-weight: 700;
+    }
+    .hero-content p {
+      font-size: 18px;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: background 0.3s;
+    }
+    .btn.whatsapp {
+      background-color: #25D366;
+      color: white;
+    }
+    .btn.whatsapp:hover {
+      background-color: #1eba58;
+    }
+    .btn.explore {
+      background-color: transparent;
+      color: #ff6600;
+      border: 2px solid #fff;
+    }
+    .btn.explore:hover {
+      background-color: #ff6600;
+      color: white;
+    }
+    @media (max-width: 600px) {
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      .hero-content p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero-banner">
+  <div class="hero-content">
+    <h1>Ghar Ka Khana, Hyderabadi Andaaz Mein</h1>
+    <p>Authentic home‑cooked Hyderabadi meals delivered to your doorstep. Healthy, affordable & always fresh — daily tiffins and party orders!</p>
+    <div class="hero-buttons">
+      <a href="https://wa.me/919876543210" class="btn whatsapp"><i class="fab fa-whatsapp"></i> Order on WhatsApp</a>
+      <a href="#menu" class="btn explore">Explore Our Menu</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Klip2Deal Homefood - Footer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0d112b;
+      color: #fff;
+    }
+
+    .footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 40px 60px;
+      background-color: #0d112b;
+    }
+
+    .footer-column {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+
+    .footer-column h3 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .footer-column p,
+    .footer-column li,
+    .footer-column a {
+      color: #ccc;
+      font-size: 14px;
+      text-decoration: none;
+      line-height: 1.8;
+    }
+
+    .footer-column a:hover {
+      color: orange;
+    }
+
+    .social-icons i,
+    .payment-icons img {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .payment-icons img {
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    .delivery-areas li {
+      list-style-type: disc;
+      margin-left: 20px;
+    }
+
+    .footer-contact i {
+      margin-right: 8px;
+      color: orange;
+    }
+
+    .footer-buttons {
+      margin-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-buttons a {
+      padding: 10px 16px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 220px;
+    }
+
+    .call-button {
+      background-color: #fff;
+      color: #ff6a00;
+      border: 2px solid #ff6a00;
+    }
+
+    .call-button img {
+      height: 18px;
+      margin-right: 8px;
+    }
+
+    .whatsapp-button {
+      background-color: #25D366;
+      color: #fff;
+      border: none;
+    }
+
+    .whatsapp-button img {
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+      color: #999;
+      background-color: #0b0e23;
+    }
+
+    .footer-bottom a {
+      margin: 0 10px;
+      color: #999;
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover {
+      color: orange;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .brand-title span {
+      color: orange;
+    }
+
+    @media screen and (max-width: 768px) {
+      .footer {
+        flex-direction: column;
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Features Grid</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+    }
+
+    .features-section {
+      padding: 40px 20px;
+      background-color: #f9fafb;
+      display: flex;
+      justify-content: center;
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .feature-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      padding: 30px 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .icon-circle {
+      width: 50px;
+      height: 50px;
+      background-color: #ffe5c4;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+    }
+
+    .icon-circle img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .feature-title {
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #222;
+    }
+
+    .feature-text {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="features-section">
+    <div class="features-container">
+
+      <!-- Feature 1 -->
+      <div class="feature-card">
+        <div class="icon-circle" style="background-color:#ffe5c4;">
+          <img src="https://img.icons8.com/fluency-systems-filled/48/fa314a/like.png" alt="Love">
+        </div>
+        <div class="feature-title">Made with Love</div>
+        <div class="feature-text">
+          Every dish is prepared with the same care and love as homecooked meals.
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="feature-card">
+        <div class="icon-circle" style="background-color:#ffecd1;">
+          <img src="https://img.icons8.com/ios-filled/50/f57c00/vegetarian-food.png" alt="Ingredients">
+        </div>
+        <div class="feature-title">Fresh Ingredients</div>
+        <div class="feature-text">
+          We use only the freshest, high-quality ingredients in all our dishes.
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="feature-card">
+        <div class="icon-circle" style="background-color:#ffe0bd;">
+          <img src="https://img.icons8.com/ios-filled/50/f57c00/delivery.png" alt="Fast Delivery">
+        </div>
+        <div class="feature-title">Fast Delivery</div>
+        <div class="feature-text">
+          Enjoy hot, fresh meals delivered quickly to your home or office.
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="feature-card">
+        <div class="icon-circle" style="background-color:#fff3cf;">
+          <img src="https://img.icons8.com/ios-filled/50/f4c430/traditional-knowledge.png" alt="Traditional Methods">
+        </div>
+        <div class="feature-title">Traditional Methods</div>
+        <div class="feature-text">
+          We use time-honored cooking techniques to bring out authentic Hyderabadi flavors.
+        </div>
+      </div>
+
+    </div>
+  </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signature Dishes</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 36px;
+      margin-top: 40px;
+      color: #442200;
+    }
+
+    .divider {
+      width: 60px;
+      height: 4px;
+      background: #ffa500;
+      margin: 10px auto 30px;
+      border-radius: 2px;
+    }
+
+    .dishes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 40px;
+    }
+
+    .dish {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dish img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .dish-body {
+      padding: 15px;
+      flex-grow: 1;
+    }
+
+    .dish-title {
+      margin: 0;
+      font-weight: bold;
+      color: #442200;
+    }
+
+    .dish-desc {
+      font-size: 14px;
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .dish-price {
+      color: #ff6600;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    .dish-footer {
+      padding: 15px;
+      padding-top: 0;
+    }
+
+    .add-cart-btn {
+      background-color: #ffa500;
+      color: white;
+      border: none;
+      padding: 10px 14px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .add-cart-btn:hover {
+      background-color: #e58e00;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Signature Dishes</h2>
+  <div class="divider"></div>
+
+  <div class="dishes">
+    <!-- Dish 1 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/Ldyzq7T/chicken-biryani.jpg" alt="Chicken Biryani">
+      <div class="dish-body">
+        <h3 class="dish-title">Chicken Biryani</h3>
+        <p class="dish-desc">Aromatic basmati rice cooked with tender chicken pieces and spices</p>
+        <div class="dish-price">₹450</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 2 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/Svc6kLD/mutton-biryani.jpg" alt="Mutton Biryani">
+      <div class="dish-body">
+        <h3 class="dish-title">Mutton Biryani</h3>
+        <p class="dish-desc">Royal Hyderabadi mutton biryani with premium meat</p>
+        <div class="dish-price">₹550</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 3 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/hM9vjYH/paneer-masala.jpg" alt="Paneer Butter Masala">
+      <div class="dish-body">
+        <h3 class="dish-title">Paneer Butter Masala</h3>
+        <p class="dish-desc">Cubes of paneer cooked in rich tomato and cashew gravy</p>
+        <div class="dish-price">₹250</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 4 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/nD0KYKy/dal-makhani.jpg" alt="Dal Makhani">
+      <div class="dish-body">
+        <h3 class="dish-title">Dal Makhani</h3>
+        <p class="dish-desc">Creamy black lentils simmered with butter and spices</p>
+        <div class="dish-price">₹200</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 5 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/SVgqh6P/fish-curry.jpg" alt="Fish Curry">
+      <div class="dish-body">
+        <h3 class="dish-title">Fish Curry</h3>
+        <p class="dish-desc">Tangy and spicy fish curry in coconut gravy</p>
+        <div class="dish-price">₹350</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 6 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/S0zWS3J/veg-pulao.jpg" alt="Veg Pulao">
+      <div class="dish-body">
+        <h3 class="dish-title">Veg Pulao</h3>
+        <p class="dish-desc">Fragrant basmati rice with vegetables and mild spices</p>
+        <div class="dish-price">₹220</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 7 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/qF0yCgJ/butter-naan.jpg" alt="Butter Naan">
+      <div class="dish-body">
+        <h3 class="dish-title">Butter Naan</h3>
+        <p class="dish-desc">Soft leavened bread topped with melted butter</p>
+        <div class="dish-price">₹60</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+    <!-- Dish 8 -->
+    <div class="dish">
+      <img src="https://i.ibb.co/1XjDTW4/chicken-curry.jpg" alt="Chicken Curry">
+      <div class="dish-body">
+        <h3 class="dish-title">Chicken Curry</h3>
+        <p class="dish-desc">Spicy and flavorful chicken cooked in traditional gravy</p>
+        <div class="dish-price">₹300</div>
+      </div>
+      <div class="dish-footer">
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How to Order + Special Services</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2.section-title {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 30px;
+      color: #8b3a06;
+    }
+
+    /* --- How to Order --- */
+    .how-to-order {
+      background-color: #fff5e9;
+      border-radius: 8px;
+      padding: 40px 20px;
+    }
+
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .step-card {
+      background-color: #fff;
+      border-radius: 8px;
+      text-align: center;
+      padding: 25px 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background-color: #ffe0c1;
+      color: #8b3a06;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      font-size: 18px;
+      margin: 0 auto 12px;
+    }
+
+    .step-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* --- Special Services --- */
+    .special-services {
+      margin-top: 50px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .service-card {
+      background-color: #fff9db;
+      border: 1px solid #f9e7a3;
+      border-radius: 8px;
+      padding: 20px;
+    }
+
+    .service-header {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #704400;
+    }
+
+    .service-header img {
+      width: 20px;
+      height: 20px;
+      margin-right: 8px;
+    }
+
+    .service-description {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 15px;
+    }
+
+    .whatsapp-btn {
+      background-color: #25D366;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 25px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .whatsapp-btn img {
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .step-text,
+      .service-description {
+        font-size: 13px;
+      }
+
+      .step-card {
+        padding: 20px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- How To Order Section -->
+  <section class="section how-to-order">
+    <h2 class="section-title">How To Order</h2>
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <div class="step-title">Browse Menu</div>
+        <div class="step-text">Explore our delicious Hyderabadi dishes and meal plans</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <div class="step-title">Choose Your Meal</div>
+        <div class="step-text">Select from our menu or create your custom thali</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <div class="step-title">Place Order</div>
+        <div class="step-text">Order via WhatsApp or call us at 9347437807</div>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <div class="step-title">Enjoy Your Meal</div>
+        <div class="step-text">Fresh, hygienic food delivered to your doorstep</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Services Section -->
+  <section class="section special-services">
+    <h2 class="section-title">Special Services</h2>
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-header">
+          <img src="https://img.icons8.com/emoji/48/party-popper.png" alt="Party Icon">
+          Party Orders
+        </div>
+        <div class="service-description">
+          Planning a gathering? We cater small parties and events with customized menus. From 10 to 50 people, we've got you covered with delicious Hyderabadi specialties.
+        </div>
+        <a class="whatsapp-btn" href="https://wa.me/919347437807?text=I'm%20interested%20in%20Party%20Orders" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
+          Inquire About Party Orders
+        </a>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-header">
+          <img src="https://img.icons8.com/color/48/heartbeat.png" alt="Health Icon">
+          Health-Focused Meals
+        </div>
+        <div class="service-description">
+          Special meals tailored for seniors, patients, or those with dietary restrictions. Low-oil, low-salt, diabetic-friendly options available upon request.
+        </div>
+        <a class="whatsapp-btn" href="https://wa.me/919347437807?text=I'm%20interested%20in%20Health%20Meal%20Options" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
+          Get Health Meal Options
+        </a>
+      </div>
+
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-header">
+          <img src="https://img.icons8.com/color/48/student-male.png" alt="Bachelor Icon">
+          Bachelor Specials
+        </div>
+        <div class="service-description">
+          Affordable mini-meals perfect for students and young professionals. Nutritious, home-cooked food that fits your budget and busy schedule.
+        </div>
+        <a class="whatsapp-btn" href="https://wa.me/919347437807?text=I'm%20interested%20in%20Bachelor%20Meal%20Plans" target="_blank">
+          <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp">
+          Ask About Bachelor Plans
+        </a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thali Specials + Offers</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 30px;
+      color: #8b3a06;
+    }
+
+    /* ---- Thali Specials ---- */
+    .thali-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .thali-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thali-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .thali-content {
+      padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .thali-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    .thali-desc {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .thali-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .price {
+      color: #d1410c;
+      font-weight: bold;
+    }
+
+    .order-btn {
+      background-color: #ffe2c4;
+      border: none;
+      padding: 6px 14px;
+      border-radius: 20px;
+      color: #8b3a06;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .custom-btn {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .custom-btn button {
+      background-color: #f2651f;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* ---- Offers ---- */
+    .offers {
+      background: linear-gradient(to right, #f2651f, #f58634);
+      padding: 60px 20px;
+      color: white;
+    }
+
+    .offer-box {
+      background: white;
+      color: #8b3a06;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+
+    .offer-box h3 {
+      margin: 0;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #c0392b;
+    }
+
+    .offer-box p {
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .view-plans-btn {
+      background-color: #f2651f;
+      color: white;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .thali-card img {
+        height: 140px;
+      }
+
+      .offer-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Thali Specials Section -->
+  <section class="section">
+    <h2 class="section-title">Our Thali Specials</h2>
+    <div class="thali-cards">
+      <!-- Veg Thali -->
+      <div class="thali-card">
+        <img src="https://images.unsplash.com/photo-1604908177630-c3cdb39f1a26" alt="Veg Thali">
+        <div class="thali-content">
+          <div>
+            <div class="thali-title">Mega Veg Thali</div>
+            <div class="thali-desc">A complete vegetarian meal with 3 curries, rice, roti, salad, papad, and dessert</div>
+          </div>
+          <div class="thali-footer">
+            <span class="price">₹199</span>
+            <button class="order-btn">Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Non-Veg Thali -->
+      <div class="thali-card">
+        <img src="https://images.unsplash.com/photo-1613145997275-9c6f2d3be03c" alt="Non-Veg Thali">
+        <div class="thali-content">
+          <div>
+            <div class="thali-title">Mega Non-Veg Thali</div>
+            <div class="thali-desc">A complete non-vegetarian meal with 2 non-veg curries, 1 veg curry, rice, roti, salad, and dessert</div>
+          </div>
+          <div class="thali-footer">
+            <span class="price">₹299</span>
+            <button class="order-btn">Order Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Biryani Combo -->
+      <div class="thali-card">
+        <img src="https://images.unsplash.com/photo-1606312615225-bdcaa52455e6" alt="Biryani Combo">
+        <div class="thali-content">
+          <div>
+            <div class="thali-title">Chicken Biryani Combo</div>
+            <div class="thali-desc">Authentic Hyderabadi Chicken Biryani with mirchi ka salan, raita, and salad</div>
+          </div>
+          <div class="thali-footer">
+            <span class="price">₹249</span>
+            <button class="order-btn">Order Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="custom-btn">
+      <button>Create Your Custom Thali</button>
+    </div>
+  </section>
+
+  <!-- Special Offers Section -->
+  <section class="offers">
+    <h2 class="section-title" style="color:white;">Special Offers</h2>
+    <div class="offer-box">
+      <h3>Weekly Meal Plan Discount!</h3>
+      <p>Get 10% off on all weekly meal plans. Perfect for bachelors and busy professionals!</p>
+      <button class="view-plans-btn">View Plans</button>
+    </div>
+  </section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meal Plans</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff5c00;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .plan-card {
+      background-color: #f9f9f9;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      width: 280px;
+      padding: 20px 25px;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .plan-card:hover {
+      transform: scale(1.03);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #ff9e55;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .plan-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .plan-subtitle {
+      color: gray;
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+
+    .price {
+      color: #ff5c00;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .duration {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .features {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      margin-bottom: 25px;
+    }
+
+    .features li {
+      margin: 8px 0;
+      color: #222;
+    }
+
+    .features li::before {
+      content: "✔";
+      color: green;
+      margin-right: 10px;
+    }
+
+    .choose-btn {
+      background-color: #ff6a00;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .choose-btn:hover {
+      background-color: #e65300;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Weekly & Monthly Meal Plans</h1>
+
+  <div class="pricing-container">
+    
+    <!-- Weekly Plan -->
+    <div class="plan-card">
+      <div class="plan-title">Weekly Plan</div>
+      <div class="plan-subtitle">Perfect for busy professionals</div>
+      <div class="price">₹1,500</div>
+      <div class="duration">/week</div>
+      <ul class="features">
+        <li>5 days (Mon–Fri)</li>
+        <li>2 meals per day</li>
+        <li>Customizable menu</li>
+        <li>Free delivery</li>
+      </ul>
+      <button class="choose-btn">Choose Plan</button>
+    </div>
+
+    <!-- Bi-Weekly Plan (POPULAR) -->
+    <div class="plan-card" style="background-color: #fff7f0; border: 2px solid #ff9e55;">
+      <div class="popular-badge">POPULAR</div>
+      <div class="plan-title">Bi-Weekly Plan</div>
+      <div class="plan-subtitle">Best value for money</div>
+      <div class="price">₹2,800</div>
+      <div class="duration">/2 weeks</div>
+      <ul class="features">
+        <li>10 days (Mon–Fri x 2 weeks)</li>
+        <li>2 meals per day</li>
+        <li>Customizable menu</li>
+        <li>Free delivery</li>
+        <li>1 free dessert per week</li>
+      </ul>
+      <button class="choose-btn">Choose Plan</button>
+    </div>
+
+    <!-- Monthly Plan -->
+    <div class="plan-card">
+      <div class="plan-title">Monthly Plan</div>
+      <div class="plan-subtitle">For long-term healthy eating</div>
+      <div class="price">₹5,000</div>
+      <div class="duration">/month</div>
+      <ul class="features">
+        <li>20 days (Mon–Fri x 4 weeks)</li>
+        <li>2 meals per day</li>
+        <li>Customizable menu</li>
+        <li>Free delivery</li>
+        <li>2 free desserts per week</li>
+        <li>Weekly nutrition consultation</li>
+      </ul>
+      <button class="choose-btn">Choose Plan</button>
+    </div>
+
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meal Request Forms</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .button-container {
+      background-color: #fff3d1;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      border-radius: 12px;
+    }
+
+    .order-btn {
+      background-color: #d2691e;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background-color: #b45309;
+    }
+
+    .form-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-popup {
+      background-color: #ffffff;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      text-align: left;
+      position: relative;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .form-popup h3 {
+      margin-top: 0;
+      color: #b45309;
+    }
+
+    .form-popup input, .form-popup textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .form-popup button {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    .submit-btn {
+      background-color: #ffa500;
+      color: white;
+    }
+
+    .submit-btn:hover {
+      background-color: #e59400;
+    }
+
+    .cancel-btn {
+      background-color: #e0e0e0;
+      margin-right: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .close-btn:hover {
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="button-container">
+    <button class="order-btn" onclick="openForm('form1')">📦 Custom Orders for Parties/Events</button>
+    <button class="order-btn" onclick="openForm('form2')">🍲 Special Meal Request for Elderly/Patients</button>
+    <button class="order-btn" onclick="openForm('form3')">🧑‍🍳 Quick Meals for Bachelors</button>
+  </div>
+
+  <!-- Overlay with Forms -->
+  <div id="form1" class="form-overlay">
+    <div class="form-popup">
+      <span class="close-btn" onclick="closeForm('form1')">&times;</span>
+      <h3>Custom Party/Event Order</h3>
+      <input type="text" placeholder="Your Name" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <textarea rows="3" placeholder="Request Details" required></textarea>
+      <div style="text-align: right;">
+        <button class="cancel-btn" onclick="closeForm('form1')">Cancel</button>
+        <button class="submit-btn">Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="form2" class="form-overlay">
+    <div class="form-popup">
+      <span class="close-btn" onclick="closeForm('form2')">&times;</span>
+      <h3>Special Meal for Elderly/Patient</h3>
+      <input type="text" placeholder="Your Name" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <textarea rows="3" placeholder="Request Details" required></textarea>
+      <div style="text-align: right;">
+        <button class="cancel-btn" onclick="closeForm('form2')">Cancel</button>
+        <button class="submit-btn">Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="form3" class="form-overlay">
+    <div class="form-popup">
+      <span class="close-btn" onclick="closeForm('form3')">&times;</span>
+      <h3>Quick Meals for Bachelors</h3>
+      <input type="text" placeholder="Your Name" required />
+      <input type="tel" placeholder="Phone Number" required />
+      <textarea rows="3" placeholder="Request Details" required></textarea>
+      <div style="text-align: right;">
+        <button class="cancel-btn" onclick="closeForm('form3')">Cancel</button>
+        <button class="submit-btn">Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openForm(id) {
+      document.querySelectorAll('.form-overlay').forEach(form => form.style.display = 'none');
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeForm(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Klip2Deal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fcfcfc;
+      margin: 0;
+      padding: 0;
+      color: #2e2e2e;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+
+    .about-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+
+    .about-text {
+      flex: 1;
+      min-width: 320px;
+      max-width: 550px;
+      text-align: center;
+    }
+
+    .about-text h2 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: #222;
+    }
+
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      color: #444;
+    }
+
+    .btn-group {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-group button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-contact {
+      background-color: #ff7a00;
+      color: white;
+    }
+
+    .btn-contact:hover {
+      background-color: #e56900;
+    }
+
+    .btn-menu {
+      background-color: transparent;
+      color: #ff7a00;
+      border: 2px solid #ff7a00;
+    }
+
+    .btn-menu:hover {
+      background-color: #fff3e5;
+    }
+
+    .about-image {
+      position: relative;
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    .experience-tag {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff7a00;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .promise-box {
+      margin: 60px auto;
+      max-width: 800px;
+      background-color: #fff8f0;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .promise-box h3 {
+      color: #ff7a00;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .promise-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .promise-box li {
+      font-size: 16px;
+      margin-bottom: 14px;
+      padding-left: 25px;
+      position: relative;
+      text-align: left;
+    }
+
+    .promise-box li::before {
+      content: "✔";
+      position: absolute;
+      left: 0;
+      color: #ff7a00;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .about-wrapper {
+        flex-direction: column;
+      }
+
+      .about-text, .about-image {
+        text-align: center;
+      }
+
+      .experience-tag {
+        position: static;
+        margin-top: 12px;
+        display: inline-block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="about-wrapper">
+      <div class="about-text">
+        <h2>About Klip2Deal Homefood</h2>
+        <p>Klip2Deal Homefood was born out of a passion for authentic Hyderabadi homecooked meals. Our founder, with decades of experience in traditional Hyderabadi cooking, wanted to share these cherished family recipes with the community.</p>
+        <p>We believe in cooking with the same love and care as you would at home, using only the freshest ingredients and traditional methods to bring out the true flavors of Hyderabad.</p>
+        <p>Whether you're craving comfort food, need healthy meal solutions, or want to experience authentic Hyderabadi cuisine, we've got you covered.</p>
+        <div class="btn-group">
+          <button class="btn-contact">Contact Us</button>
+          <button class="btn-menu">Our Menu</button>
+        </div>
+      </div>
+
+      <div class="about-image">
+        <img src="https://i.imgur.com/Nz2y1G9.png" alt="Samosa Dish" />
+        <div class="experience-tag">50+ Years Experience<br>In authentic Hyderabadi cooking</div>
+      </div>
+    </div>
+
+    <div class="promise-box">
+      <h3>Our Promise:</h3>
+      <ul>
+        <li>100% homemade taste with authentic flavors</li>
+        <li>Fresh ingredients sourced daily</li>
+        <li>Hygienic preparation and packaging</li>
+        <li>On-time delivery within Saidabad and surrounding areas (25 km radius)</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-CH6WDo6zv+OpRhjvX6wnz7lfgrdI9E/1fL3Jr8psUXUsZ9zFJ2LgGZcdA+6lzD3wNL4lRmqKZVblAzsn3t9RFA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
+    }
+
+    .contact-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px 5%;
+      background-color: #f9f9f9;
+      gap: 40px;
+    }
+
+    .contact-form, .contact-info {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+    }
+
+    .contact-form h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .contact-form p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .contact-form input, 
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      height: 120px;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .contact-form button {
+      flex: 1;
+      padding: 12px;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 25px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .contact-form button.whatsapp {
+      background-color: #25D366;
+    }
+
+    .contact-form button:hover {
+      opacity: 0.9;
+    }
+
+    .contact-info {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    .contact-info h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .info-item i {
+      font-size: 18px;
+      color: #ff6600;
+      margin-right: 12px;
+      margin-top: 5px;
+      width: 24px;
+    }
+
+    .info-item div {
+      font-size: 15px;
+      color: #333;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .social-icons a {
+      color: #333;
+      font-size: 18px;
+      background-color: #f1f1f1;
+      padding: 8px;
+      border-radius: 50%;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #ddd;
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+        padding: 20px;
+      }
+    }
+  </style>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Font Awesome Test</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    .icon {
+      font-size: 24px;
+      color: #ff6600;
+    }
+  </style>
+</head>
+
+</head>
+<body>
+
+  <section class="contact-section">
+    <div class="contact-form">
+      <h2>Get In Touch</h2>
+      <p>Have questions or want to place an order? Reach out to us!</p>
+      <form>
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email Address" required />
+        <input type="tel" placeholder="Phone Number" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <div class="button-group">
+          <button type="submit">Submit Request</button>
+          <button type="button" class="whatsapp" onclick="window.open('https://wa.me/919876543210', '_blank')">
+            WhatsApp Request
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-info">
+      <h3>Contact Information</h3>
+
+      <div class="info-item">
+        <i class="fas fa-map-marker-alt"></i>
+        <div>123 Food Street, Hyderabad, Telangana 500001</div>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-phone-alt"></i>
+        <div>+91 98765 43210<br>+91 12345 67890</div>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-envelope"></i>
+        <div>
+          orders@klip2dealhomefood.com<br>
+          support@klip2dealhomefood.com
+        </div>
+      </div>
+
+      <div class="info-item">
+        <i class="fas fa-clock"></i>
+        <div>
+          Monday - Saturday: 10:00 AM - 10:00 PM<br>
+          Sunday: 11:00 AM - 9:00 PM
+        </div>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <strong>Follow Us</strong>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Delivery Areas</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .delivery-section {
+      padding: 60px 20px;
+      background-color: #f8f9fb;
+      text-align: center;
+    }
+
+    .delivery-section h2 {
+      font-size: 32px;
+      color: #000;
+      margin-bottom: 10px;
+    }
+
+    .delivery-section p {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .area-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+    }
+
+    .area-box {
+      background-color: #fff;
+      padding: 14px 24px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+      font-weight: 500;
+      color: #333;
+      transition: 0.3s ease;
+    }
+
+    .area-box:hover {
+      background-color: #ff6600;
+      color: #fff;
+    }
+
+    .contact-btn {
+      background-color: #ff6600;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+      background-color: #e65500;
+    }
+
+    .cta-section {
+      background-color: #ff6600;
+      color: white;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .cta-section h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .cta-buttons .btn {
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      border: 2px solid white;
+      background-color: white;
+      color: #ff6600;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .cta-buttons .btn:hover {
+      background-color: transparent;
+      color: white;
+    }
+
+    .cta-buttons .btn.secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .cta-buttons .btn.secondary:hover {
+      background-color: white;
+      color: #ff6600;
+    }
+
+    @media (max-width: 600px) {
+      .area-box {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Delivery Areas Section -->
+  <section class="delivery-section">
+    <h2>Our Delivery Areas</h2>
+    <p>We currently deliver to these areas in Hyderabad</p>
+
+    <div class="area-grid">
+      <div class="area-box">Malakpet</div>
+      <div class="area-box">Dilsukhnagar</div>
+      <div class="area-box">Chaderghat</div>
+      <div class="area-box">Santosh Nagar</div>
+      <div class="area-box">Amberpet</div>
+      <div class="area-box">Moosarambagh</div>
+      <div class="area-box">New Malakpet</div>
+      <div class="area-box">Koti</div>
+      <div class="area-box">Nampally</div>
+      <div class="area-box">Barkas</div>
+      <div class="area-box">LB Nagar</div>
+      <div class="area-box">Mehdipatnam</div>
+      <div class="area-box">Uppal</div>
+      <div class="area-box">Nagole</div>
+      <div class="area-box">Charminar</div>
+    </div>
+
+    <p>Don't see your area listed? Contact us to check if we can deliver to you!</p>
+    <button class="contact-btn">Contact Us</button>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <h2>Ready to Taste Authentic Hyderabadi Homefood?</h2>
+    <p>Order now and experience the rich flavors of traditional Hyderabadi cuisine delivered fresh to your doorstep.</p>
+    <div class="cta-buttons">
+      <button class="btn secondary">View Menu</button>
+      <button class="btn">Order Now</button>
+    </div>
+  </section>
+
+</body>
+</html>
+
+</body>
+</html>
+
+  <footer class="footer">
+    <!-- Brand & Social -->
+    <div class="footer-column">
+      <div class="brand-title"><span>🍴 Klip2Deal</span>Homefood</div>
+      <p>Authentic Hyderabadi homecooked meals delivered to your doorstep.</p>
+      <div class="social-icons">
+        <i>📘</i><i>📸</i><i>🐦</i><i>💬</i>
+      </div>
+      <br>
+      <strong>Payment Methods</strong>
+      <div class="payment-icons">
+        <img src="https://img.icons8.com/color/48/visa.png" alt="Visa">
+        <img src="https://img.icons8.com/color/48/mastercard.png" alt="MasterCard">
+        <img src="https://img.icons8.com/color/48/discover.png" alt="Discover">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/bank-card-back-side.png" alt="Generic Card">
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <a href="#">Home</a><br>
+      <a href="#">Menu</a><br>
+      <a href="#">Meal Plans</a><br>
+      <a href="#">Custom Thali</a><br>
+      <a href="#">About Us</a><br>
+      <a href="#">Contact</a>
+    </div>
+
+    <!-- Menu Categories -->
+    <div class="footer-column">
+      <h3>Menu Categories</h3>
+      <a href="#">Curries</a><br>
+      <a href="#">Rotis</a><br>
+      <a href="#">Thalis</a><br>
+      <a href="#">Sweets</a><br>
+      <a href="#">Combos</a>
+    </div>
+
+    <!-- Delivery Areas -->
+    <div class="footer-column">
+      <h3>Delivery Areas</h3>
+      <p>We deliver within 20–25 km of Saidabad including:</p>
+      <ul class="delivery-areas">
+        <li>Dilsukhnagar</li>
+        <li>Uppal</li>
+        <li>Chandrayangutta</li>
+        <li>LB Nagar</li>
+        <li>Malakpet</li>
+        <li>Falaknuma</li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-column footer-contact">
+      <h3>Contact Info</h3>
+      <p><i>📍</i>123 Food Street, Hyderabad, Telangana 500001</p>
+      <p><i>📞</i>+91 98765 43210</p>
+      <p><i>📧</i>orders@klip2dealhomefood.com</p>
+      <div class="footer-buttons">
+        <a class="call-button" href="tel:+919876543210">
+          <img src="https://img.icons8.com/ios-filled/24/ff6a00/phone.png" alt="Call"> Call to Order
+        </a>
+        <a class="whatsapp-button" href="https://wa.me/919876543210" target="_blank">
+          <img src="https://img.icons8.com/color/24/whatsapp--v1.png" alt="WhatsApp"> WhatsApp Order
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    © 2023 Klip2Deal Homefood. All rights reserved. |
+    <a href="#">Privacy Policy</a> |
+    <a href="#">Terms of Service</a> |
+    <a href="#">Refund Policy</a><br>
+    Fresh, hygienic, authentic Hyderabadi home-cooked meals.
+  </div>
+
+</body>
+</html>
