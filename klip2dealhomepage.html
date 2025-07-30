@@ -559,7 +559,9 @@
       </div>
 
     </div>
+    
   </section>
+  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -773,6 +775,93 @@
 
 </body>
 </html>
+<!-- Counter Section -->
+<section style="background-color: #fff3e0; padding: 40px 10px; margin-bottom: 30px;">
+  <div class="counter-container">
+    <div class="counter-box">
+      <div class="counter" data-target="2000">0</div>
+      <p>Happy Customers</p>
+    </div>
+    <div class="counter-box">
+      <div class="counter" data-target="50">0</div>
+      <p>Menu Items</p>
+    </div>
+    <div class="counter-box">
+      <div class="counter" data-target="100">0</div>
+      <p>Homemade</p>
+    </div>
+    <div class="counter-box">
+      <div class="counter" data-target="300">0</div>
+      <p>special meals plans</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .counter-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .counter-box {
+    background: white;
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  }
+
+  .counter {
+    font-size: 48px;
+    font-weight: bold;
+    color: #ff6600;
+  }
+
+  .counter-box p {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #442200;
+  }
+</style>
+
+<script>
+  const counterBoxes = document.querySelectorAll('.counter-box');
+
+  counterBoxes.forEach(box => {
+    const counter = box.querySelector('.counter');
+    const label = box.querySelector('p').innerText.toLowerCase();
+    const target = +counter.getAttribute('data-target');
+    counter.innerText = '0';
+
+    const updateCounter = () => {
+      const current = +counter.innerText;
+      const increment = target / 100;
+
+      if (current < target) {
+        counter.innerText = Math.ceil(current + increment);
+        setTimeout(updateCounter, 20);
+      } else {
+        if (
+          label.includes('happy customers') ||
+          label.includes('menu items') ||
+          label.includes('special meals')
+        ) {
+          counter.innerText = target + '+';
+        } else {
+          counter.innerText = target; // No suffix for Homemade
+        }
+      }
+    };
+
+    updateCounter();
+  });
+</script>
+
 
 <!DOCTYPE html>
 <html lang="en">
