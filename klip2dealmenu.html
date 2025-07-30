@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klip2Deal Home Food - Authentic Hyderabadi Meals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f7f2;
+            color: #333;
+            line-height: 1.6;
+            font-size: 14px;
+            padding-bottom: 80px; /* Space for fixed billing bar */
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #c8372d, #e67e22);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 350px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e67e22;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        
+        .btn:hover {
+            background: #d35400;
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background: #c8372d;
+        }
+        
+        .btn-secondary:hover {
+            background: #a52c23;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .whatsapp-btn:hover {
+            background: #1da854;
+            transform: translateY(-3px);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #c8372d;
+            margin-bottom: 12px;
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .meal-plans {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .plan-card:hover, .plan-card.selected {
+            transform: translateY(-8px);
+            border: 2px solid #e67e22;
+        }
+        
+        .plan-header {
+            background: #c8372d;
+            color: white;
+            padding: 18px;
+            text-align: center;
+        }
+        
+        .plan-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+        }
+        
+        .plan-header p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .plan-price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+        
+        .plan-details {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .plan-details ul {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        
+        .plan-details li {
+            margin-bottom: 10px;
+            padding-left: 22px;
+            position: relative;
+            font-size: 0.9rem;
+        }
+        
+        .plan-details li:before {
+            content: '\f00c';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #e67e22;
+        }
+        
+        .weekend-note {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px dashed #eee;
+            color: #666;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .plan-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .menu-tab {
+            background: white;
+            border: 2px solid #e67e22;
+            color: #e67e22;
+            padding: 8px 22px;
+            margin: 5px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        
+        .menu-tab.active {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .menu-content {
+            display: none;
+        }
+        
+        .menu-content.active {
+            display: block;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .menu-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-img {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .menu-details {
+            padding: 18px;
+        }
+        
+        .menu-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+            color: #c8372d;
+        }
+        
+        .menu-details p {
+            color: #666;
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+        }
+        
+        .menu-price {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #e67e22;
+        }
+        
+        .addons {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+        
+        .addons h3 {
+            color: #c8372d;
+            margin-bottom: 18px;
+            font-size: 1.6rem;
+        }
+        
+        .addon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+        
+        .addon-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f9f7f2;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .addon-item:hover, .addon-item.selected {
+            background: #e67e22;
+            color: white;
+        }
+        
+        .addon-icon {
+            font-size: 1.8rem;
+            color: #e67e22;
+            margin-right: 12px;
+            transition: color 0.3s ease;
+        }
+        
+        .addon-item:hover .addon-icon, .addon-item.selected .addon-icon {
+            color: white;
+        }
+        
+        .addon-details h4 {
+            margin-bottom: 4px;
+            font-size: 1rem;
+        }
+        
+        .addon-details p {
+            color: #666;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+        
+        .addon-item:hover .addon-details p, .addon-item.selected .addon-details p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Fixed Billing Bar */
+        .billing-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+            padding: 15px 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .billing-summary {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .billing-icon {
+            font-size: 1.5rem;
+            color: #e67e22;
+        }
+        
+        .billing-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .billing-items-count {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .billing-total {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #c8372d;
+        }
+        
+        .billing-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .billing-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .billing-website-btn {
+            background: #c8372d;
+            color: white;
+        }
+        
+        .billing-website-btn:hover {
+            background: #a52c23;
+        }
+        
+        .billing-whatsapp-btn {
+            background: #25D366;
+            color: white;
+        }
+        
+        .billing-whatsapp-btn:hover {
+            background: #1da854;
+        }
+        
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 320px;
+            height: 100%;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .cart-sidebar.open {
+            transform: translateX(0);
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-header h3 {
+            color: #c8372d;
+            font-size: 1.5rem;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        
+        .cart-item-name {
+            font-weight: 500;
+        }
+        
+        .cart-item-price {
+            color: #e67e22;
+            font-weight: bold;
+        }
+        
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-align: right;
+            margin: 20px 0;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+        }
+        
+        .cart-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .cart-btn {
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .website-btn {
+            background: #c8372d;
+            color: white;
+        }
+        
+        .website-btn:hover {
+            background: #a52c23;
+        }
+        
+        .whatsapp-order-btn {
+            background: #25D366;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .whatsapp-order-btn:hover {
+            background: #1da854;
+        }
+        
+        .cart-toggle {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #e67e22;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #c8372d;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .browse-menu-section {
+            text-align: center;
+            padding: 40px 0;
+            background: #f1e9dc;
+            margin-top: 30px;
+            border-radius: 10px;
+        }
+        
+        .browse-menu-section h3 {
+            font-size: 1.8rem;
+            color: #c8372d;
+            margin-bottom: 15px;
+        }
+        
+        .browse-menu-section p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto 25px;
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+            color: #e67e22;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-column a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .footer-column a:hover {
+            color: #e67e22;
+        }
+        
+        .contact-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: #e67e22;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.85rem;
+        }
+        
+        @media (max-width: 992px) {
+            .meal-plans {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .addon-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .billing-bar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .billing-actions {
+                width: 100%;
+            }
+            
+            .billing-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="hero-content">
+             <h2>Meal Plan Option<br> Every meal tells a story...</r>ours begins at home</h2>
+            <p>Freshly prepared home-style meals made with quality ingredients and authentic Hyderabadi flavors Choose from our convenient weekly or monthly meal plans with flexible options</p>
+            <a href="#plans" class="btn">View Meal Plans</a>
+        </div>
+    </section>
+    
+    <section id="plans" class="container">
+        <div class="section-title">
+           
+           
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 25px; color: #c8372d; font-size: 1.6rem;">Weekly Meal Plan (5 Days)</h3>
+        <div class="meal-plans">
+            <div class="plan-card" data-plan="Veg Lite Plan" data-price="1250" data-type="weekly">
+                <div class="plan-header">
+                    <h3>Veg Lite Plan</h3>
+                    <p>1 Meal/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹1,250</div>
+                    <ul>
+                        <li>Mini Veg Thali or Mini Meal Box</li>
+                        <li>Includes Roti/Rice</li>
+                        <li>Freshly prepared daily</li>
+                        <li>No preservatives</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹1,000
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Veg%20Lite%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Veg Combo Plan" data-price="2350" data-type="weekly">
+                <div class="plan-header">
+                    <h3>Veg Combo Plan</h3>
+                    <p>2 Meals/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹2,350</div>
+                    <ul>
+                        <li>Lunch + Dinner</li>
+                        <li>Veg Thalis + Dry Sabzi + Dal</li>
+                        <li>Complete meal solution</li>
+                        <li>Weekend dessert included</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹1,000
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Veg%20Combo%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Non-Veg Plan" data-price="1570" data-type="weekly">
+                <div class="plan-header">
+                    <h3>Non-Veg Plan</h3>
+                    <p>1 Meal/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹1,570</div>
+                    <ul>
+                        <li>Chicken/Fish Thali</li>
+                        <li>Non-Veg Mini Box</li>
+                        <li>Protein-rich meals</li>
+                        <li>Authentic Hyderabadi flavors</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹1,000
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Non-Veg%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Mixed Plan" data-price="2570" data-type="weekly">
+                <div class="plan-header">
+                    <h3>Mixed Plan</h3>
+                    <p>2 Meals/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹2,570</div>
+                    <ul>
+                        <li>Veg & Non-Veg Alternating</li>
+                        <li>Lunch + Dinner</li>
+                        <li>Dessert on Friday</li>
+                        <li>Best of both worlds</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹1,000
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Mixed%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 25px; color: #c8372d; font-size: 1.6rem;">Monthly Meal Plan (5 Days/Week)</h3>
+        <div class="meal-plans">
+            <div class="plan-card" data-plan="Veg Lite Plan" data-price="5000" data-type="monthly">
+                <div class="plan-header">
+                    <h3>Veg Lite Plan</h3>
+                    <p>1 Meal/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹5,000</div>
+                    <ul>
+                        <li>Rotating Veg Thali or Rice Box</li>
+                        <li>20 days of variety</li>
+                        <li>Seasonal vegetables</li>
+                        <li>Value for money</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹3,500
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Monthly%20Veg%20Lite%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Veg Combo Plan" data-price="9500" data-type="monthly">
+                <div class="plan-header">
+                    <h3>Veg Combo Plan</h3>
+                    <p>2 Meals/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹9,500</div>
+                    <ul>
+                        <li>Lunch + Dinner</li>
+                        <li>Full Veg Thalis</li>
+                        <li>Complete nutrition</li>
+                        <li>Weekend specials</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹3,500
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Monthly%20Veg%20Combo%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Non-Veg Plan" data-price="6400" data-type="monthly">
+                <div class="plan-header">
+                    <h3>Non-Veg Plan</h3>
+                    <p>1 Meal/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹6,400</div>
+                    <ul>
+                        <li>Chicken, Fish or Mutton Thali</li>
+                        <li>Rotating non-veg options</li>
+                        <li>High-quality proteins</li>
+                        <li>Traditional recipes</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹3,500
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Monthly%20Non-Veg%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="plan-card" data-plan="Mixed Premium" data-price="10700" data-type="monthly">
+                <div class="plan-header">
+                    <h3>Mixed Premium</h3>
+                    <p>2 Meals/Day</p>
+                </div>
+                <div class="plan-details">
+                    <div class="plan-price">₹10,700</div>
+                    <ul>
+                        <li>Veg & Non-Veg Combo</li>
+                        <li>Lunch + Dinner</li>
+                        <li>Dessert on weekends</li>
+                        <li>Premium experience</li>
+                    </ul>
+                    <div class="weekend-note">
+                        <i class="fas fa-info-circle"></i> Weekend meals available for extra ₹3,500
+                    </div>
+                    <div class="plan-actions">
+                        <a href="#" class="btn" style="flex: 1;">Select Plan</a>
+                        <a href="https://wa.me/919347437807?text=Hi%2C%20I'm%20interested%20in%20customizing%20the%20Monthly%20Mixed%20Premium%20Plan" class="whatsapp-btn" target="_blank">
+                            <i class="fab fa-whatsapp"></i> Custom
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="addons">
+            <h3>Add-ons & Upgrades</h3>
+            <div class="addon-grid">
+                <div class="addon-item" data-addon="Dessert Add-on" data-price="500">
+                    <div class="addon-icon">
+                        <i class="fas fa-ice-cream"></i>
+                    </div>
+                    <div class="addon-details">
+                        <h4>Dessert Add-on</h4>
+                        <p>Weekend desserts (Fri-Sun)</p>
+                        <p><strong>+₹500/month</strong></p>
+                    </div>
+                </div>
+                
+                <div class="addon-item" data-addon="Paneer & Special Gravy" data-price="1000">
+                    <div class="addon-icon">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="addon-details">
+                        <h4>Paneer & Special Gravy</h4>
+                        <p>Premium paneer dishes and special gravies</p>
+                        <p><strong>+₹1,000/month</strong></p>
+                    </div>
+                </div>
+                
+                <div class="addon-item" data-addon="Mini Tiffin Breakfast" data-price="300">
+                    <div class="addon-icon">
+                        <i class="fas fa-bread-slice"></i>
+                    </div>
+                    <div class="addon-details">
+                        <h4>Mini Tiffin Breakfast</h4>
+                        <p>Traditional South Indian breakfast items</p>
+                        <p><strong>+₹300/week</strong></p>
+                    </div>
+                </div>
+                
+                <div class="addon-item" data-addon="Weekend Meals (Monthly Plan)" data-price="3500">
+                    <div class="addon-icon">
+                        <i class="fas fa-calendar-weekend"></i>
+                    </div>
+                    <div class="addon-details">
+                        <h4>Weekend Meals</h4>
+                        <p>Add weekend meals to your monthly plan</p>
+                        <p><strong>+₹3,500/month</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="menu" class="container" style="background: #f1e9dc; padding: 60px 0;">
+        <div class="section-title">
+            <h2>Our Menu</h2>
+            <p>Explore our wide variety of authentic Hyderabadi dishes prepared with love and tradition</p>
+        </div>
+        
+        <div class="menu-tabs">
+            <div class="menu-tab active" data-tab="breakfast">Breakfast</div>
+            <div class="menu-tab" data-tab="lunch">Lunch</div>
+            <div class="menu-tab" data-tab="dinner">Dinner</div>
+        </div>
+        
+        <div id="breakfast" class="menu-content active">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Egg Burji Meal Box</h3>
+                        <p>Scrambled eggs with spices, served with bread and chutney</p>
+                        <div class="menu-price">₹120</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Dal Curry Meal Box</h3>
+                        <p>Flavorful lentil curry with rice and roti</p>
+                        <div class="menu-price">₹110</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Baingan Curry Meal Box</h3>
+                        <p>Eggplant curry in authentic Hyderabadi style</p>
+                        <div class="menu-price">₹130</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Aloo Fry Meal Box</h3>
+                        <p>Spiced potato fry with rice and roti</p>
+                        <div class="menu-price">₹100</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Ghee Shakkar ki Roti Meal Box</h3>
+                        <p>Sweet flatbread with ghee, served with pickle</p>
+                        <div class="menu-price">₹90</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Curd Rice</h3>
+                        <p>Comforting yogurt rice with tempering</p>
+                        <div class="menu-price">₹80</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="lunch" class="menu-content">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1633918297621-ef928794a4bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Veg Thali</h3>
+                        <p>Complete vegetarian meal with rice, roti, dal, vegetable curry and dessert</p>
+                        <div class="menu-price">₹180</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mega Veg Thali</h3>
+                        <p>Grand vegetarian feast with multiple curries, rice, roti, papad and dessert</p>
+                        <div class="menu-price">₹250</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mega Paneer Thali</h3>
+                        <p>Luxurious paneer-based thali with rich gravies and accompaniments</p>
+                        <div class="menu-price">₹280</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Non-Veg Mini Thali</h3>
+                        <p>Chicken or fish curry with rice, roti and dal</p>
+                        <div class="menu-price">₹220</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mega Non-Veg Thali</h3>
+                        <p>Grand non-vegetarian feast with chicken/mutton curry, rice, roti and dessert</p>
+                        <div class="menu-price">₹320</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1582716474026-299467e1a942?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mega Fish Thali</h3>
+                        <p>Special fish curry with rice, roti and accompaniments</p>
+                        <div class="menu-price">₹350</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="dinner" class="menu-content">
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Chicken Samosa</h3>
+                        <p>Crispy pastry filled with spiced chicken mince</p>
+                        <div class="menu-price">₹60</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Corn Samosa</h3>
+                        <p>Sweet and savory corn-filled crispy samosas</p>
+                        <div class="menu-price">₹50</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Egg Roll</h3>
+                        <p>Flaky paratha filled with spiced scrambled eggs</p>
+                        <div class="menu-price">₹70</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Shahi Shami Roll</h3>
+                        <p>Royal kebab roll with mint chutney</p>
+                        <div class="menu-price">₹120</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Shaami Kebab</h3>
+                        <p>Minced meat kebabs with lentils and spices</p>
+                        <div class="menu-price">₹150</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80');"></div>
+                    <div class="menu-details">
+                        <h3>Mini Bhendi Meal Box</h3>
+                        <p>Spiced okra curry with rice and roti</p>
+                        <div class="menu-price">₹140</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <div class="browse-menu-section container">
+        <h3>Ready to Explore More?</h3>
+        <p>Discover our complete range of authentic Hyderabadi dishes and special offerings</p>
+        <a href="#menu" class="btn btn-secondary">Browse Full Menu</a>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>WhatsApp: 9347437807</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>klip2dealhomefood@gmail.com</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Hyderabad, India</span>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#plans">Meal Plans</a></li>
+                        <li><a href="#menu">Our Menu</a></li>
+                        <li><a href="#addons">Add-ons</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Refund Policy</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Follow Us</h3>
+                    <div style="display: flex; gap: 15px; font-size: 1.5rem;">
+                        <a href="#" style="color: #e67e22;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: #e67e22;"><i class="fab fa-instagram"></i></a>
+                        <a href="#" style="color: #e67e22;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: #e67e22;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Klip2Deal Home Food. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Fixed Billing Bar -->
+    <div class="billing-bar">
+        <div class="billing-summary">
+            <i class="fas fa-shopping-cart billing-icon"></i>
+            <div class="billing-info">
+                <div class="billing-items-count" id="billingItemsCount">0 items</div>
+                <div class="billing-total">Total: <span id="billingTotal">₹0</span></div>
+            </div>
+        </div>
+        <div class="billing-actions">
+            <button class="billing-btn billing-website-btn" id="billingWebsiteOrder">Order via Website</button>
+            <button class="billing-btn billing-whatsapp-btn" id="billingWhatsappOrder">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+        </div>
+    </div>
+    
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #999; padding: 20px 0;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotal">₹0</span>
+        </div>
+        <div class="cart-buttons">
+            <button class="cart-btn website-btn" id="websiteOrder">Order via Website</button>
+            <button class="cart-btn whatsapp-order-btn" id="whatsappOrder">
+                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+            </button>
+        </div>
+    </div>
+    
+    <!-- Cart Toggle Button -->
+    <button class="cart-toggle" id="cartToggle">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+    
+    <script>
+        // Cart functionality
+        let cart = {
+            mealPlan: null,
+            addOns: [],
+            total: 0
+        };
+        
+        // DOM elements
+        const cartSidebar = document.getElementById('cartSidebar');
+        const cartToggle = document.getElementById('cartToggle');
+        const closeCart = document.getElementById('closeCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.getElementById('cartCount');
+        const websiteOrder = document.getElementById('websiteOrder');
+        const whatsappOrder = document.getElementById('whatsappOrder');
+        
+        // Billing elements
+        const billingItemsCount = document.getElementById('billingItemsCount');
+        const billingTotal = document.getElementById('billingTotal');
+        const billingWebsiteOrder = document.getElementById('billingWebsiteOrder');
+        const billingWhatsappOrder = document.getElementById('billingWhatsappOrder');
+        
+        // Plan cards
+        const planCards = document.querySelectorAll('.plan-card');
+        
+        // Add-on items
+        const addonItems = document.querySelectorAll('.addon-item');
+        
+        // Toggle cart
+        cartToggle.addEventListener('click', () => {
+            cartSidebar.classList.add('open');
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.remove('open');
+        });
+        
+        // Select meal plan
+        planCards.forEach(card => {
+            card.addEventListener('click', () => {
+                // Remove selected class from all cards
+                planCards.forEach(c => c.classList.remove('selected'));
+                
+                // Add selected class to clicked card
+                card.classList.add('selected');
+                
+                // Update cart
+                cart.mealPlan = {
+                    name: card.dataset.plan,
+                    price: parseInt(card.dataset.price),
+                    type: card.dataset.type
+                };
+                
+                updateCart();
+                updateBillingBar();
+            });
+        });
+        
+        // Toggle add-ons
+        addonItems.forEach(item => {
+            item.addEventListener('click', () => {
+                // Toggle selected class
+                item.classList.toggle('selected');
+                
+                const addonName = item.dataset.addon;
+                const addonPrice = parseInt(item.dataset.price);
+                
+                // Check if addon is already in cart
+                const index = cart.addOns.findIndex(a => a.name === addonName);
+                
+                if (index > -1) {
+                    // Remove from cart
+                    cart.addOns.splice(index, 1);
+                } else {
+                    // Add to cart
+                    cart.addOns.push({
+                        name: addonName,
+                        price: addonPrice
+                    });
+                }
+                
+                updateCart();
+                updateBillingBar();
+            });
+        });
+        
+        // Update cart display
+        function updateCart() {
+            // Calculate total
+            cart.total = 0;
+            
+            if (cart.mealPlan) {
+                cart.total += cart.mealPlan.price;
+            }
+            
+            cart.addOns.forEach(addon => {
+                cart.total += addon.price;
+            });
+            
+            // Update cart items display
+            if (cart.mealPlan || cart.addOns.length > 0) {
+                let itemsHTML = '';
+                
+                if (cart.mealPlan) {
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <span class="cart-item-name">${cart.mealPlan.name} (${cart.mealPlan.type})</span>
+                            <span class="cart-item-price">₹${cart.mealPlan.price}</span>
+                        </div>
+                    `;
+                }
+                
+                cart.addOns.forEach(addon => {
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <span class="cart-item-name">${addon.name}</span>
+                            <span class="cart-item-price">₹${addon.price}</span>
+                        </div>
+                    `;
+                });
+                
+                cartItems.innerHTML = itemsHTML;
+            } else {
+                cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 20px 0;">Your cart is empty</p>';
+            }
+            
+            // Update total
+            cartTotal.textContent = `₹${cart.total}`;
+            
+            // Update cart count
+            let count = 0;
+            if (cart.mealPlan) count++;
+            count += cart.addOns.length;
+            cartCount.textContent = count;
+            
+            // Show/hide cart count badge
+            if (count > 0) {
+                cartCount.style.display = 'flex';
+            } else {
+                cartCount.style.display = 'none';
+            }
+        }
+        
+        // Update billing bar display
+        function updateBillingBar() {
+            // Calculate total
+            cart.total = 0;
+            
+            if (cart.mealPlan) {
+                cart.total += cart.mealPlan.price;
+            }
+            
+            cart.addOns.forEach(addon => {
+                cart.total += addon.price;
+            });
+            
+            // Update items count
+            let count = 0;
+            if (cart.mealPlan) count++;
+            count += cart.addOns.length;
+            
+            if (count === 1) {
+                billingItemsCount.textContent = "1 item";
+            } else {
+                billingItemsCount.textContent = `${count} items`;
+            }
+            
+            // Update total
+            billingTotal.textContent = `₹${cart.total}`;
+        }
+        
+        // Order via website (cart)
+        websiteOrder.addEventListener('click', () => {
+            if (cart.mealPlan || cart.addOns.length > 0) {
+                alert('Thank you for your order! You will be redirected to our website to complete your order.');
+                // In a real implementation, this would redirect to the order page
+            } else {
+                alert('Please select a meal plan or add-on before ordering.');
+            }
+        });
+        
+        // Order via WhatsApp (cart)
+        whatsappOrder.addEventListener('click', () => {
+            if (cart.mealPlan || cart.addOns.length > 0) {
+                let message = "Hi, I would like to place an order for:\n\n";
+                
+                if (cart.mealPlan) {
+                    message += `${cart.mealPlan.name} (${cart.mealPlan.type}): ₹${cart.mealPlan.price}\n`;
+                }
+                
+                cart.addOns.forEach(addon => {
+                    message += `${addon.name}: ₹${addon.price}\n`;
+                });
+                
+                message += `\nTotal: ₹${cart.total}\n\n`;
+                message += "Please confirm my order.";
+                
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/919347437807?text=${encodedMessage}`;
+                
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert('Please select a meal plan or add-on before ordering.');
+            }
+        });
+        
+        // Order via website (billing bar)
+        billingWebsiteOrder.addEventListener('click', () => {
+            if (cart.mealPlan || cart.addOns.length > 0) {
+                alert('Thank you for your order! You will be redirected to our website to complete your order.');
+                // In a real implementation, this would redirect to the order page
+            } else {
+                alert('Please select a meal plan or add-on before ordering.');
+            }
+        });
+        
+        // Order via WhatsApp (billing bar)
+        billingWhatsappOrder.addEventListener('click', () => {
+            if (cart.mealPlan || cart.addOns.length > 0) {
+                let message = "Hi, I would like to place an order for:\n\n";
+                
+                if (cart.mealPlan) {
+                    message += `${cart.mealPlan.name} (${cart.mealPlan.type}): ₹${cart.mealPlan.price}\n`;
+                }
+                
+                cart.addOns.forEach(addon => {
+                    message += `${addon.name}: ₹${addon.price}\n`;
+                });
+                
+                message += `\nTotal: ₹${cart.total}\n\n`;
+                message += "Please confirm my order.";
+                
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/919347437807?text=${encodedMessage}`;
+                
+                window.open(whatsappURL, '_blank');
+            } else {
+                alert('Please select a meal plan or add-on before ordering.');
+            }
+        });
+        
+        // Menu tabs functionality
+        const menuTabs = document.querySelectorAll('.menu-tab');
+        const menuContents = document.querySelectorAll('.menu-content');
+        
+        menuTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                menuTabs.forEach(t => t.classList.remove('active'));
+                menuContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
