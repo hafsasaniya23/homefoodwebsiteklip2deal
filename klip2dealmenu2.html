@@ -1,0 +1,1385 @@
+
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Menu - Delicious Meals</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    
+    /* Header and Navigation */
+    header {
+      background: linear-gradient(135deg, #d32f2f, #b71c1c);
+      color: white;
+      padding: 15px 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    
+    .logo i {
+      margin-right: 10px;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    
+    nav ul li {
+      margin-left: 25px;
+    }
+    
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: background 0.3s;
+    }
+    
+    nav ul li a:hover {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(211, 47, 47, 0.8), rgba(183, 28, 28, 0.8)), url('https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      max-width: 700px;
+      margin: 0 auto 30px;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: #ffa000;
+      color: #333;
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: #ff8f00;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    
+    /* Section Styling */
+    section {
+      padding: 60px 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .section-title h2 {
+      font-size: 2.5rem;
+      color: #d32f2f;
+      margin-bottom: 15px;
+    }
+    
+    .section-title p {
+      font-size: 1.1rem;
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    /* Menu Section */
+    .menu-section {
+      background-color: #fff8f0;
+    }
+    
+    .menu-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    
+    .category {
+      background-color: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: transform 0.3s ease;
+    }
+    
+    .category:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .category-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .category-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d32f2f, #b71c1c);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+    
+    .category-icon i {
+      font-size: 1.8rem;
+    }
+    
+    .category-title {
+      flex-grow: 1;
+    }
+    
+    .category-title h3 {
+      font-size: 1.8rem;
+      color: #333;
+      margin: 0;
+    }
+    
+    .category-title p {
+      margin: 5px 0 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .new-badge {
+      background-color: #ffa000;
+      color: #333;
+      font-size: 0.8rem;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-weight: bold;
+      margin-left: 15px;
+    }
+    
+    .menu-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+    
+    .menu-item:hover {
+      background-color: #f0f0f0;
+      border-left-color: #d32f2f;
+      transform: translateX(5px);
+    }
+    
+    .menu-item-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
+    
+    .menu-item-icon i {
+      font-size: 1.2rem;
+    }
+    
+    .menu-item-content {
+      flex-grow: 1;
+    }
+    
+    .menu-item h4 {
+      font-size: 1.2rem;
+      margin: 0 0 5px;
+      color: #333;
+    }
+    
+    .menu-item p {
+      font-size: 0.9rem;
+      margin: 0;
+      color: #666;
+    }
+    
+    .menu-item-price {
+      font-weight: bold;
+      color: #2e8b57;
+      font-size: 1.1rem;
+      margin-left: 10px;
+      white-space: nowrap;
+    }
+    
+    .popular-tag {
+      display: inline-block;
+      background-color: #d32f2f;
+      color: white;
+      font-size: 0.7rem;
+      padding: 3px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+    }
+    
+    /* Menu Navigation */
+    .menu-nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .menu-nav-item {
+      background-color: #fff;
+      border: 2px solid #f0f0f0;
+      border-radius: 50px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: #333;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+    
+    .menu-nav-item:hover {
+      background-color: #f0f0f0;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    
+    .menu-nav-item i {
+      margin-right: 8px;
+      color: #d32f2f;
+    }
+    
+    /* WhatsApp Order Button */
+    .whatsapp-order {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.8rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-order:hover {
+      transform: scale(1.1);
+      background-color: #128C7E;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 60px 20px 30px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+    }
+    
+    .footer-column h3 {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    
+    .footer-column h3:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 50px;
+      height: 3px;
+      background-color: #ffa000;
+    }
+    
+    .footer-column ul {
+      list-style: none;
+    }
+    
+    .footer-column ul li {
+      margin-bottom: 10px;
+    }
+    
+    .footer-column ul li a {
+      color: #ddd;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-column ul li a:hover {
+      color: #ffa000;
+    }
+    
+    .contact-info p {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    
+    .contact-info p i {
+      margin-right: 10px;
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      nav ul {
+        margin-top: 15px;
+      }
+      
+      nav ul li {
+        margin: 0 10px;
+      }
+      
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .section-title h2 {
+        font-size: 2rem;
+      }
+      
+      .menu-items {
+        grid-template-columns: 1fr;
+      }
+      
+      .category-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .category-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+      
+      .menu-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <i class="fas fa-utensils"></i> Delicious Meals
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Our Delicious Menu</h1>
+    <p>Authentic flavors for every time of day <br>Explore our complete menu with delicious options for every taste and preference</p>
+    <a href="#menu" class="btn-primary">View Full Menu</a>
+  </section>
+  
+  <!-- Menu Section -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Complete Menu</h2>
+        <p>From traditional thalis to innovative meal boxes, we have something for everyone</p>
+      </div>
+      
+      <!-- Menu Navigation -->
+      <div class="menu-nav">
+        <a href="#thali-specials" class="menu-nav-item">
+          <i class="fas fa-utensils"></i> Thali Specials
+        </a>
+        <a href="#mini-meal-boxes" class="menu-nav-item">
+          <i class="fas fa-box"></i> Mini Meal Boxes
+        </a>
+        <a href="#rolls-samosas" class="menu-nav-item">
+          <i class="fas fa-burrito"></i> Rolls & Samosas
+        </a>
+        <a href="#starters-snacks" class="menu-nav-item">
+          <i class="fas fa-pepper-hot"></i> Starters & Snacks
+        </a>
+        <a href="#combo-meals" class="menu-nav-item">
+          <i class="fas fa-box-archive"></i> Combo Meals
+        </a>
+        <a href="#rice-roti" class="menu-nav-item">
+          <i class="fas fa-bowl-rice"></i> Rice & Roti
+        </a>
+        <a href="#gravies-curries" class="menu-nav-item">
+          <i class="fas fa-soup"></i> Gravies & Curries
+        </a>
+        <a href="#dry-sabzi" class="menu-nav-item">
+          <i class="fas fa-pepper-hot"></i> Dry Sabzi
+        </a>
+        <a href="#desserts" class="menu-nav-item">
+          <i class="fas fa-ice-cream"></i> Desserts
+        </a>
+      </div>
+      
+      <div class="menu-container">
+        <!-- Thali Specials -->
+        <div id="thali-specials" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div class="category-title">
+              <h3>Thali Specials</h3>
+              <p>Complete meal platters with a variety of dishes</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Veg Thali</h4>
+                <p>Complete vegetarian meal with rice, roti, dal, vegetables, and dessert</p>
+              </div>
+              <div class="menu-item-price">₹ 180</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mega Veg Thali</h4>
+                <p>Grand vegetarian feast with multiple dishes, sweets, and beverages</p>
+              </div>
+              <div class="menu-item-price">₹ 280</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cheese"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mega Paneer Thali</h4>
+                <p>Luxurious paneer-based thali with multiple paneer dishes</p>
+              </div>
+              <div class="menu-item-price">₹ 320</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-drumstick-bite"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Non-Veg Mini Thali</h4>
+                <p>Non-vegetarian meal with chicken curry, rice, roti, and dessert</p>
+              </div>
+              <div class="menu-item-price">₹ 220</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cow"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mega Non-Veg Thali</h4>
+                <p>Grand non-vegetarian feast with multiple meat dishes</p>
+              </div>
+              <div class="menu-item-price">₹ 350</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-fish"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mega Fish Thali</h4>
+                <p>Special fish thali with multiple fish preparations and sides</p>
+              </div>
+              <div class="menu-item-price">₹ 380</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bowl-rice"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Veg Khichdi Thali</h4>
+                <p>Comforting khichdi with sides, papad, and dessert</p>
+              </div>
+              <div class="menu-item-price">₹ 160</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bowl-food"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Non-Veg Khichdi Thali</h4>
+                <p>Khichdi with meat curry and sides</p>
+              </div>
+              <div class="menu-item-price">₹ 200</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mini Meal Boxes -->
+        <div id="mini-meal-boxes" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-box"></i>
+            </div>
+            <div class="category-title">
+              <h3>Mini Meal Boxes</h3>
+              <p>Perfect portion meals for a quick and satisfying experience</p>
+            </div>
+            <span class="new-badge">NEW</span>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-kebab"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Shami Meal Box</h4>
+                <p>Delicious shami kebabs with roti and chutney</p>
+              </div>
+              <div class="menu-item-price">₹ 140</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-pepper-hot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Tomato Curry Meal Box</h4>
+                <p>Tangy tomato curry with rice and roti</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-pepper"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Bhendi Fry Meal Box</h4>
+                <p>Crispy okra fry with roti and dal</p>
+              </div>
+              <div class="menu-item-price">₹ 130</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-egg"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Egg Burji Meal Box</h4>
+                <p>Scrambled eggs with spices, served with bread and pickle</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-mortar-pestle"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Dal Curry Meal Box</h4>
+                <p>Flavorful lentil curry with rice and roti</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-eggplant"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Baingan Curry Meal Box</h4>
+                <p>Eggplant curry in a tangy tomato-based gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 130</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-carrot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Aloo Fry Meal Box</h4>
+                <p>Crispy fried potato cubes with spices and herbs</p>
+              </div>
+              <div class="menu-item-price">₹ 100</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-mortar-pestle"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mini Dal Makhani Meal Box</h4>
+                <p>Creamy black lentils with rice and roti</p>
+              </div>
+              <div class="menu-item-price">₹ 150</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bread-slice"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Ghee Shakkar ki Roti Meal Box</h4>
+                <p>Sweet flatbread with ghee, served with yogurt</p>
+              </div>
+              <div class="menu-item-price">₹ 90</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-apple-whole"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Aamras Roti Meal Box</h4>
+                <p>Fresh mango pulp with roti, a seasonal delight</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rolls & Samosas -->
+        <div id="rolls-samosas" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-burrito"></i>
+            </div>
+            <div class="category-title">
+              <h3>Rolls & Samosas</h3>
+              <p>Crispy, flavorful snacks perfect for any time of day</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-drumstick-bite"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Chicken Samosa</h4>
+                <p>Crispy pastry filled with spiced chicken</p>
+              </div>
+              <div class="menu-item-price">₹ 50</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-corn"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Corn Samosa</h4>
+                <p>Crispy pastry filled with sweet corn and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 40</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bowl-food"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Onion Samosa</h4>
+                <p>Crispy pastry filled with spiced onions</p>
+              </div>
+              <div class="menu-item-price">₹ 30</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-egg"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Egg Roll</h4>
+                <p>Flaky paratha wrapped around spiced scrambled eggs</p>
+              </div>
+              <div class="menu-item-price">₹ 70</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-kebab"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shahi Shami Roll</h4>
+                <p>Flaky paratha filled with delicious shami kebabs</p>
+              </div>
+              <div class="menu-item-price">₹ 90</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-kebab"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shahi Shikampur Roll</h4>
+                <p>Paratha filled with flavorful shikampur kebabs</p>
+              </div>
+              <div class="menu-item-price">₹ 100</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-egg"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shahi Nargisi Roll</h4>
+                <p>Paratha filled with nargisi kofta and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Starters & Snacks -->
+        <div id="starters-snacks" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-pepper-hot"></i>
+            </div>
+            <div class="category-title">
+              <h3>Starters & Snacks</h3>
+              <p>Delicious appetizers to kickstart your meal</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-kebab"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shaami Kebab</h4>
+                <p>Minced meat kebabs with lentils and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 180</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-kebab"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shikampur Kebab</h4>
+                <p>Stuffed kebabs with a filling of yogurt and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 200</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-egg"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Nargisi Kofta</h4>
+                <p>Hard-boiled eggs wrapped in spiced mince meat</p>
+              </div>
+              <div class="menu-item-price">₹ 220</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-utensils"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Dawat-E-Shami</h4>
+                <p>Special platter of assorted shami kebabs</p>
+              </div>
+              <div class="menu-item-price">₹ 280</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-crown"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Khan-E-Datar</h4>
+                <p>Royal platter of assorted kebabs and starters</p>
+              </div>
+              <div class="menu-item-price">₹ 350</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Combo Meal Boxes -->
+        <div id="combo-meals" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-box-archive"></i>
+            </div>
+            <div class="category-title">
+              <h3>Combo Meal Boxes</h3>
+              <p>Complete meal combos with biryani and sides</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-drumstick-bite"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Chicken Biryani Combo</h4>
+                <p>Aromatic chicken biryani with raita and salad</p>
+              </div>
+              <div class="menu-item-price">₹ 220</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cow"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mutton Biryani Combo</h4>
+                <p>Flavorful mutton biryani with raita and salad</p>
+              </div>
+              <div class="menu-item-price">₹ 260</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rice & Roti Boxes -->
+        <div id="rice-roti" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-bowl-rice"></i>
+            </div>
+            <div class="category-title">
+              <h3>Rice & Roti Boxes</h3>
+              <p>Essential staples to complement your meal</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bowl-rice"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Plain Rice</h4>
+                <p>Steamed basmati rice</p>
+              </div>
+              <div class="menu-item-price">₹ 60</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Jeera Rice</h4>
+                <p>Basmati rice tempered with cumin seeds</p>
+              </div>
+              <div class="menu-item-price">₹ 80</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-mortar-pestle"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Biryani Rice</h4>
+                <p>Flavorful rice cooked with biryani spices</p>
+              </div>
+              <div class="menu-item-price">₹ 100</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-yin-yang"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Curd Rice</h4>
+                <p>Comforting rice with yogurt and seasoning</p>
+              </div>
+              <div class="menu-item-price">₹ 80</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-jar"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Pickle Rice</h4>
+                <p>Rice tempered with tangy pickle and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 90</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Ghee Rice</h4>
+                <p>Fragrant rice cooked with ghee and whole spices</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-wheat-awn"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Ghar ki Roti</h4>
+                <p>Traditional homemade-style flatbread</p>
+              </div>
+              <div class="menu-item-price">₹ 20</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-fire"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Ghee Roti</h4>
+                <p>Whole wheat flatbread brushed with ghee</p>
+              </div>
+              <div class="menu-item-price">₹ 25</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-wheat-awn"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Phulka</h4>
+                <p>Soft, thin whole wheat flatbread</p>
+              </div>
+              <div class="menu-item-price">₹ 15</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cookie"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Shakkar ki Roti</h4>
+                <p>Sweet flatbread with sugar and ghee</p>
+              </div>
+              <div class="menu-item-price">₹ 30</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Gravies & Curries -->
+        <div id="gravies-curries" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-soup"></i>
+            </div>
+            <div class="category-title">
+              <h3>Gravies & Curries</h3>
+              <p>Rich and flavorful curries to satisfy your cravings</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-drumstick-bite"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Chicken Korma</h4>
+                <p>Tender chicken in a rich, creamy gravy with nuts and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 180</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cow"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mutton Korma</h4>
+                <p>Tender mutton pieces in a flavorful, aromatic gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 220</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bacon"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mutton Pasinda</h4>
+                <p>Flattened mutton pieces cooked in a rich gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 240</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cheese"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Paneer Masala</h4>
+                <p>Soft paneer cubes in a spiced tomato gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 170</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-cheese"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Butter Paneer</h4>
+                <p>Paneer in a rich, buttery tomato-based gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 190</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-eggplant"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Bagara Baigan</h4>
+                <p>Eggplant cooked in a tangy sesame-peanut gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 150</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-pepper-hot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Mirchi ka Salan</h4>
+                <p>Green chilies in a tangy peanut and sesame gravy</p>
+              </div>
+              <div class="menu-item-price">₹ 140</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-lemon"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Khatti Dal</h4>
+                <p>Tangy lentil curry with a perfect balance of spices</p>
+              </div>
+              <div class="menu-item-price">₹ 100</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-mortar-pestle"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Dalcha</h4>
+                <p>Lentil and vegetable curry with a tangy flavor</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Palak ki Dal</h4>
+                <p>Lentils cooked with spinach and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-pepper-hot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Tomato Chutney</h4>
+                <p>Tangy tomato chutney with spices and herbs</p>
+              </div>
+              <div class="menu-item-price">₹ 60</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Dry Veg & Non-Veg Sabzi -->
+        <div id="dry-sabzi" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-pepper-hot"></i>
+            </div>
+            <div class="category-title">
+              <h3>Dry Veg & Non-Veg Sabzi</h3>
+              <p>Savory dry preparations with bold flavors</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-carrot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Aloo Gawar</h4>
+                <p>Potato and cluster beans stir-fry with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-carrot"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Aloo Beans</h4>
+                <p>Potato and green beans stir-fry with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-leaf"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Aloo Palak</h4>
+                <p>Potato and spinach stir-fry with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 130</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-seedling"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Cabbage Fry</h4>
+                <p>Crispy cabbage stir-fried with mustard seeds and curry leaves</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-spa"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Cauliflower Fry</h4>
+                <p>Crispy cauliflower florets with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 130</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-spa"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Dondakay Fry</h4>
+                <p>Crispy ivy gourd stir-fry with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-drumstick-bite"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Palak Mutton Fry</h4>
+                <p>Mutton cooked with spinach and spices</p>
+              </div>
+              <div class="menu-item-price">₹ 240</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-pepper"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Bhendi Fry</h4>
+                <p>Crispy okra stir-fry with spices</p>
+              </div>
+              <div class="menu-item-price">₹ 130</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Desserts -->
+        <div id="desserts" class="category">
+          <div class="category-header">
+            <div class="category-icon">
+              <i class="fas fa-ice-cream"></i>
+            </div>
+            <div class="category-title">
+              <h3>Desserts</h3>
+              <p>Sweet endings to complete your meal experience</p>
+            </div>
+          </div>
+          <div class="menu-items">
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bowl-food"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Sheer Khurma</h4>
+                <p>Vermicelli pudding with milk, dates, and nuts</p>
+              </div>
+              <div class="menu-item-price">₹ 100</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-wheat-awn-circle-exclamation"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Suji ka Halwa</h4>
+                <p>Semolina pudding with ghee and nuts</p>
+              </div>
+              <div class="menu-item-price">₹ 80</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-candy-cane"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Savaiyan ka Meetha</h4>
+                <p>Sweet vermicelli dessert with milk and nuts</p>
+              </div>
+              <div class="menu-item-price">₹ 90</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-bread-slice"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Double ka Meetha</h4>
+                <p>Bread pudding with milk, nuts, and saffron</p>
+              </div>
+              <div class="menu-item-price">₹ 110</div>
+            </div>
+            <div class="menu-item">
+              <div class="menu-item-icon">
+                <i class="fas fa-apple-whole"></i>
+              </div>
+              <div class="menu-item-content">
+                <h4>Aamras</h4>
+                <p>Fresh mango pulp, a seasonal delight</p>
+              </div>
+              <div class="menu-item-price">₹ 120</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp Order Button -->
+  <a href="https://wa.me/919876543210?text=Hello%2C%20I%20would%20like%20to%20place%20an%20order.%20Please%20help%20me%20with%20the%20menu%20options." class="whatsapp-order" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>Delicious Meals</h3>
+        <p>Serving authentic flavors for every occasion. From traditional thalis to innovative meal boxes, we have something for every palate.</p>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <div class="contact-info">
+          <p><i class="fas fa-map-marker-alt"></i> Saidabad, Hyderabad, Telangana</p>
+          <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+          <p><i class="fas fa-envelope"></i> info@deliciousmeals.com</p>
+          <p><i class="fas fa-clock"></i> Mon-Sat: 9AM - 10PM</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 Delicious Meals. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
