@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Authentic Hyderabadi Kattai Dal — Klip2Deal Homefood</title>
+  <meta name="description" content="Homestyle Authentic Hyderabadi Kattai Dal — cooked daily, tamarind tang, served fresh. Order now from Klip2Deal Homefood." />
+  <style>
+    /* --- Brand colors (Royal Blue, Blue, Lavender) --- */
+    :root{
+      --royal:#0b3d91;
+      --blue:#1e6fbe;
+      --lav:#cdb7ff;
+      --muted:#000000;
+      --glass: rgba(255,255,255,0.06);
+      --shadow: 0 8px 28px rgba(11,61,145,0.08);
+      --radius: 12px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:#f8eee6;color:#111;font-size:16px;line-height:1.45}
+    .container{max-width:1100px;margin:36px auto;padding:24px}
+
+    /* layout */
+    .product{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:start;background-color:#f8eee6;}
+    @media (max-width:880px){.product{grid-template-columns:1fr;}.sticky-buy{display:none}}
+
+    /* gallery */
+    .gallery{background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);height:100%;}
+    .hero{display:flex;gap:14px}
+    .hero .thumbs{display:flex;flex-direction:column;gap:10px}
+    .thumbs img{width:64px;height:64px;object-fit:cover;border-radius:10px;cursor:pointer;border:2px solid transparent}
+    .thumbs img.active{border-color:var(--royal)}
+    .main-img{flex:1;border-radius:14px;overflow:hidden}
+    .main-img img{width:100%;height:420px;object-fit:cover;display:block}
+
+    /* details */
+    .details{background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .kicker{display:inline-block;background:linear-gradient(90deg,var(--lav),#fff);padding:6px 10px;border-radius:999px;color:var(--royal);font-weight:600;margin-bottom:12px}
+    h1{margin:6px 0 8px;font-size:22px}
+    .price-row{display:flex;align-items:center;gap:12px;margin:12px 0}
+    .price{font-size:22px;font-weight:700;color:var(--royal)}
+    .old{color:var(--muted);text-decoration:line-through}
+    .rating{display:inline-flex;align-items:center;gap:8px;color:#ff8a00;font-weight:600}
+
+    .meta{display:flex;gap:12px;color:var(--muted);font-size:14px;margin-bottom:16px}
+    .meta div{display:block;gap:6px;align-items:center;width:130px;}
+
+    .controls{display:flex;gap:12px;align-items:center;margin-top:8px}
+    .qty{display:flex;align-items:center;border:1px solid #ececec;border-radius:8px;overflow:hidden}
+    .qty button{background:#fff;border:0;padding:8px 12px;cursor:pointer}
+    .qty input{width:56px;border:0;text-align:center;font-size:16px}
+    .cta{background:linear-gradient(90deg,var(--royal),var(--blue));color:#fff;padding:12px 16px;border-radius:10px;border:0;font-weight:700;cursor:pointer}
+    .secondary{background:transparent;border:1px solid var(--royal);padding:10px 14px;border-radius:10px;color:var(--royal);cursor:pointer}
+
+    /* info sections */
+    .accordion{margin-top:20px;border-top:1px dashed #eee;padding-top:18px}
+    .acc-item{margin-bottom:12px}
+    .acc-item h3{font-size:16px;cursor:pointer;margin:0;padding:8px 0;display:flex;justify-content:space-between}
+    .acc-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 0}
+    .acc-body.open{padding-top:10px;max-height:400px}
+
+    /* sticky buy bar */
+    .sticky-buy{position:fixed;right:18px;bottom:18px;background:#fff;border-radius:14px;padding:12px 14px;box-shadow:0 10px 30px rgba(0,0,0,0.12);display:flex;gap:12px;align-items:center}
+    .sticky-buy img{width:56px;height:56px;border-radius:10px;object-fit:cover}
+
+    /* related */
+    .related{margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+    .card{background:#fff;border-radius:10px;padding:12px;text-align:center;box-shadow:0 6px 18px rgba(11,61,145,0.04)}
+
+    footer{margin-top:48px;text-align:center;color:var(--muted);font-size:14px;padding:20px}
+        /* ================== */
+    /* REDESIGNED REVIEWS */
+    /* ================== */
+    .reviews-section {
+        margin-top: 50px;
+    }
+    .reviews-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    .reviews-header h2 {
+        font-size: 32px;
+        font-weight: 700;
+    }
+    .reviews-container {
+        display: grid;
+        grid-template-columns: 35% 65%; /* Summary / Reviews */
+        gap: 40px;
+    }
+
+    /* Reviews Summary Panel */
+    .reviews-summary {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        height: fit-content;
+    }
+    .summary-average {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    .average-number {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1;
+    }
+    .average-stars {
+        color: #ffc107;
+        font-size: 20px;
+    }
+    .summary-total {
+        font-size: 16px;
+        color: #6c757d;
+        margin-bottom: 25px;
+    }
+    .rating-bars {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .rating-bars li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+    .bar-label {
+        width: 50px;
+    }
+    .bar-container {
+        flex: 1;
+        height: 8px;
+        background: #e9ecef;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    .bar-fill {
+        height: 100%;
+        background: #ffc107;
+        border-radius: 10px;
+    }
+    .bar-count {
+        width: 30px;
+        text-align: right;
+        color: #6c757d;
+    }
+
+    /* Reviews List Panel */
+    .reviews-list {
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    }
+    .list-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .sort-dropdown {
+        padding: 8px 12px;
+        border: 1px solid #dee2e6;
+        border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        background: #fff;
+    }
+    .review-card {
+        padding: 20px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .review-card:last-child {
+        border-bottom: none;
+    }
+    .review-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+    .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .reviewer-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid #e9ecef;
+    }
+    .reviewer-meta h4 {
+        margin: 0;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .reviewer-meta p {
+        margin: 0;
+        font-size: 13px;
+        color: #6c757d;
+    }
+    .review-stars {
+        color: #ffc107;
+        font-size: 14px;
+    }
+    .review-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 10px 0;
+    }
+    .review-text {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #495057;
+    }
+    .review-footer {
+        margin-top: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .helpful-btn {
+        background: none;
+        border: 1px solid #dee2e6;
+        padding: 5px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        transition: all 0.2s;
+    }
+    .helpful-btn:hover {
+        background: #f8f9fa;
+        border-color: #adb5bd;
+    }
+    .verified-badge {
+        font-size: 13px;
+        color: #198754;
+        font-weight: 500;
+    }
+    .verified-badge i {
+        margin-right: 4px;
+    }
+
+       .product-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+        flex-wrap: wrap;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 18px;
+        
+    }
+
+    .product-box img {
+        width: 420px;
+        border-radius: 12px;
+        object-fit: cover;
+    }
+
+    .product-info {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    h1 {
+        font-size: 32px;
+        margin: 0 0 15px;
+        font-weight: 700;
+    }
+
+    .short-desc {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #495057;
+        margin-bottom: 20px;
+    }
+
+    .icons-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 14px;
+        margin-bottom: 25px;
+    }
+
+    .icons-row span {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: #f8f9fa;
+        padding: 8px 12px;
+        border-radius: 50px;
+        border: 1px solid #e9ecef;
+    }
+
+    /* Quantity + Button */
+    .action-box {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .qty-box {
+        display: flex;
+        align-items: center;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    .qty-btn {
+        background: #fff;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-size: 18px;
+        transition: background 0.2s;
+    }
+    .qty-btn:hover {
+        background: #f1f3f5;
+    }
+    #qty {
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        border-left: 1px solid #dee2e6;
+        border-right: 1px solid #dee2e6;
+    }
+
+    .add-btn {
+        background: #ff6b35; /* A nice, warm orange */
+        color: #fff;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: background 0.2s;
+    }
+    .add-btn:hover {
+        background: #e85a2b;
+    }
+
+    .whatsapp-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+        background: #25D366;
+        color: #fff;
+        padding: 12px 25px;
+        border-radius: 8px;
+        font-size: 16px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.2s;
+    }
+    .whatsapp-btn:hover {
+        background: #1da851;
+    }
+
+    /* Product Description */
+    .details-box {
+        background: #fff;
+        padding: 30px;
+        border-radius: 18px;
+        margin-top: 40px;
+      
+    }
+    .details-box h2 {
+        margin-bottom: 15px;
+        font-size: 24px;
+    }
+    .features {
+        margin-top: 20px;
+        list-style: none;
+        padding-left: 0;
+        display: block;}
+    .features li {
+        padding: 10px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="product">
+      <!-- Left: Gallery + Description -->
+      <section class="gallery" aria-label="Product gallery">
+        <div class="hero">
+          <div class="thumbs" id="thumbs">
+            <img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Kattai Dal thumbnail 1" class="active" data-full="https://via.placeholder.com/1200x900.png?text=Kattai+Dal+1">
+            <img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Kattai Dal thumbnail 2" data-full="https://via.placeholder.com/1200x900.png?text=Kattai+Dal+2">
+            <img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Kattai Dal thumbnail 3" data-full="https://via.placeholder.com/1200x900.png?text=Kattai+Dal+3">
+          </div>
+          <div class="main-img">
+            <img id="current" src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Authentic Hyderabadi Kattai Dal">
+          </div>
+        </div>
+
+        <div style="margin-top:16px;color:var(--muted);">
+          <strong>Short description</strong>
+          <p>Homestyle Hyderabadi Kattai Dal made with toor/masoor dal, tempered with traditional spices and tamarind for a tangy finish. Served fresh — perfect with steamed rice or rotis.</p>
+        </div>
+      </section>
+
+      <!-- Right: Purchase details -->
+      <aside class="details" aria-label="Purchase options">
+        <span class="kicker">Chef's Special</span>
+        <h1>Authentic Hyderabadi Kattai Dal</h1>
+        <div class="price-row">
+          <div class="price">₹110</div>
+          <div class="old">₹130</div>
+          <div class="rating">⭐ 4.7 (180)</div>
+        </div>
+
+        <div class="meta">
+          <div><strong>Weight:</strong>&nbsp;250 g</div>
+          <!-- <div><strong>Delivery:</strong>&nbsp;Today (within 2 hrs)</div> -->
+          <div><strong>Diet:</strong>&nbsp;Vegetarian</div>
+        </div>
+
+        <p style="color:var(--muted);">Tangy, homestyle dal prepared with fresh ingredients. No preservatives. Reheat gently and enjoy.</p>
+
+        <!-- <div class="controls">
+          <div class="qty" role="group" aria-label="Quantity selector">
+            <button id="dec" aria-label="Decrease quantity">−</button>
+            <input id="qty" type="number" min="1" value="1" aria-label="Quantity" />
+            <button id="inc" aria-label="Increase quantity">+</button>
+          </div>
+
+          <button class="cta" id="add">Add to cart</button>
+          <button class="secondary" id="buy">Buy Now</button>
+        </div> -->
+         <div class="action-box">
+                <div class="qty-box">
+                    <button class="qty-btn" onclick="changeQty(-1)">-</button>
+                    <span id="qty">1</span>
+                    <button class="qty-btn" onclick="changeQty(1)">+</button>
+                </div>
+                <button class="add-btn">ADD TO PLATE</button>
+            </div>
+
+            <a class="whatsapp-btn" href="https://wa.me/91XXXXXXXXXX">
+                <i class="fa-brands fa-whatsapp"></i> Click to Order via WhatsApp
+            </a>
+
+        <div class="accordion" id="accordion">
+          <div class="acc-item">
+            <h3>Ingredients <span>+</span></h3>
+            <div class="acc-body"><p>Toor/Masoor dal, tamarind, tomatoes, curry leaves, mustard seeds, cumin, red chili, turmeric, salt, oil.</p></div>
+          </div>
+          <div class="acc-item">
+            <h3>How we pack & deliver <span>+</span></h3>
+            <div class="acc-body"><p>Prepared fresh daily, sealed in eco-friendly containers. Kept hot in insulated bags for last-mile delivery.</p></div>
+          </div>
+          <div class="acc-item">
+            <h3>Nutritional info <span>+</span></h3>
+            <div class="acc-body"><p>Approx per serving: 220 kcal, Protein 10g, Carbs 24g, Fat 8g (values approximate).</p></div>
+          </div>
+        </div>
+
+      </aside>
+
+    </div>
+       <!-- Product Details -->
+    <div class="details-box">
+        <h2>Ghar Wala Dal Tadka Rice Bowl – Homemade Comfort Food</h2>
+
+        <p>
+            Experience the comforting taste of home with our Dal Tadka Rice Bowl—a simple, soulful meal prepared with freshly cooked lentils, traditional Indian spices, garlic, red chilli, and a rich desi tadka. Enjoy warmth, aroma, and homely goodness in every bite.
+        </p>
+
+        <ul class="features">
+            <li>🌱 Pure & Natural Ingredients</li>
+            <li>🧂 Authentic Indian Spices</li>
+            <li>🏡 True Homestyle Cooking</li>
+            <li>💛 Mild, Comforting & Nourishing</li>
+            <li>🍽️ Perfect for Daily Meals</li>
+        </ul>
+    </div>
+    <!-- ================== -->
+    <!-- REDESIGNED REVIEWS -->
+    <!-- ================== -->
+    <section class="reviews-section">
+        <div class="reviews-header">
+            <h2>Customer Reviews</h2>
+        </div>
+
+        <div class="reviews-container">
+            <!-- Reviews Summary Panel -->
+            <aside class="reviews-summary">
+                <div class="summary-average">
+                    <span class="average-number">4.8</span>
+                    <div>
+                        <div class="average-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="summary-total">Based on 127 reviews</p>
+                
+                <ul class="rating-bars">
+                    <li>
+                        <span class="bar-label">5 star</span>
+                        <div class="bar-container"><div class="bar-fill" style="width: 85%;"></div></div>
+                        <span class="bar-count">108</span>
+                    </li>
+                    <li>
+                        <span class="bar-label">4 star</span>
+                        <div class="bar-container"><div class="bar-fill" style="width: 10%;"></div></div>
+                        <span class="bar-count">13</span>
+                    </li>
+                    <li>
+                        <span class="bar-label">3 star</span>
+                        <div class="bar-container"><div class="bar-fill" style="width: 3%;"></div></div>
+                        <span class="bar-count">4</span>
+                    </li>
+                    <li>
+                        <span class="bar-label">2 star</span>
+                        <div class="bar-container"><div class="bar-fill" style="width: 1%;"></div></div>
+                        <span class="bar-count">1</span>
+                    </li>
+                    <li>
+                        <span class="bar-label">1 star</span>
+                        <div class="bar-container"><div class="bar-fill" style="width: 1%;"></div></div>
+                        <span class="bar-count">1</span>
+                    </li>
+                </ul>
+            </aside>
+
+            <!-- Reviews List Panel -->
+            <main class="reviews-list">
+                <div class="list-header">
+                    <h3>Reviews</h3>
+                    <select class="sort-dropdown">
+                        <option>Most Recent</option>
+                        <option>Most Helpful</option>
+                        <option>Highest Rating</option>
+                        <option>Lowest Rating</option>
+                    </select>
+                </div>
+
+                <article class="review-card">
+                    <div class="review-card-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma" class="reviewer-avatar">
+                            <div class="reviewer-meta">
+                                <h4>Priya Sharma</h4>
+                                <p>2 days ago</p>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <h5 class="review-title">Tastes just like home!</h5>
+                    <p class="review-text">
+                        Absolutely delicious! This dal tadka tastes exactly like my mom's homemade recipe. The spices are perfectly balanced and the rice is fluffy. Will definitely order again!
+                    </p>
+                    <div class="review-footer">
+                        <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (12)</button>
+                        <span class="verified-badge"><i class="fas fa-check-circle"></i>Verified Purchase</span>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-card-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul Patel" class="reviewer-avatar">
+                            <div class="reviewer-meta">
+                                <h4>Rahul Patel</h4>
+                                <p>1 week ago</p>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <h5 class="review-title">My new go-to lunch!</h5>
+                    <p class="review-text">
+                        Very fresh ingredients and authentic taste. The tadka is perfectly tempered with ghee and spices. My new go-to lunch option when I'm craving comfort food!
+                    </p>
+                    <div class="review-footer">
+                        <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (8)</button>
+                        <span class="verified-badge"><i class="fas fa-check-circle"></i>Verified Purchase</span>
+                    </div>
+                </article>
+
+                <article class="review-card">
+                    <div class="review-card-header">
+                        <div class="reviewer-info">
+                            <img src="https://randomuser.me/api/portraits/women/67.jpg" alt="Anjali Singh" class="reviewer-avatar">
+                            <div class="reviewer-meta">
+                                <h4>Anjali Singh</h4>
+                                <p>2 weeks ago</p>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <h5 class="review-title">Great quality and packaging</h5>
+                    <p class="review-text">
+                        Healthy, simple, and so comforting. Perfect portion size for lunch. The packaging was also excellent - no spills and the food was still warm when it arrived.
+                    </p>
+                    <div class="review-footer">
+                        <button class="helpful-btn"><i class="far fa-thumbs-up"></i> Helpful (5)</button>
+                        <span class="verified-badge"><i class="fas fa-check-circle"></i>Verified Purchase</span>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </section>
+    <!-- Related products -->
+    <section style="margin-top:14px">
+      <h2 style="margin:8px 0">You might also like</h2>
+      <div class="related">
+        <div class="card"><img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Bagara Baingan" style="width:100%;height:120px;object-fit:cover;border-radius:8px"><h4 style="margin:10px 0 6px">Bagara Baingan</h4><div style="color:var(--muted)">₹140</div></div>
+        <div class="card"><img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Ghee Rice" style="width:100%;height:120px;object-fit:cover;border-radius:8px"><h4 style="margin:10px 0 6px">Ghee Rice</h4><div style="color:var(--muted)">₹95</div></div>
+        <div class="card"><img src="https://texaswic.org/sites/default/files/2024-04/SBM_7913_Dal%20Fry.jpg" alt="Khatti Dal" style="width:100%;height:120px;object-fit:cover;border-radius:8px"><h4 style="margin:10px 0 6px">Khatti Dal</h4><div style="color:var(--muted)">₹110</div></div>
+      </div>
+    </section>
+
+    <footer>© Klip2Deal Homefood · Saidabad, Hyderabad · <a href="#">Contact</a></footer>
+
+    <!-- Floating sticky buy bar (mobile/desktop quick access) -->
+    <div class="sticky-buy" id="sticky">
+      <img src="https://via.placeholder.com/120x120.png?text=Kattai+Dal" alt="Kattai dal small">
+      <div style="min-width:180px">
+        <div style="font-weight:700">Kattai Dal</div>
+        <div style="color:var(--muted);font-size:14px">₹110 · 1 qty</div>
+      </div>
+      <button class="cta" id="sticky-add">Add</button>
+    </div>
+
+  </main>
+
+   <script>
+    // --- gallery ---
+    const thumbs = document.getElementById('thumbs');
+    const current = document.getElementById('current');
+    thumbs.addEventListener('click', e => {
+      const t = e.target.closest('img');
+      if(!t) return;
+      document.querySelectorAll('#thumbs img').forEach(i=>i.classList.remove('active'));
+      t.classList.add('active');
+      current.src = t.dataset.full;
+      current.alt = t.alt;
+    });
+
+    // --- quantity ---
+    function changeQty(val){
+      const qty = document.getElementById('qty');
+      let current = parseInt(qty.textContent);
+      current = Math.max(1, current + val);
+      qty.textContent = current;
+    }
+
+    // --- accordion ---
+    document.querySelectorAll('.acc-item h3').forEach(h => {
+      h.addEventListener('click', () => {
+        const body = h.nextElementSibling;
+        const open = body.classList.contains('open');
+        // Close all
+        document.querySelectorAll('.acc-body').forEach(b=>{
+          b.classList.remove('open');
+          b.previousElementSibling.querySelector('span').textContent='+';
+        });
+        // Open clicked
+        if(!open){
+          body.classList.add('open');
+          h.querySelector('span').textContent='–';
+        }
+      });
+    });
+
+    // --- update sticky bar to reflect qty ---
+    function updateSticky(){
+      const s = document.getElementById('sticky');
+      const text = s.querySelector('div div:nth-child(2)');
+      text.textContent = '₹110 · ' + qty.value + ' qty';
+    }
+
+    // initialize
+    updateSticky();
+  </script>
+</body>
+</html>
