@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Klip2Deal – Frequently Asked Questions</title>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #fdfaf7;
+      color: #333;
+      line-height: 1.7;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: linear-gradient(90deg, #f39c12, #d35400);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .faq-section {
+      background: white;
+      margin-bottom: 30px;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 200, 0, 0.104);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .faq-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .faq-section h2 {
+      font-size: 1.6em;
+      color: #e67e22;
+      margin-bottom: 18px;
+    }
+        .faq-section h2::before {
+      content: "🍽️";
+      margin-right: 10px;
+    }
+
+    .faq-item {
+      margin-bottom: 22px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1em;
+    }
+
+    .faq-answer {
+      margin-top: 10px;
+      display: none;
+      color: #444;
+    }
+
+    .faq-question span {
+      font-size: 1.4em;
+      color: #d35400;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active span {
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2em;
+      }
+      .faq-section {
+        padding: 20px;
+      }
+      .faq-question {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Frequently Asked Questions</h1>
+    <p>Your Questions, Answered with Care 💛</p>
+  </header>
+
+  <main>
+
+    <!-- ORDERING & DELIVERY -->
+    <section class="faq-section">
+      <h2>Ordering & Delivery</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. What areas do you deliver to? <span>+</span></div>
+        <div class="faq-answer">We deliver across selected Hyderabad & Secunderabad areas. Check availability during checkout.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. What are your delivery timings? <span>+</span></div>
+        <div class="faq-answer">Delivery is available from 11:00 AM to 9:00 PM depending on slot availability.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">3. Do you offer same-day delivery? <span>+</span></div>
+        <div class="faq-answer">Yes! Items marked “Available Today” can be ordered instantly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">4. Can I track my order? <span>+</span></div>
+        <div class="faq-answer">Yes, once your order is picked up, live tracking will be sent to you.</div>
+      </div>
+    </section>
+
+    <!-- FOOD QUALITY -->
+    <section class="faq-section">
+      <h2>Food Quality & Hygiene</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. Do you use preservatives or frozen items? <span>+</span></div>
+        <div class="faq-answer">No. All food is freshly cooked using fresh vegetables and ingredients.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. Are meals spicy? <span>+</span></div>
+        <div class="faq-answer">Meals are medium-spiced. You can request less spicy, extra spicy, or kids-friendly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">3. How is the food packed? <span>+</span></div>
+        <div class="faq-answer">Meals are double-sealed, hygienically packed, and travel-safe.</div>
+      </div>
+    </section>
+
+    <!-- PURE JAIN SPECIALS -->
+    <section class="faq-section">
+      <h2>Pure Jain Food (Jain Specials)</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. Do you offer Jain-friendly food? <span>+</span></div>
+        <div class="faq-answer">Yes, we prepare Jain meals without onion, garlic, or root vegetables.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. Is Jain food cooked separately? <span>+</span></div>
+        <div class="faq-answer">Yes, our Jain food is prepared using separate utensils and ingredients.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">3. Can I customize my Jain thali? <span>+</span></div>
+        <div class="faq-answer">Yes! You may choose your sabzi, dal, rice, and rotis—completely Jain-style.</div>
+      </div>
+    </section>
+
+    <!-- MEAL PLANS -->
+    <section class="faq-section">
+      <h2>Meal Plans & Subscriptions</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. Do you offer weekly or monthly meal plans? <span>+</span></div>
+        <div class="faq-answer">Yes! We provide weekly (7 days) and monthly (30 days) meal plans.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. Can I pause or reschedule my plan? <span>+</span></div>
+        <div class="faq-answer">Yes. Rescheduling or pausing is allowed with 24 hours’ notice.</div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section class="faq-section">
+      <h2>Payments & Refunds</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. What payment methods do you accept? <span>+</span></div>
+        <div class="faq-answer">We accept UPI, debit/credit cards, wallets, and COD (select areas).</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. What is your refund policy? <span>+</span></div>
+        <div class="faq-answer">Refunds apply for wrong, missing, or undelivered food with proof.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">3. Can I cancel my order? <span>+</span></div>
+        <div class="faq-answer">Orders can be canceled before cooking begins.</div>
+      </div>
+    </section>
+
+    <!-- OTHER -->
+    <section class="faq-section">
+      <h2>Others</h2>
+
+      <div class="faq-item">
+        <div class="faq-question">1. Do you offer festival or seasonal menus? <span>+</span></div>
+        <div class="faq-answer">Yes! We offer Ramadan specials, festive meal boxes & seasonal menus.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">2. Do you provide bulk catering? <span>+</span></div>
+        <div class="faq-answer">Yes. We provide corporate lunches, family gatherings & event catering.</div>
+      </div>
+
+    </section>
+  </main>
+
+  <script>
+    const blocks = document.querySelectorAll('.faq-section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.2 });
+
+    blocks.forEach(block => observer.observe(block));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        q.classList.toggle('active');
+        let answer = q.nextElementSibling;
+        answer.style.display = answer.style.display === "block" ? "none" : "block";
+      });
+    });
+  </script>
+</body>
+</html>
