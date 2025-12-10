@@ -1,0 +1,302 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Salt & Sizzle — Trendy Food Blog</title>
+    <meta name="description" content="Salt & Sizzle — modern recipes, food stories, and restaurant reviews." />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+        --bg: #fff3e2;
+        --card: #ffffff;
+        --accent: linear-gradient(90deg,#ff7a18,#ff3b8a 60%);
+        --muted: #000000;
+        --glass: rgba(255,255,255,0.04);
+        --radius: 14px;
+        --maxw: 1200px;
+        }
+        *{box-sizing:border-box}
+        html,body{height:100%}
+        body{
+        margin:0;
+        font-family:Poppins,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+        background: #fef3e5;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        padding:32px 16px;
+        display:flex;justify-content:center;
+        }
+        .container{width:100%;max-width:var(--maxw)}
+
+        /* Header */
+        header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+        .brand{display:flex;align-items:center;gap:14px}
+        .logo{width:54px;height:54px;border-radius:12px;background:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;color:white;font-family:Merriweather;font-size:22px;box-shadow:0 6px 18px rgba(255,59,138,0.12)}
+        .site-title{line-height:1}
+        .site-title h1{margin:0;font-size:18px}
+        .site-title p{margin:0;font-size:12px;color:var(--muted)}
+
+        nav{display:flex;align-items:center;gap:12px}
+        .nav-links{display:flex;gap:12px}
+        .nav-links a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px}
+        .nav-links a:hover{color:white;background:rgba(255,255,255,0.03)}
+
+        .actions{display:flex;gap:8px;align-items:center}
+        .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;font-weight:600}
+        .btn.primary{background:var(--accent);border:0;color:white;box-shadow:0 8px 30px rgba(255,59,138,0.12)}
+
+        /* Hero */
+        .hero{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start;margin-bottom:28px}
+        .hero-card{background:white;padding:26px;border-radius:var(--radius);box-shadow:0 8px 30px rgba(255, 192, 3, 0.21);overflow:hidden}
+        .hero-media{height:320px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover;background-position:center;margin-bottom:18px}
+        .hero h2{margin:0 0 8px 0;font-family:Merriweather;font-size:26px}
+        .hero p.lead{color:var(--muted);margin:0 0 16px}
+        .meta{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px}
+        .chip{background:var(--glass);padding:6px 10px;border-radius:999px;font-weight:700}
+
+        /* Grid */
+        .grid{display:grid;grid-template-columns:1fr 360px;gap:24px;padding:15px;}
+        .posts{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;background-color: white;padding: 30px;border-radius: 14px;box-shadow: 2px 2px 10px rgba(255, 192, 3, 0.21)}
+        .post{background:white;padding:14px;border-radius:12px;transition:transform .25s,box-shadow .25s;cursor:pointer;border: 2px solid orange;}
+        .post:hover{transform:translateY(-8px);box-shadow:0 18px 40pxrgba(255, 192, 3, 0.21)}
+        .post .thumb{height:160px;border-radius:10px;background-size:cover;background-position:center;margin-bottom:12px}
+        .post h3{margin:0 0 8px 0;font-size:16px}
+        .post p{margin:0;color:var(--muted);font-size:14px}
+        .post .badges{display:flex;gap:8px;margin-top:12px}
+        .badge{font-size:12px;padding:6px 8px;border-radius:8px;background:rgba(255,255,255,0.02);color:var(--muted)}
+
+        /* Sidebar */
+        .sidebar{display:flex;flex-direction:column;gap:14px;background-color: rgb(255, 255, 255);box-shadow: 2px 2px 10px rgba(255, 192, 3, 0.21);border-radius: 10px;padding: 15px;}
+        .card{background:var(--card);padding:16px;border-radius:12px;box-shadow: 2px 2px 10px rgba(255, 192, 3, 0.21);border:1px solid rgb(255, 255, 255)}
+        .search{display:flex;gap:8px}
+        .search input{flex:1;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+
+        .about{display:flex;gap:12px;align-items:center;width: 100%;}
+        .avatar{width:72px;height:72px;border-radius:12px;background-image:url('https://images.unsplash.com/photo-1529715473574-1b77c4c3e4aa?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=');background-size:cover}
+        .subscribe input{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:8px}
+
+        /* Footer */
+        footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center;padding:18px}
+        .btn{background-color: #ff7a18;color: white;}
+
+        /* Responsive */
+        @media (max-width:980px){
+        .hero,.grid{grid-template-columns:1fr}
+        .posts{grid-template-columns:1fr}
+        header{flex-direction:column;align-items:flex-start;gap:12px}
+        .nav-links{display:none}
+        .mobile-nav{display:flex}
+        }
+
+        /* small touches */
+        .load-more{display:flex;justify-content:center;margin-top:14px}
+        .tags{display:flex;gap:8px;flex-wrap:wrap}
+
+    </style>
+    </head>
+    <body>
+    <div class="container">
+
+
+        <!-- Hero area -->
+        <section class="hero">
+        <article class="hero-card">
+            <div class="hero-media" aria-hidden="true"></div>
+            <h2>How to Make Avocado Toast That Actually Impresses</h2>
+            <p class="lead">A fresh take on the breakfast staple — smashed avocado, charred lemon, and a secret drizzle.</p>
+            <div class="meta">
+            <div class="chip">Recipe</div>
+            <div>·</div>
+            <div>Oct 15, 2025</div>
+            <div>·</div>
+            <div>5 min read</div>
+            </div>
+        </article>
+
+        <aside class="sidebar">
+            <div class="card">
+            <div class="about">
+                <div class="avatar" role="img" aria-label="Author image"></div>
+                <div>
+                <strong>Hi, I'm Nora</strong>
+                <div style="color:var(--muted);font-size:13px">Recipe developer, coffee lover & restaurant hopper. I share simple recipes with bold flavour.</div>
+                </div>
+            </div>
+            </div>
+
+            <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">Search</div>
+            <div class="search">
+                <input type="search" id="q" placeholder="Search recipes, ingredients..." />
+                <button class="btn" id="search-btn">Go</button>
+            </div>
+            </div>
+
+            <div class="card subscribe">
+            <div style="font-weight:700;margin-bottom:8px">Get new recipes</div>
+            <input type="email" id="email" placeholder="your@email.com" />
+            <button class="btn primary" id="sub-btn">Join the Newsletter</button>
+            </div>
+
+            <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">Popular Tags</div>
+            <div class="tags">
+                <div class="badge">Brunch</div>
+                <div class="badge">Vegan</div>
+                <div class="badge">30-min</div>
+                <div class="badge">Street Food</div>
+                <div class="badge">Dessert</div>
+            </div>
+            </div>
+        </aside>
+        </section>
+
+        <!-- Main grid -->
+        <section class="grid">
+        <main>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <h2 style="margin:0;font-size:18px">Latest</h2>
+            <div style="color:var(--muted);font-size:13px">Showing <span id="count">6</span> posts</div>
+            </div>
+
+            <div class="posts" id="posts">
+            <!-- Post cards (static fallback) -->
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>Golden Pumpkin Hummus — Fall Favourite</h3>
+                <p>A silky hummus with roasted pumpkin, warm spices, and a crunchy topping.</p>
+                <div class="badges"><span class="badge">Vegan</span><span class="badge">Snack</span></div>
+            </article>
+
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1543353071-087092ec393a?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>Charred Corn Salad with Chili Lime</h3>
+                <p>Smoky corn, fresh herbs, and a zesty dressing that brightens any meal.</p>
+                <div class="badges"><span class="badge">Salad</span><span class="badge">Quick</span></div>
+            </article>
+
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>Ramen Hacks: Make Broth in Under 30 Minutes</h3>
+                <p>Deep flavour fast — for weeknights when you need comfort food pronto.</p>
+                <div class="badges"><span class="badge">Comfort</span><span class="badge">Weeknight</span></div>
+            </article>
+
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1525755662778-989d0524087e?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>Minimalist Lemon Tart for Beginners</h3>
+                <p>Simplified method that gives you a buttery crust and zingy filling every time.</p>
+                <div class="badges"><span class="badge">Dessert</span><span class="badge">Baking</span></div>
+            </article>
+
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1499961365478-7f8d0cbcf2f1?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>5 Ways to Upgrade Store-Bought Naan</h3>
+                <p>Simple toppings and tricks to make naan the star of the table.</p>
+                <div class="badges"><span class="badge">Side</span><span class="badge">Quick</span></div>
+            </article>
+
+            <article class="post">
+                <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=');"></div>
+                <h3>Midnight Chocolate Mug Cake — 3 Ingredients</h3>
+                <p>A tiny dessert for one, ready in under 5 minutes from pantry staples.</p>
+                <div class="badges"><span class="badge">Dessert</span><span class="badge">Single-Serve</span></div>
+            </article>
+
+            </div>
+
+            <div class="load-more">
+            <button class="btn" id="loadMore">Load more</button>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">About This Blog</div>
+            <div style="color:var(--muted);font-size:14px">At Klip2deal Homefood, every dish begins with a passion for authentic Hyderabadi home cooking. Inspired by cherished family recipes and decades of culinary experience, our founder created Klip2deal Homefood to share the warmth, aroma, and flavors of traditional Hyderabadi cuisine with the community..</div>
+            </div>
+
+            <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">Latest Reviews</div>
+            <div style="color:var(--muted);font-size:14px">Nora samples the city's best midnight tacos and rates them on spice, texture & value.</div>
+            </div>
+
+            <div class="card">
+            <div style="font-weight:700;margin-bottom:8px">Follow</div>
+            <div style="display:flex;gap:8px">
+                <button class="btn">Instagram</button>
+                <button class="btn">Facebook</button>
+                <button class="btn">YouTube</button>
+            </div>
+            </div>
+        </aside>
+        </section>
+
+        <footer>
+        © <span id="year"></span> klip2deal <span style="color:var(--muted)">care</span>
+        </footer>
+    </div>
+
+    <script>
+        // small interactive bits
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Theme toggle (simple dark/light)
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+        if(document.documentElement.style.getPropertyValue('--bg') === ''){
+            // quick emulate a light theme by toggling body styles
+            document.body.style.background = 'linear-gradient(180deg,#fff 0%, #f6f7fb 100%)';
+            document.body.style.color = '#0b1220';
+        } else {
+            document.body.style.background = '';
+            document.body.style.color = '';
+        }
+        });
+
+        // Subscribe CTA opens email input focus
+        document.getElementById('subscribe-cta').addEventListener('click', ()=>{
+        document.getElementById('email').focus();
+        window.scrollTo({top:0,behavior:'smooth'}); // tiny nudge
+        });
+
+        // Load more simulation: duplicate existing posts (demo)
+        document.getElementById('loadMore').addEventListener('click', function(){
+        const posts = document.getElementById('posts');
+        const current = posts.children.length;
+        for(let i=0;i<4;i++){
+            const clone = posts.children[i % current].cloneNode(true);
+            posts.appendChild(clone);
+        }
+        document.getElementById('count').textContent = posts.children.length;
+        });
+
+        // Simple search filter (client-side)
+        document.getElementById('search-btn').addEventListener('click', ()=>{
+        const q = document.getElementById('q').value.toLowerCase().trim();
+        const posts = Array.from(document.querySelectorAll('.post'));
+        posts.forEach(p=>{
+            const text = (p.innerText || '').toLowerCase();
+            p.style.display = text.includes(q) ? '' : 'none';
+        });
+        document.getElementById('count').textContent = document.querySelectorAll('.post:not([style*="display: none"])').length;
+        });
+
+        // Simple subscribe demo
+        document.getElementById('sub-btn').addEventListener('click', ()=>{
+        const email = document.getElementById('email').value.trim();
+        if(!email || !email.includes('@')){
+            alert('Please enter a valid email.');
+            return;
+        }
+        alert('Thanks for subscribing — welcome to Salt & Sizzle!');
+        document.getElementById('email').value = '';
+        });
+
+    </script>
+    </body>
+    </html>
