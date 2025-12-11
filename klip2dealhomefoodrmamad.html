@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Menu - Iftar & Suhour</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #f0e2d4 100%);
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="%23d4a574" opacity="0.3"/><circle cx="80" cy="40" r="1" fill="%23d4a574" opacity="0.3"/><circle cx="40" cy="80" r="1" fill="%23d4a574" opacity="0.3"/></svg>') repeat;
+            background-size: 100px 100px;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 1s ease;
+        }
+        
+       
+        
+        .moon-icon {
+            display: inline-block;
+            margin: 0 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .date-display {
+            font-size: 1.2rem;
+            color: #8b5a3c;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+         */
+          .header-content {
+            display: inline-block;
+            position: relative;
+        }
+        
+        .ramadan-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #6b46c1;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgb(255, 183, 0);
+            position: relative;
+            
+        }
+            .header {
+        background: linear-gradient(135deg, #ff8d1a, #ff6500);
+        height: 220px;
+        border-bottom-left-radius: 50% 40%;
+        border-bottom-right-radius: 50% 40%;
+        position: relative;
+        box-shadow: 0 6px 35px rgba(0,0,0,0.20);
+        text-align: center;
+        padding-top: 30px;
+        color: white;
+        margin-bottom: 100px;
+        
+    }
+
+    /* Arabic Calligraphy */
+    .arabic {
+        font-family: "Scheherazade", serif;
+        font-size: 2.4rem;
+        margin: 0;
+        letter-spacing: 2px;
+        animation: fadeIn 2s ease;
+    }
+
+    .header h2 {
+        font-size: 1.2rem;
+        margin-top: 10px;
+        opacity: 0.9;
+    }
+
+    /* Lanterns */
+    .lantern {
+        position: absolute;
+        width: 300px;
+        top: 10px;
+        filter: drop-shadow(0 0 18px #ffb400);
+        animation: glow 3s infinite ease-in-out;
+        animation: float 3s infinite ease-in-out;
+    }
+
+    .lantern.left { left: 20px; animation-delay: 0.5s; }
+    .lantern.right { right: 20px;animation-delay: 0.5s; }
+
+    /* Floating Moon */
+    .moon {
+        position: absolute;
+        width: 500px;
+        left: 4%;
+        top: 100%;
+        transform: translateX(50%);
+        opacity: 0.95;
+        animation: float 4s infinite ease-in-out;
+    }
+
+    /* ---------------- MENU SECTION ---------------- */
+
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .menu-card {
+            position: relative;
+            background: white;
+            border-radius: 20px 20px 100px 100px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+        }
+        
+        .menu-card.iftar {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+        }
+        
+        .menu-card.suhour {
+            background: linear-gradient(135deg, #f0f4ff 0%, #e0e8ff 100%);
+        }
+        
+        .arch-decoration {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, rgba(107, 70, 193, 0.1));
+            border-radius: 0 0 50% 50%;
+            z-index: 1;
+        }
+        
+        .card-header {
+            position: relative;
+            z-index: 2;
+            padding: 30px 20px 20px;
+            text-align: center;
+        }
+        
+        .lantern-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            position: relative;
+            animation: swing 4s ease-in-out infinite;
+        }
+        
+        .lantern-body {
+            width: 40px;
+            height: 50px;
+            background: linear-gradient(135deg, #ff6b6b, #ffd93d);
+            border-radius: 15px 15px 20px 20px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+        
+        .lantern-top {
+            width: 20px;
+            height: 8px;
+            background: #8b4513;
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .lantern-light {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 255, 200, 0.8), transparent);
+            border-radius: 50%;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        .menu-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #6b46c1;
+            margin-bottom: 5px;
+        }
+        
+        .menu-time {
+            color: #8b5a3c;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .menu-content {
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .menu-section {
+            margin-bottom: 25px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #6b46c1;
+            margin-bottom: 12px;
+            padding-left: 10px;
+            border-left: 3px solid #6b46c1;
+        }
+        
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateX(5px);
+        }
+        
+        .item-name {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .item-description {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 2px;
+        }
+        
+        .price-tag {
+            font-weight: 600;
+            color: #6b46c1;
+            font-size: 1.1rem;
+        }
+        
+        .special-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #8b5a3c;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        .footer-note {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .footer-note h3 {
+            color: #6b46c1;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 10px;
+        }
+        
+        .footer-note p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes swing {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        @keyframes glow {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @media (max-width: 768px) {
+            .ramadan-title {
+                font-size: 2.5rem;
+            }
+            
+            .menu-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .menu-card {
+                border-radius: 20px 20px 80px 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <header>
+            <div class="header-content">
+                <h1 class="ramadan-title">
+                    <span class="moon-icon">🌙</span>
+                    Ramadan Kareem
+                    <span class="moon-icon">🌙</span>
+                </h1>
+                <div class="date-display" id="currentDate"></div>
+            </div>
+        </header> -->
+        <div class="header">
+             <h1 class="ramadan-title">
+                    <span class="moon-icon">🌙</span>
+                    Ramadan Kareem
+                    <span class="moon-icon">🌙</span>
+                </h1>
+    <img src="https://raw.githubusercontent.com/hdpngworld/HPW/main/uploads/650ddd736cb8f-islamic%20eid%20mubarak.png" class="lantern left">
+    <img src="https://raw.githubusercontent.com/hdpngworld/HPW/main/uploads/650ddd736cb8f-islamic%20eid%20mubarak.png" class="lantern right">
+    <h2>Homestyle – Iftar & Suhoor Menu</h2>
+</div>
+
+
+        <div class="menu-container">
+            <!-- Iftar Menu Card -->
+            <div class="menu-card iftar">
+                <div class="arch-decoration"></div>
+                <div class="card-header">
+                    <div class="lantern-icon">
+                        <div class="lantern-top"></div>
+                        <div class="lantern-body">
+                            <div class="lantern-light"></div>
+                        </div>
+                    </div>
+                    <h2 class="menu-title">Iftar Menu</h2>
+                    <p class="menu-time">Sunset - Breaking Fast</p>
+                </div>
+                
+                <div class="menu-content">
+                    <div class="menu-section">
+                        <h3 class="section-title">Starters</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Dates & Laban</div>
+                                <div class="item-description">Traditional breaking fast</div>
+                            </div>
+                            <span class="price-tag">Free</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Samboosa Platter</div>
+                                <div class="item-description">Meat, cheese & vegetable</div>
+                            </div>
+                            <span class="price-tag">25 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Lentil Soup</div>
+                                <div class="item-description">Warm & comforting</div>
+                            </div>
+                            <span class="price-tag">15 SAR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h3 class="section-title">Main Courses</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Mandi Lamb <span class="special-badge">Chef Special</span></div>
+                                <div class="item-description">Slow-cooked with aromatic rice</div>
+                            </div>
+                            <span class="price-tag">85 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Chicken Kabsa</div>
+                                <div class="item-description">Spiced rice with tender chicken</div>
+                            </div>
+                            <span class="price-tag">65 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Grilled Mix</div>
+                                <div class="item-description">Kebab, shish tawook & kofta</div>
+                            </div>
+                            <span class="price-tag">75 SAR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h3 class="section-title">Desserts</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Kunafa</div>
+                                <div class="item-description">Cheese or cream filled</div>
+                            </div>
+                            <span class="price-tag">30 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Umm Ali</div>
+                                <div class="item-description">Traditional bread pudding</div>
+                            </div>
+                            <span class="price-tag">25 SAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Suhour Menu Card -->
+            <div class="menu-card suhour">
+                <div class="arch-decoration"></div>
+                <div class="card-header">
+                    <div class="lantern-icon">
+                        <div class="lantern-top"></div>
+                        <div class="lantern-body" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                            <div class="lantern-light"></div>
+                        </div>
+                    </div>
+                    <h2 class="menu-title">Suhour Menu</h2>
+                    <p class="menu-time">Pre-dawn Meal</p>
+                </div>
+                
+                <div class="menu-content">
+                    <div class="menu-section">
+                        <h3 class="section-title">Light Bites</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Foul Medammes</div>
+                                <div class="item-description">Egyptian fava beans</div>
+                            </div>
+                            <span class="price-tag">20 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Halloumi & Olives</div>
+                                <div class="item-description">Grilled cheese platter</div>
+                            </div>
+                            <span class="price-tag">35 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Yogurt Parfait</div>
+                                <div class="item-description">With honey & nuts</div>
+                            </div>
+                            <span class="price-tag">25 SAR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h3 class="section-title">Hearty Options</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Shakshuka <span class="special-badge">Popular</span></div>
+                                <div class="item-description">Eggs in tomato sauce</div>
+                            </div>
+                            <span class="price-tag">40 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Manakish Za'atar</div>
+                                <div class="item-description">Thyme flatbread</div>
+                            </div>
+                            <span class="price-tag">30 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Oatmeal Porridge</div>
+                                <div class="item-description">With dates & almonds</div>
+                            </div>
+                            <span class="price-tag">20 SAR</span>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <h3 class="section-title">Beverages</h3>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Jallab</div>
+                                <div class="item-description">Date molasses drink</div>
+                            </div>
+                            <span class="price-tag">15 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Tamarind Juice</div>
+                                <div class="item-description">Refreshing & tangy</div>
+                            </div>
+                            <span class="price-tag">15 SAR</span>
+                        </div>
+                        <div class="menu-item">
+                            <div>
+                                <div class="item-name">Mint Tea</div>
+                                <div class="item-description">Traditional Moroccan style</div>
+                            </div>
+                            <span class="price-tag">12 SAR</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-note">
+            <h3>🌙 Ramadan Blessings 🌙</h3>
+            <p>May this holy month bring peace, prosperity, and happiness to you and your family.<br>
+            Special group packages available for families and corporate Iftar gatherings.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Set current date in Islamic format
+        function updateDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const gregorianDate = now.toLocaleDateString('en-US', options);
+            
+            // Simple Islamic date calculation (approximate)
+            const islamicMonths = ['Muharram', 'Safar', 'Rabi\' al-Awwal', 'Rabi\' al-Thani', 
+                                  'Jumada al-Awwal', 'Jumada al-Thani', 'Rajab', 'Sha\'ban', 
+                                  'Ramadan', 'Shawwal', 'Dhu al-Qi\'dah', 'Dhu al-Hijjah'];
+            
+            // This is a simplified calculation - for production, use a proper library
+            const islamicYear = 1445; // Update as needed
+            const islamicMonth = 8; // Ramadan
+            const islamicDay = Math.floor((now.getDate() + 10) % 30) + 1;
+            
+            document.getElementById('currentDate').innerHTML = 
+                `${islamicDay} ${islamicMonths[islamicMonth]} ${islamicYear} AH | ${gregorianDate}`;
+        }
+        
+        updateDate();
+        
+        // Add smooth scroll behavior
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
